@@ -13,8 +13,9 @@ public class CrewDAO {
 			name = conn.selectOne("bokMapper.selectLogin", vo);
 			if (name == null) {
 				name = "다시 확인하세요.";
-			}
-			conn.commit();
+			} 
+			//return name;
+			//conn.commit(); insert, update, delete에 사용 / 조회는 X
 		} catch (Exception e) {
 			conn.rollback();
 		} finally {

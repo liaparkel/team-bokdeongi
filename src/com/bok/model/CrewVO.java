@@ -1,9 +1,9 @@
 package com.bok.model;
 
 public class CrewVO {
-	String crewId;
-	String crewPw;
-	String crewName;
+	private String crewId;
+	private String crewPw;
+	private String crewName;
 	
 	
 	

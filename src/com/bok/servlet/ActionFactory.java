@@ -10,8 +10,13 @@ public class ActionFactory {
 //			a = new IdCheckAction();
 //			break;
 		
+		case "loginUI" :
+			a = new loginUIAction();
+			break;
+		
+		
 		default:
-			a = new MainUIAction();
+			a = new MainUIAction(); 
 			break;
 		}
 		return a;

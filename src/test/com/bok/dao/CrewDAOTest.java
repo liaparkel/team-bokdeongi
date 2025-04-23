@@ -25,8 +25,9 @@ public class CrewDAOTest {
 	
 	@Test
 	public void failLogin() {
-//		assertEquals(cdao.loginCrew(new CrewVO("mintfox2", "abc1234")), "정성찬");
-		System.out.println(cdao.loginCrew(new CrewVO("mintfox2", "abc1234")));
+//		assertEquals(cdao.loginCrew(new CrewVO("mintfox23", "abc1234")), "정성찬");
+		assertEquals(cdao.loginCrew(new CrewVO("mintfox3", "abc1234")), "정성찬");
+//		System.out.println(cdao.loginCrew(new CrewVO("mintfox2", "abc1234")));
 	}
 
 }
