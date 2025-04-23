@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<style>
+		.main {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			/* 수평 정렬 */
+			justify-content: center;
+			/* 수직 정렬 */
+			text-align: center;
+			height: 100vh;
+			/* 화면 전체 높이 기준으로 가운데 정렬 */
+			gap: 20px;
+			/* 각 요소들 간의 간격 추가 */
+		}
+
+		.p_main {
+			font-size: 20px;
+		}
+
+		.p2_main {
+			font-size: 50px;
+			font-weight: bold;
+			color: #ffd96d;
+		}
+
+		.btn1 {
+			width: 100px;
+			height: 32px;
+			border-radius: 999px;
+			border: none;
+			font-family: bold;
+			font-weight: 700;
+			background: #F4B400;
+			color: black;
+			margin-left: 15px;
+		}
+	</style>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>사용자 UI</title>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		crossorigin="anonymous">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/component.css">
+</head>
+
+<body>
+	<div class="page-layout">
+
+		<!-- 메인 -->
+		<div class="main">
+			<br class="container">
+			<p class="p_main">처음 집 구하는 사람들을 위한</p>
+			<p class="p2_main">복덩이 부동산</p>
+			<img src=" image/bok.png" />
+			<button class="btn1" href="#"">나만의 집 찾기</button>
+
+        </div>
+    </div>
+
+		<!-- 푸터 -->
+		<div class=" footer">
+				<div class="container">
+					<div class="footer-left">
+						<span>상호명: <span class="bok-name">복덩이 부동산</span> <img src="image/logo.png"
+								id="img-bok1" /></span>
+						<span>복덩이: 김정훈, 박종석,
+							정현아, 박희수</span>
+					</div>
+					<div class="footer-middle">
+						<span>주소: 서울 금천구 가산디지털1로 912호 호서대벤처타워 9층</span> <span>문의:
+							kebin10804@gmail.com</span>
+					</div>
+					<div class="footer-bok">
+						<img src="image/bok.png" class="img-bok2" />
+					</div>
+				</div>
+		</div>
+
+	</div>
+	<!-- 상단바 동작 -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+	<script>
+		const navLinks = document.querySelectorAll('.nav-link');
+
+		navLinks.forEach(link => {
+			link.addEventListener('click', function () {
+				navLinks.forEach(item => {
+					if (!item.classList.contains('no-underline')) {
+						item.classList.remove('active');
+					}
+				});
+				if (!this.classList.contains('no-underline')) {
+					this.classList.add('active');
+				}
+			});
+		});
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>
