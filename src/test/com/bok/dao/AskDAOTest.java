@@ -21,13 +21,13 @@ public class AskDAOTest {
 	
 	@Test
 	public void getFaqNum() {
-//		System.out.println(adao.getFaqNum());
-		assertNotNull(adao.getFaqNum());
+		System.out.println(adao.getFaq());
+		assertNotNull(adao.getFaq());
 	}
 	
 	@Test
 	public void failGetFaqNum() {
-		assertNull(adao.getFaqNum());
+		assertNull(adao.getFaq());
 	}
 
 }

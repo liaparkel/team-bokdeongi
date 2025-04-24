@@ -7,7 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 
 public class AskDAO {
 
-	public Collection<AskVO> getFaqNum() {
+	public Collection<AskVO> getFaq() {
 		
 		SqlSession conn = DBCP.getSqlSessionFactory().openSession();
 		Collection<AskVO> list = null;
