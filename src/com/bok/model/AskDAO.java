@@ -9,8 +9,8 @@ public class AskDAO {
 
 	public Collection<AskVO> getFaqNum() {
 		
-		Collection<AskVO> list = null;
 		SqlSession conn = DBCP.getSqlSessionFactory().openSession();
+		Collection<AskVO> list = null;
 		
 		try {
 			list = conn.selectList("bokMapper.getAsk");

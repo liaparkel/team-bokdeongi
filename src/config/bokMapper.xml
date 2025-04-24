@@ -18,4 +18,71 @@
 		FROM faq
 	</select>
 	
+	<select id="getSoloAsk" resultType="com.bok.model.SoloAskVO">
+		SELECT ask_num as askNum, email, ask_pw as askPw,
+		ask_title as askTitle, solo_date as soloDate
+		, solo_content as soloContent, solo_answer as soloAnswer
+		, crew_id as crewId
+		FROM solo_ask
+	</select>
+	
+	<select id="searchEmail" parameterType="String" resultType="com.bok.model.SoloAskVO">
+		SELECT ask_num as askNum, email, ask_pw as askPw,
+		ask_title as askTitle, solo_date as soloDate
+		, solo_content as soloContent, solo_answer as soloAnswer
+		, crew_id as crewId
+		FROM solo_ask
+		WHERE email = #{email}
+	</select>
+	
+	<insert id="addSoloAsk" parameterType="com.bok.model.SoloAskVO">
+		INSERT into solo_ask(ask_num, email, ask_pw, ask_title, solo_date, solo_secret, solo_content) VALUES(ask_num_seq.NEXTVAL, #{email}, #{askPw}, #{askTitle}, sysdate, #{soloSecret}, #{soloContent})
+	</insert>
+	
+	<select id="askDetail" parameterType="com.bok.model.SoloAskVO" resultType="com.bok.model.SoloAskVO">
+		SELECT ask_title as askTitle, solo_content as soloContent, solo_answer as soloAnswer
+		FROM solo_ask
+		WHERE ask_num = #{askNum}
+		AND ask_pw = #{askPw}
+	</select>
+	
+	<update id="updateFaq" parameterType="com.bok.model.FaqManagerVO">
+		UPDATE faq
+		SET faq_content = #{faqContent}
+		WHERE faq_num = #{faqNum}
+	</update>
+	
+	<select id="getFaq" resultType="com.bok.model.FaqManagerVO">
+		SELECT faq_num as faqNum, faq_title as faqTitle, faq_content as faqContent
+		FROM faq
+	</select>
+	
+	<insert id="addFaq" parameterType="com.bok.model.FaqManagerVO">
+		INSERT into faq VALUES ((SELECT NVL(MAX(faq_num), 0) + 1 FROM faq), #{faqTitle}, #{faqContent})
+	</insert>
+	
+	<delete id="deleteFaq" parameterType="Integer">
+		DELETE FROM faq
+		WHERE faq_num = #{faqNum}
+	</delete>
+	
+	<select id="getSoloAskManager" resultType="com.bok.model.SoloAskManagerVO">
+		SELECT ask_num as askNum, email, ask_pw as askPw,
+		ask_title as askTitle, solo_date as soloDate
+		, solo_content as soloContent, solo_answer as soloAnswer
+		, crew_id as crewId
+		FROM solo_ask
+	</select>
+	
+	<select id="soloAskManagerDetail" parameterType="String" resultType="com.bok.model.SoloAskManagerVO">
+		SELECT ask_title as askTitle, solo_content as soloContent, solo_answer as soloAnswer
+		FROM solo_ask
+		WHERE ask_num = #{askNum}
+	</select>
+	
+	<update id="soloAskSend" parameterType="com.bok.model.SoloAskManagerVO">
+		UPDATE solo_ask
+		SET solo_answer = #{soloAnswer}, crew_id = #{crewId}
+		WHERE ask_num = #{askNum}
+	</update>
 </mapper>
