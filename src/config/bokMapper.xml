@@ -8,9 +8,32 @@
 		WHERE crew_id = #{crewId} AND crew_pw = #{crewPw}
 	</select>
 
-	<select id="getSprtPerson" resultType="com.bok.model.SprtPersonVO">
-	SELECT sprt_title AS title, sprt_link AS link, sprt_summary AS summary, sprt_start AS "start", sprt_end AS "end" FROM sprt_person WHERE sprt_num = #{fkSprtNum} AND sprt_end >= TRUNC(SYSDATE)
-
+	<select id="getSprtInfo" resultType="com.bok.model.SprtInfoVO">
+		SELECT sprt_num AS sprtNum, sprt_category AS category FROM sprt_info ORDER BY sprt_num ASC
+	</select>
+	
+	<select id="getSprtPerson" parameterType="int" resultType="com.bok.model.SprtPersonVO">
+		SELECT sprtp_num AS sprtpNum, sprt_title AS title, sprt_link AS link, sprt_summary AS summary, sprt_start AS "start", sprt_end AS "end", sprt_num AS fkSprtNum FROM sprt_person WHERE sprt_num = #{fkSprtNum} AND sprt_end >= TRUNC(SYSDATE)
+	</select>
+	
+	<select id="getSprtContent" parameterType="int" resultType="com.bok.model.SprtContentVO">
+		SELECT sprtpc_num AS sprtpcNum, sprt_subtitle AS subtitle, sprt_content AS content, sprtp_num AS fkSprtpNum FROM sprt_content WHERE sprtp_num = #{fkSprtpNum} ORDER BY sprt_subtitle
+	</select>
+	
+	<select id="getBfSprtPerson" parameterType="int" resultType="com.bok.model.SprtPersonVO">
+		SELECT sprtp_num AS sprtpNum, sprt_title AS title, sprt_link AS link, sprt_summary AS summary, sprt_start AS "start", sprt_end AS "end", sprt_num AS fkSprtNum FROM sprt_person WHERE sprt_num = #{fkSprtNum} ORDER BY sprt_end DESC
+	</select>
+	
+	<select id="getBfSprtPersonCount" parameterType="int" resultType="int">
+		SELECT COUNT(sprtp_num) FROM sprt_person WHERE sprt_num = #{fkSprtNum}
+	</select>
+	
+	<select id="getPagedBfSprtPerson" resultType="com.bok.model.SprtPersonVO">
+		SELECT sprtp_num AS sprtpNum, sprt_title AS title, sprt_link AS link, sprt_summary AS summary, sprt_start AS "start", sprt_end AS "end", sprt_num AS fkSprtNum 
+		FROM (SELECT sprtp_num, sprt_title, sprt_link, sprt_summary, sprt_start, sprt_end, sprt_num, 
+		ROW_NUMBER() OVER (ORDER BY sprt_end DESC) AS rn 
+		FROM sprt_person WHERE sprt_num = #{fkSprtNum}) 
+		WHERE rn BETWEEN #{startRow} AND #{endRow}
 	</select>
 
 	<select id="getAsk" resultType="com.bok.model.AskVO">
