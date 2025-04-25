@@ -1,25 +1,24 @@
 package com.bok.model;
 
-import org.apache.ibatis.session.SqlSession;
+//import org.apache.ibatis.session.SqlSession;
 
 public class CrewDAO {
 	
 	// 로그인
 	public String loginCrew(CrewVO vo) {
-		// NullPointException
-		SqlSession conn = DBCP.getSqlSessionFactory().openSession();
+//		 NullPointException
 		String name = "";
 		try {
-			name = conn.selectOne("bokMapper.selectLogin", vo);
+//			name = conn.selectOne("bokMapper.selectLogin", vo);
 			if (name == null) {
 				name = "다시 확인하세요.";
 			} 
-			//return name;
+//			return name;
 			//conn.commit(); insert, update, delete에 사용 / 조회는 X
 		} catch (Exception e) {
-			conn.rollback();
+//			conn.rollback();
 		} finally {
-			conn.close();
+//			conn.close();
 		}
 		return name;
 	}
