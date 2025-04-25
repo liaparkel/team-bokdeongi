@@ -1,0 +1,23 @@
+.question-box {
+	padding: 20px;
+	border-radius: 8px;
+	margin-bottom: 20px;
+}
+
+.answer-box {
+	background-color: #F5F5F5;
+	padding: 20px;
+	border-radius: 8px;
+	margin-bottom: 20px;
+}
+
+.user-info {
+	font-size: 14px;
+	color: #777;
+	margin-top: 60px;
+	text-align: right;
+}
+.solo-title {
+	font-family: "Yellowtail", cursive;
+	color: #F4B400 !important;
+}

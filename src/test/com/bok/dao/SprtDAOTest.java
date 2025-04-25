@@ -80,7 +80,7 @@ public class SprtDAOTest {
 		assertTrue(result.size()<=10);
 	}
 
-	@Test	//사용자에게 카테고리에 해당하는 이전 지원금 정보 제공(종료일 내림차순, Pagination
+	@Test
 	public void getPagedBfSprtPerson_fail() {
 		int fkSprtNum = 6;	//존재하지 않는 카테고리
 		int totalCount = dao.getBfSprtPersonCount(fkSprtNum);
@@ -95,6 +95,7 @@ public class SprtDAOTest {
 	public void getBfSprtPersonCount() {
 		int result = dao.getBfSprtPersonCount(2);
 		assertEquals(3, result);
+		System.out.println(result);
 	}
 
 	@Test
