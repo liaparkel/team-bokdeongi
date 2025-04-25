@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<style>
+		.sprt-title {
+			text-decoration: none;
+		}
+	</style>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>관리자 지원금 관리</title>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/component.css">
+	<link rel="stylesheet" href="css/sprt.css">
+</head>
+
+<body>
+	<div class="page-layout">
+
+		<!-- 메인 -->
+		<div class="main">
+			<div class="container">
+
+				<button class="sprt-accordion">
+					<div class="sprt-text">
+						<div class="sprt-title-row">
+							<a class="sprt-title" href="#">버팀목 전세 대출</a>
+						</div>
+						<p class="sprt-description">주거비 부담 완화를 위한 대출지원제도 / 사회초년생 우대 / 주택도시기금</p>
+					</div>
+					<i class="bi bi-chevron-down arrow"></i>
+				</button>
+				<div class="content">
+					<p>
+						1. 지원대상<br> * (우대형) 취업준비생, 희망키움통장 가입자, 근로장려금 수급자, 사회초년생, 자녀장려금 수급자, 주거급여수급
+
+					</p>
+					<p>
+						<br>
+						2. 지원 내용<br> * 주변 시세의 30 ~ 85% 가격으로 공급<br> * 대출한도 : 최대 1,440만원(월 60만원 이내) <br>
+						* 대출기간 : 2년(4회 연장, 최장 10년 이용 가능)
+					</p>
+				</div>
+				<button class="sprt-accordion">
+					<div class="sprt-text">
+						<div class="sprt-title-row">
+							<a class="sprt-title" href="">KB 청년전용 버팀목 전세자금 대출</a>
+						</div>
+						<p class="sprt-description">최고 2억원까지 지원 / 만 19세 이상 ~ 만 34세 이하 청년 / KB 국민은행 대출</p>
+					</div>
+					<i class="bi bi-chevron-down arrow"></i>
+				</button>
+				<div class="content">
+					<p>
+						1. 지원대상<br> * 만 19세~34세* 이하의 세대주 및 세대주예정자로 주택임대차계약을 체결하여 임차보증금의 5% 이상 지불하고,
+						아래의 요건을 모두 갖춘 고객
+						<br> * 대출신청일 현재 민법상 성년인 세대주(세대주 예정자 포함) 또는 세대주로 인정되는 자로서 세대주(예정자)를 포함한 세대원(예정자) 전원이
+						무주택인 고객
+						<br> * 최근년도 또는 최근 1년간 부부합산 총소득이 5천만원 이하인 고객
+
+					</p>
+					<p>
+						<br>
+						2. 지원 내용<br>* 대출한도 임차보증금의 80%이내에서 최고 2억원까지 지원 <br>
+						* 대출금리 (기본금리) 연 2.2% ~ 연 3.3%(2025.03.24 기준, 국토교통부 고시 변동금리) <br>
+						* 대출기간 2년 이내(임차종료일 초과 불가. 4회 연장으로 최장 10년 가능)
+					</p>
+				</div>
+				<button class="sprt-accordion">
+					<div class="sprt-text">
+						<div class="sprt-title-row">
+							<a class="sprt-title" href="#">신한 청년 전세 대출</a>
+						</div>
+						<p class="sprt-description">청년층 맞춤형 전세자금 대출 / 만19세~34세 이하의 무주택 세대주 / 신한은행</p>
+					</div>
+					<i class="bi bi-chevron-down arrow"></i>
+				</button>
+				<div class="content">
+					<p>
+						1. 지원대상<br>
+						* 만19세~34세 이하의 무주택(배우자포함) 세대주로 아래조건을 모두 충족한 고객(예비세대주 포함) 임차보증금의 5% 이상을 지급 <br>
+						* 부부 합산 연소득 7천만원 이하 <br>
+						* 임차보증금 7억원 이하의 전세계약(수도권 외 지역은 5억원 이하)
+
+					</p>
+					<p>
+						<br>
+						2. 지원 내용<br>
+						* 대출금리 기준금리 2.75% <br>
+						* 대출한도 임대차계약서상 임차보증금의 90%범위내에서 최대 200백만원까지 가능 <br>
+						* 대출기간 6개월 이상 36개월 이하
+
+					</p>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<script type="text/javascript">
+		function setSprt(selectedBtn) {
+			const buttons = document.querySelectorAll(".sprt");
+			for (let i = 0; i < buttons.length; i++) {
+				buttons[i].classList.remove("sprtActive");
+			}
+			selectedBtn.classList.add("sprtActive");
+		}
+
+		const accordions = document.querySelectorAll(".faq-accordion, .sprt-accordion");
+		accordions.forEach((acc) => {
+			acc.addEventListener("click", function () {
+				this.classList.toggle("active");
+				const panel = this.nextElementSibling;
+				if (panel.style.maxHeight) {
+					panel.style.maxHeight = null;
+				} else {
+					panel.style.maxHeight = panel.scrollHeight + "px";
+				}
+			});
+		});
+
+		const openModalBtn = document.getElementById("openModal");
+		const modal = document.getElementById("modal");
+		const cancelBtn = document.getElementById("cancel");
+
+		openModalBtn?.addEventListener("click", () => {
+			modal.style.display = "flex";
+			document.body.style.overflow = "hidden";
+		});
+
+		cancelBtn?.addEventListener("click", (e) => {
+			e.preventDefault();
+			modal.style.display = "none";
+			document.body.style.overflow = "";
+		});
+
+		window.addEventListener("click", (e) => {
+			if (e.target === modal) {
+				e.preventDefault();
+				modal.style.display = "none";
+			}
+		});
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+	<script>
+		const navLinks = document.querySelectorAll('.nav-link');
+		navLinks.forEach(link => {
+			link.addEventListener('click', function () {
+				navLinks.forEach(item => {
+					if (!item.classList.contains('no-underline')) {
+						item.classList.remove('active');
+					}
+				});
+				if (!this.classList.contains('no-underline')) {
+					this.classList.add('active');
+				}
+			});
+		});
+	</script>
+</body>
+
+</html>
