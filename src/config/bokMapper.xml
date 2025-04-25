@@ -29,7 +29,7 @@
 	</select>
 	
 	<select id="getPagedBfSprtPerson" resultType="com.bok.model.SprtPersonVO">
-		SELECT sprtp_num AS sprtpNum, sprt_title AS title, sprt_link AS link, sprt_summary AS summary, sprt_start AS "start", sprt_end AS "end", sprt_num AS fkSprtNum 
+		SELECT sprt p_num AS sprtpNum, sprt_title AS title, sprt_link AS link, sprt_summary AS summary, sprt_start AS "start", sprt_end AS "end", sprt_num AS fkSprtNum 
 		FROM (SELECT sprtp_num, sprt_title, sprt_link, sprt_summary, sprt_start, sprt_end, sprt_num, 
 		ROW_NUMBER() OVER (ORDER BY sprt_end DESC) AS rn 
 		FROM sprt_person WHERE sprt_num = #{fkSprtNum}) 
@@ -108,4 +108,68 @@
 		SET solo_answer = #{soloAnswer}, crew_id = #{crewId}
 		WHERE ask_num = #{askNum}
 	</update>
+	
+	
+	<select id="getSprtPersonOne" parameterType="int"
+		resultType="com.bok.model.SprtPersonVO">
+		select sprt_title as title, sprt_link as link, sprt_summary as summary,
+		sprt_date as "date", sprt_start as "start", sprt_end as "end", sprt_num
+		as fkSprtNum
+		from sprt_person
+		where sprtp_num = #{sprtpNum}
+	</select>
+	<select id="getSprtContents" parameterType="int"
+		resultType="com.bok.model.SprtContentVO">
+		select sprtpc_num as sprtpcNum, sprt_subtitle as subtitle, sprt_content as
+		content, sprtp_num as fkSprtpNum
+		from sprt_content
+		where sprtp_num = #{sprtpNum}
+		order by sprt_subtitle 
+	</select>
+
+	<delete id="removeSprtContent" parameterType="int">
+		delete sprt_content where sprtp_num = #{sprtpNum}
+	</delete>
+	<delete id="removeSprtPerson" parameterType="int">
+		delete sprt_person where sprtp_num = #{sprtpNum}
+	</delete>
+
+	<insert id="addSprtCategory" parameterType="String">
+		insert into sprt_info(sprt_num,sprt_category)
+		values(sprt_num_seq.NEXTVAL,#{category})
+	</insert>
+
+	<insert id="addSprtPerson" parameterType="com.bok.model.SprtPersonVO" useGeneratedKeys="false">
+    <selectKey resultType="int" keyProperty="sprtpNum" order="BEFORE">
+        SELECT sprtp_num_seq.NEXTVAL FROM dual
+    </selectKey>
+    insert into sprt_person(
+        sprtp_num, sprt_title, sprt_link, sprt_summary, sprt_date, sprt_start, sprt_end, sprt_num
+    ) values(
+        #{sprtpNum}, #{title}, #{link}, #{summary}, SYSDATE, #{start}, #{end}, #{fkSprtNum}
+    )
+</insert>
+	<insert id="addSprtContent" parameterType="com.bok.model.SprtContentVO">
+		insert into sprt_content(sprtpc_num, sprt_subtitle,sprt_content,sprtp_num)
+		values(sprtpc_num_seq.NEXTVAL,#{subtitle}, #{content}, #{fkSprtpNum})
+	</insert>
+
+	<update id="setSprtPerson" parameterType="com.bok.model.SprtPersonVO">
+		UPDATE sprt_person
+		SET sprt_title = #{title}, sprt_link = #{link}, sprt_summary = #{summary},
+		sprt_start = #{start}, sprt_end = #{end}
+		WHERE sprtp_num = #{sprtpNum}
+	</update>
+
+	<update id="setSprtContent" parameterType="com.bok.model.SprtContentVO">
+		UPDATE sprt_content
+		SET sprt_subtitle = #{subtitle}, sprt_content = #{content}
+		WHERE sprtpc_num = #{sprtpcNum} 
+	</update>
+
+	<select id="getBfSprtPersonM" parameterType="int" resultType="com.bok.model.SprtPersonVO">
+		SELECT sprtp_num AS sprtpNum, sprt_title AS title, sprt_link AS link, sprt_summary AS summary, sprt_date AS "date", sprt_start AS "start", sprt_end AS "end", sprt_num AS fkSprtNum FROM sprt_person WHERE sprt_num = #{fkSprtNum} ORDER BY sprt_end DESC
+	</select>
+	
+	
 </mapper>
