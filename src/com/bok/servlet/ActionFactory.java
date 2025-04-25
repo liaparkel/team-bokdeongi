@@ -6,14 +6,14 @@ public class ActionFactory {
 	public static Action getAction(String cmd){
 		Action a;
 		switch (cmd){
-//		case "idCheckAction":
-//			a = new IdCheckAction();
-//			break;
-		
-		case "loginUI" :
+
+		case "loginUI":
 			a = new loginUIAction();
 			break;
-		
+			
+		case "SprtUIAction":
+			a = new SprtUIAction();
+			break;
 		
 		default:
 			a = new MainUIAction(); 
