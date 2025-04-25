@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>주택임대차 안내서</title>
+
+  <!-- 글꼴 & 아이콘 & 부트스트랩 -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/category-modal.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="css/ckHomeManagerUI.css">
+
+
+</head>
+<body>
+   <div class="page-layout">
+<!-- ✅ nav 영역은 여기까지만 -->
+<nav class="navbar">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img src="image/logo.png" alt="로고" />
+    </a>
+
+    <div class="admin-info d-flex align-items-center ms-3">
+      <span class="admin-greeting">관리자님 안녕하세요.</span>
+      <button class="logout-btn ms-2">로그아웃</button>
+    </div>
+
+    <div class="menu-wrapper ms-auto">
+      <a class="nav-link" href="#">체크리스트</a>
+      <a class="nav-link" href="#">지원금정보</a>
+      <div class="dropdown">
+        <a class="nav-link dropdown-toggle no-underline" href="#" role="button" data-bs-toggle="dropdown">
+          문의관리
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" href="#">FAQ</a></li>
+          <li><a class="dropdown-item" href="#">1:1 문의관리</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ✅ 여기부터 본문 (nav 밖으로 빼야 함) -->
+<div class="container">
+  <div class="home">주택임대차 안내서</div>
+
+  <div class="d-flex justify-content-between align-items-center">
+    <div class="category-bar d-flex align-items-center gap-2">
+      <span class="category-label">카테고리 없음</span>
+      <i class="bi bi-plus-circle" role="button" tabindex="0" onclick="openCategoryModal()"></i>
+    </div>
+    <button class="down-load">체크리스트 다운</button>
+  </div>
+</div>
+
+
+<div class="modal fade" id="categoryModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content custom-modal shadow">
+      <div class="modal-body">
+        <p class="modal-title-text">추가할 항목을 입력해주세요.</p>
+        <input type="text" class="form-control modal-input" placeholder="집보기">
+
+        <div class="modal-btn-group">
+          <button class="btn cancel-btn" data-bs-dismiss="modal">취 소</button>
+          <button class="btn save-btn">저 장</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 스크립트 반드시 body 아래에 -->
+<script>
+  function openCategoryModal() {
+    const modal = new bootstrap.Modal(document.getElementById('categoryModal'));
+    modal.show();
+  }
+  document.addEventListener("DOMContentLoaded", function () {
+      const navLinks = document.querySelectorAll('.nav-link');
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', function () {
+          navLinks.forEach(item => {
+            if (!item.classList.contains('no-underline')) {
+              item.classList.remove('active');
+            }
+          });
+          if (!this.classList.contains('no-underline')) {
+            this.classList.add('active');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
