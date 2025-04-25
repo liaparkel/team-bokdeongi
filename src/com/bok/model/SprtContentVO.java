@@ -7,6 +7,11 @@ public class SprtContentVO {
 	private int fkSprtpNum;
 	
 	public SprtContentVO(){}
+	public SprtContentVO(int sprtpcNum, String subtitle, String content) {
+		setSprtpcNum(sprtpcNum);
+		setSubtitle(subtitle);
+		setContent(content);
+	}
 	public SprtContentVO(int sprtpcNum, String subtitle, String content, int fkSprtpNum) {
 		setSprtpcNum(sprtpcNum);
 		setSubtitle(subtitle);
