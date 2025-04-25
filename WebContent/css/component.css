@@ -1,0 +1,456 @@
+/* Reset & Base */
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	font-family: "Noto Sans KR", sans-serif;
+	font-size: 14px;
+}
+
+body, h1, h2, h3, p, span, div, button, input, select, textarea, a {
+	color: #111111;
+	font-family: "Noto Sans KR", sans-serif;
+	font-size: 14px;
+	margin: 0;
+	padding: 0;
+}
+
+h1 {
+	font-size: 32px;
+	font-weight: bold;
+	margin: 24px 0;
+}
+
+h2 {
+	font-size: 18px;
+	font-weight: bold;
+	margin: 16px 0;
+}
+
+h3 {
+	font-size: 16px;
+	font-weight: bold;
+	margin: 12px 0;
+}
+
+/* Layout */
+.page-layout {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.container {
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 16px;
+	box-sizing: border-box;
+}
+
+/* Navbar */
+.navbar {
+	height: 80px;
+	display: flex;
+	align-items: center;
+}
+
+.navbar .container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.menu-wrapper {
+	display: flex;
+	align-items: center;
+	gap: 24px;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.nav-link, .dropdown-toggle {
+	color: #111111;
+	text-decoration: none;
+	font-size: 16px !important;
+	font-weight: bold !important;
+}
+
+.nav-link.active {
+	color: #F4B400 !important;
+	border-bottom: 3px solid #F4B400;
+	padding-bottom: 2px;
+}
+
+.nav-link:hover, .dropdown-toggle:hover {
+	color: #F4B400;
+}
+
+.no-underline {
+	text-decoration: none !important;
+}
+
+.dropdown-menu a:hover {
+	background-color: #ffd96d;
+}
+
+.dropdown-menu a:active {
+	background-color: #F4B400;
+}
+
+/* ▼ 화살표 제거 */
+.dropdown-toggle::after {
+	display: none !important;
+}
+
+/* 관리자 UI */
+.admin-bar {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+}
+
+.admin-greeting {
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.logout-btn {
+	height: 32px;
+	padding: 0 16px;
+	border-radius: 8px;
+	border: none;
+	font-weight: 700;
+	background: #F4B400;
+	color: #111111;
+}
+
+/* Main */
+.main {
+	flex: 1;
+	padding: 24px 0;
+}
+
+/* Footer */
+.footer {
+	background-color: #fff;
+	height: 80px;
+	display: flex;
+	align-items: center;
+}
+
+.footer .container {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 24px;
+}
+
+.footer-left, .footer-middle, .footer-bok {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.footer-bok {
+	flex-shrink: 0;
+	align-items: center;
+}
+
+.bok-name {
+	color: #F4B400;
+}
+
+#img-bok1 {
+	height: 20px;
+	vertical-align: middle;
+}
+
+.img-bok2 {
+	height: 60px;
+}
+
+.footer span {
+	white-space: nowrap;
+}
+/* 체크리스트 다운로드 버튼*/
+.down-load {
+	border-radius: 10px;
+	background: #EEEEEE;
+	color: #F4B400;
+	font-size: 14px;
+	width: 136px;
+	height: 36px;
+	border: none;
+	font-weight: 700;
+}
+
+/*체크리스트, 집보기, 계약중, 재계약 버튼*/
+.check {
+	border: none;
+	width: 140px;
+	height: 36px;
+	font-size: 16px;
+	background: white;
+	color: black;
+	font-weight: 700;
+}
+
+/* 체크리스트, 집보기, 계약중, 재계약 버튼 액션(스크립트)*/
+.checkActive {
+	background: #F4B400;
+	color: white;
+	border-radius: 10px;
+}
+
+/* 지원금 정보, 청년, 대출, 행복주택*/
+.sprt {
+	width: 140px;
+	height: 55px;
+	border-radius: 10px;
+	border: none;
+	background: #FFF7E0;
+	color: black;
+	font-weight: 700;
+}
+
+/* 지원금 정보 클릭 액션(자바스크립트)*/
+.sprtActive {
+	background: #F4B400;
+	color: black;
+}
+
+/* 대버튼*/
+.big {
+	width: 200px;
+	height: 48px;
+	border-radius: 10px;
+	border: none;
+	font-weight: bold;
+	background: #F4B400;
+	color: black;
+}
+
+/* 중버튼 */
+.middle {
+	width: 140px;
+	height: 40px;
+	border-radius: 10px;
+	border: none;
+	font-weight: Bold;
+	background: #F4B400;
+	color: black;
+}
+
+/* 소버튼 */
+.small {
+	width: 100px;
+	height: 32px;
+	border-radius: 10px;
+	border: none;
+	font-weight: bold;
+	background: #F4B400;
+	color: black;
+}
+
+/*1:1 문의 관리 리스트  */
+/*리스트 전체 div */
+#ask-list {
+	display: flex;
+	padding: 10px;
+	border-radius: 10px;
+	margin: 20px auto 10px auto;
+	width: 50%;
+	background-color: #FFF7E0;
+	border: 3px solid #F4B400;
+	justify-content: space-between;
+	flex-wrap: wrap; /* 줄바꿈 허용 */
+	gap: 10px; /* 항목 사이 여백 */
+	overflow: hidden; /* 혹시 넘쳐도 스크롤 X */
+	align-items: center;
+}
+/*리스트 내부 요소 div */
+.ask-item {
+	flex: 1 1 auto; /* 자동으로 줄어들고 늘어나게 */
+	min-width: 120px; /* 너무 작아지지 않도록 */
+	word-wrap: break-word; /* 줄바꿈 가능 */
+	text-align: center;
+}
+/*글 제목 길어지면 줄어지는 css */
+.title-ellipsis { /* 제목이 너무 길어지면 ...줄임*/
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 150px;
+}
+
+/*지원금 카테고리(분류) 추가버튼 누르면 나오는 모달*/
+/*전체 모달*/
+#modal {
+	display: flex;
+	padding: 10px;
+	background-color: #FFF7E0;
+	border: 3px solid #F4B400;
+	width: 300px;
+	height: 300px;
+	border-radius: 10px;
+	margin: 20px;
+}
+/*모달 내부 요소*/
+.modal-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 16px; /* 요소 사이 여백 */
+	padding: 20px;
+	/*font-family: "Noto Sans KR", sans-serif;*/
+	text-align: center;
+}
+/*지원금 적는 input*/
+#addSprtMenu {
+	border-radius: 7px;
+	border: 1px solid #E0E0E0;
+}
+/*취소버튼*/
+#cancel {
+	width: 100px;
+	height: 32px;
+	border-radius: 10px;
+	border: none;
+	font-family: bold;
+	font-weight: 700;
+	background: #666666;
+	color: white;
+}
+/*취소버튼과 저장버튼 합친 하나의 div*/
+.addSprtInner-button {
+	margin-top: 30px;
+}
+
+/* 회색 Tip Box */
+.tip-box {
+	width: 50%; /* 전체 비율 조정 */
+	position: relative;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 8px;
+	font-size: 14px;
+	color: #111111;
+	background-color: #F5F5F5;
+	border-radius: 8px;
+}
+/* Tip Box에 빨간 Pin */
+.pin-icon {
+	position: absolute;
+	top: -16px;
+	left: -8px;
+	font-size: 24px;
+	color: #D32F2F;
+	z-index: 10;
+	transform: rotate(-45deg);
+}
+/* Tip 제목 */
+.tip-title {
+	font-size: 18px;
+	color: #F4B400;
+	font-weight: bold;
+	margin-top: 0px;
+	margin-bottom: 16px;
+}
+/* Tip 본문  */
+.tip-content {
+	margin: 4px;
+}
+/* 전체 FAQ */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+/* 개별 FAQ */
+.faq-item {
+  background: #FFFFFF;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  overflow: hidden;
+}
+/* FAQ 질문 */
+.faq-question {
+  padding: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+/* FAQ 화살표 */
+.faq-icon i {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+  color: #F4B400;
+}
+.faq-item.active .faq-icon i {
+  transform: rotate(180deg); /* 아래 → 위 */
+}
+/* FAQ 답변 */
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 4px;
+  transition: max-height 0.3s ease;
+  line-height: 1.6;
+  background: #F5F5F5;
+  border-radius: 0 0 12px 12px;
+  padding: 0 20px;
+}
+.faq-item.active .faq-answer {
+  padding: 16px 20px;
+}
+/* 아코디언 본문 */
+.content {
+	max-height: 0;
+	margin: 8px 40px;
+	overflow: hidden;
+	transition: max-height 0.2s ease-out;
+	font-size: 14px;
+	color: #111111;
+}
+/* 지원금 아코디언 화살표 Active */
+.sprt-accordion.active .arrow {
+	transform: rotate(180deg);
+}
+/* 지원금 정보 */
+.sprt-accordion {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	width: 100%;
+	padding: 8px;
+	color: #111111;
+	background-color: transparent;
+	border: 2px solid #F5F5F5;
+	border-radius: 8px;
+	cursor: pointer;
+}
+/* 지원금 제목과 내용을 합침 */
+.sprt-text {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	text-align: left;
+}
+/* 지원금 제목 */
+.sprt-title {
+	color: #57C90D;
+	font-weight: bold;
+	font-size: 16px;
+	margin: 0px;
+}
+/* 지원금 내용 */
+.sprt-description {
+	font-size: 14px;
+	margin: 0px;
+}

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>관리자 지원금 글 수정</title>
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
+	rel="stylesheet" />
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
+	crossorigin="anonymous" />
+<link rel="stylesheet" href="css/component.css" />
+<link rel="stylesheet" href="css/addSprtInfo.css">
+</head>
+<body>
+	<div class="page-layout">
+
+		<!-- 관리자용 상단바 -->
+		<nav class="navbar">
+			<div class="container">
+				<a class="navbar-brand" href="#"> <img src="image/logo.png"
+					alt="로고" />
+				</a>
+
+				<!-- 로고 옆 관리자 텍스트 + 로그아웃 버튼 -->
+				<div class="admin-info d-flex align-items-center ms-3">
+					<span class="admin-greeting">관리자님 안녕하세요.</span>
+					<button class="logout-btn ms-2">로그아웃</button>
+				</div>
+
+				<!-- 메뉴 항목 -->
+				<div class="menu-wrapper ms-auto">
+					<div class="dropdown">
+						<a class="nav-link dropdown-toggle no-underline" href="#"
+							role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							체크리스트 </a>
+						<ul class="dropdown-menu dropdown-menu-end">
+							<li><a class="dropdown-item" href="#">현재 체크리스트</a></li>
+							<li><a class="dropdown-item" href="#">이전 체크리스트</a></li>
+						</ul>
+					</div>
+					<div class="dropdown">
+						<a class="nav-link dropdown-toggle no-underline" href="#"
+							role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							지원금 정보 </a>
+						<ul class="dropdown-menu dropdown-menu-end">
+							<li><a class="dropdown-item" href="#">현재 지원금 정보</a></li>
+							<li><a class="dropdown-item" href="#">이전 지원금 정보</a></li>
+						</ul>
+					</div>
+					<div class="dropdown">
+						<a class="nav-link dropdown-toggle no-underline" href="#"
+							role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							문의관리 </a>
+						<ul class="dropdown-menu dropdown-menu-end">
+							<li><a class="dropdown-item" href="#">FAQ</a></li>
+							<li><a class="dropdown-item" href="#">1:1 문의관리</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<!-- 메인 -->
+		<div class="main">
+			<div class="container">
+				<form method="post" action="">
+					<h1>청년</h1>
+					<input type="text" class="text-input h2 tip-box" name="sprtTitle"
+						placeholder="제목을 작성해주세요."></input> <input type="text"
+						class="text-input h2 tip-box" name="sprtSummary"
+						placeholder="요약을 작성해주세요."></input>
+					<h2>지원 기간</h2>
+					<div class="row mb-3">
+						<div class="col-md-6">
+							<label for="startDate" class="form-label">지원 시작일</label> <input
+								type="date" class="form-control" id="startDate"
+								name="start_date" required>
+						</div>
+						<div class="col-md-6">
+							<label for="endDate" class="form-label">지원 종료일</label> <input
+								type="date" class="form-control" id="endDate" name="end_date"
+								required>
+						</div>
+					</div>
+					<div class="gray-line"></div>
+					<div class="content-area">
+						<div class="content-block">
+							<input type="text" class="text-input h3 tip-box"
+								name="sprtSubTitle" placeholder="본문의 소제목을 작성해주세요."></input>
+							<textarea class="text-input h3 tip-box" name="sprtText"
+								placeholder="본문을 작성해주세요."></textarea>
+						</div>
+					</div>
+					<div class="tip-box add-content">
+						<button type="button" class="btn btn-outline-danger"
+							id="removeContentBtn">-</button>
+						<button type="button" class="btn btn-outline-secondary"
+							id="addContentBtn">+</button>
+					</div>
+					<h3>제목에 링크걸기</h3>
+					<input type="url" class="text-input h3 tip-box" name="sprtLink"
+						placeholder="링크를 작성해주세요."></input>
+					<div class="button-wrapper">
+						<button id="cancel" class="small" name="addSprtMenuCancel">취소</button>
+						<button type="submit" class="small" name="addSprtMenuSave">저장</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- 본문 추가 or 삭제하는 동작 -->
+	<script>
+  const addContentBtn = document.getElementById("addContentBtn");
+  const contentArea = document.querySelector(".content-area");
+
+  addContentBtn.addEventListener("click", () => {
+    const newBlock = document.createElement("div");
+    newBlock.classList.add("content-block");
+    newBlock.innerHTML = `
+      <input type="text" class="text-input h3 tip-box" name="sprtSubTitle" placeholder="본문의 소제목을 작성해주세요.">
+      <textarea class="text-input h3 tip-box" name="sprtText" placeholder="본문의 내용을 작성해주세요."></textarea>
+    `;
+    contentArea.appendChild(newBlock);
+  });
+  
+  const removeContentBtn = document.getElementById("removeContentBtn");
+
+  removeContentBtn.addEventListener("click", () => {
+    const blocks = document.querySelectorAll(".content-block");
+    if (blocks.length > 1) {
+      blocks[blocks.length - 1].remove(); // 마지막 블록 삭제
+    }
+  });
+</script>
+
+	<!-- Bootstrap JS -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+		crossorigin="anonymous"></script>
+
+	<!-- 상단바 동작 스크립트 -->
+	<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const navLinks = document.querySelectorAll('.nav-link');
+      const dropdownItems = document.querySelectorAll('.dropdown-item');
+
+      function clearActiveLinks() {
+        navLinks.forEach(link => link.classList.remove('active'));
+      }
+		// 일반 nav 링크 클릭 시 active 토글
+      navLinks.forEach(link => {
+        link.addEventListener('click', function () {
+          clearActiveLinks();
+          if (!this.classList.contains('dropdown-toggle')) {
+            this.classList.add('active');
+          }
+        });
+      });
+      // 드롭다운 항목 클릭 시  active 부여
+      dropdownItems.forEach(item => {
+        item.addEventListener('click', function () {
+          clearActiveLinks();
+          const parentDropdown = this.closest('.dropdown');
+          const toggle = parentDropdown?.querySelector('.dropdown-toggle');
+          if (toggle) toggle.classList.add('active');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
