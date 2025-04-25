@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <style>
+        .divimg {
+            text-align: center;
+        }
+
+        #ask-list {
+            width: 80% !important;
+            margin: 0 auto;
+        }
+
+        
+
+        .write-btn-container {
+            width: 80%;
+            margin: 1.5rem auto 0;
+            display: flex;
+            justify-content: end;
+            transition: margin-top 0.3s ease;
+            /* 부드러운 이동 효과 */
+        }
+
+        /* 모달 스타일 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn-info {
+            background-color: #f4b400 !important;
+            border: 0px !important;
+        }
+    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>관리자 1:1 문의 관리</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous" />
+    <link rel="stylesheet" href="css/component.css" />
+    <link rel="stylesheet" href="css/askManagerUI.css" />
+</head>
+
+<body>
+    <div class="page-layout">
+
+        <!-- 상단바 -->
+		<nav class="navbar">
+			<div class="container">
+				<a class="navbar-brand" href="#"> <img src="image/logo.png"
+					alt="로고" />
+				</a>
+				<div class="menu-wrapper">
+					<a class="nav-link" href="#">체크리스트</a>
+
+					<!-- Dropdown 지원금 정보 -->
+					<div class="dropdown">
+						<a class="nav-link dropdown-toggle no-underline" href="#"
+							role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							지원금 정보 </a>
+						<ul class="dropdown-menu dropdown-menu-end">
+							<li><a class="dropdown-item" href="#">현재 지원금 정보</a></li>
+							<li><a class="dropdown-item" href="#">이전 지원금 정보</a></li>
+						</ul>
+					</div>
+
+					<a class="nav-link" href="#">치안 정보</a>
+
+					<!-- Dropdown 문의하기 -->
+					<div class="dropdown">
+						<a class="nav-link dropdown-toggle no-underline" href="#"
+							role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							문의하기 </a>
+						<ul class="dropdown-menu dropdown-menu-end">
+							<li><a class="dropdown-item" href="#">FAQ</a></li>
+							<li><a class="dropdown-item" href="#">1:1 문의하기</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+        <!-- 메인 -->
+        <div class="main">
+            <div class="container ask">
+                <div class="divimg">
+                    <img src="image/solo.png">
+                </div>
+
+                <!-- 문의 항목 -->
+                <div id="ask-list" class="space-between">
+                    <div class="ask-item">Q2001</div>
+                    <div class="ask-item">kebin10804@gmail.com</div>
+                    <div class="ask-item title-ellipsis">부동산 질문입니다.부동산 질문입니다.</div>
+                    <div class="ask-item">2025.01.01</div>
+                    <div class="ask-item">답변여부: 답변 완료</div>
+                    <div class="ask-item">
+                        <!-- 상세보기 버튼 -->
+                        <button class="btn btn-info" onclick="openModal('detail.html')">상세보기</button>
+                    </div>
+                </div>
+
+                <div id="ask-list" class="space-between">
+                    <div class="ask-item">Q2002</div>
+                    <div class="ask-item">kebin10804@gmail.com</div>
+                    <div class="ask-item title-ellipsis">부동산 질문입니다.부동산 질문입니다.</div>
+                    <div class="ask-item">2025.01.02</div>
+                    <div class="ask-item">답변여부: 답변 대기</div>
+                    <div class="ask-item">
+                        <!-- 상세보기 버튼 -->
+                        <button class="btn btn-info" onclick="openModal('detail.html')">상세보기</button>
+                    </div>
+                </div>
+
+                <!-- 글쓰기 버튼 -->
+                <div class="write-btn-container">
+                    <button class="btn btn-warning px-4 py-2" onclick="moveElements()">글쓰기</button>
+                </div>
+
+                <!-- 페이지네이션 -->
+                <div class="pagination-container d-flex justify-content-center">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                          <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                              <span aria-hidden="true">&laquo;</span>
+                            </a>
+                          </li>
+                          <li class="page-item"><a class="page-link" href="#">1</a></li>
+                          <li class="page-item"><a class="page-link" href="#">2</a></li>
+                          <li class="page-item"><a class="page-link" href="#">3</a></li>
+                          <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                              <span aria-hidden="true">&raquo;</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </nav>
+                </div>
+            </div>
+        </div>
+
+        <!-- 푸터 -->
+        <div class="footer">
+            <div class="container">
+                <div class="footer-left">
+                    <span>상호명: <span class="bok-name">복덩이 부동산</span> <img src="image/logo.png" id="img-bok1" /></span>
+                    <span>복덩이: 김정훈, 박종석, 정현아, 박희수</span>
+                </div>
+                <div class="footer-middle">
+                    <span>주소: 서울 금천구 가산디지털1로 912호 호서대벤처타워 9층</span>
+                    <span>문의: kebin10804@gmail.com</span>
+                </div>
+                <div class="footer-bok">
+                    <img src="image/bok.png" class="img-bok2" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 모달 -->
+    <div id="passwordModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3>비밀번호를 입력하세요</h3>
+            <input type="password" id="password" placeholder="비밀번호 입력" class="form-control" />
+            <div class="d-flex justify-content-between">
+                <button class="btn btn-secondary" onclick="closeModal()">취소</button>
+                <button class="btn btn-primary" onclick="checkPassword()">확인</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+        crossorigin="anonymous"></script>
+
+    <script>
+        const correctPassword = "1234"; // 올바른 비밀번호 (예시)
+
+        // 모달 열기
+        function openModal(targetUrl) {
+            document.getElementById("passwordModal").style.display = "block";
+            document.getElementById("passwordModal").setAttribute("data-url", targetUrl);
+        }
+
+        // 모달 닫기
+        function closeModal() {
+            document.getElementById("passwordModal").style.display = "none";
+        }
+
+        // 비밀번호 확인
+        function checkPassword() {
+            const enteredPassword = document.getElementById("password").value;
+            const targetUrl = document.getElementById("passwordModal").getAttribute("data-url");
+            if (enteredPassword === correctPassword) {
+                closeModal();
+                window.location.href = targetUrl;
+            } else {
+                alert("비밀번호가 틀렸습니다.");
+            }
+        }
+
+    </script>
+<!-- 상단바 동작 스크립트 -->
+	<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const navLinks = document.querySelectorAll('.nav-link');
+      const dropdownItems = document.querySelectorAll('.dropdown-item');
+
+      function clearActiveLinks() {
+        navLinks.forEach(link => link.classList.remove('active'));
+      }
+		// 일반 nav 링크 클릭 시 active 토글
+      navLinks.forEach(link => {
+        link.addEventListener('click', function () {
+          clearActiveLinks();
+          if (!this.classList.contains('dropdown-toggle')) {
+            this.classList.add('active');
+          }
+        });
+      });
+      // 드롭다운 항목 클릭 시  active 부여
+      dropdownItems.forEach(item => {
+        item.addEventListener('click', function () {
+          clearActiveLinks();
+          const parentDropdown = this.closest('.dropdown');
+          const toggle = parentDropdown?.querySelector('.dropdown-toggle');
+          if (toggle) toggle.classList.add('active');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
