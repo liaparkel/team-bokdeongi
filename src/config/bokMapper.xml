@@ -171,5 +171,115 @@
 		SELECT sprtp_num AS sprtpNum, sprt_title AS title, sprt_link AS link, sprt_summary AS summary, sprt_date AS "date", sprt_start AS "start", sprt_end AS "end", sprt_num AS fkSprtNum FROM sprt_person WHERE sprt_num = #{fkSprtNum} ORDER BY sprt_end DESC
 	</select>
 	
+	<!-- 체크리스트 전체 조회 -->
+    <select id="ckListInfo" parameterType="String" resultType="com.bok.model.CkVO">
+        SELECT ck_content_num as ckContentNum, ck_content as ckContent, ck_title as ckTitle, ck_tip as ckTip
+        FROM ck_content cc
+        JOIN ck c ON cc.ck_num = c.ck_num
+        WHERE c.ck_category = #{category}
+    </select>
+
+    <!-- 체크리스트 최신순 조회 -->
+    <select id="ckListRecentInfo" parameterType="String" resultType="com.bok.model.CkVO">
+        SELECT ck_content_num as ckContentNum, ck_content as ckContent, ck_title as ckTitle, ck_tip as ckTip
+        FROM ck_content cc
+        JOIN ck c ON cc.ck_num = c.ck_num
+        WHERE c.ck_category = #{category}
+        ORDER BY c.ck_date DESC
+    </select>
+
+    <!-- 체크리스트 제목/내용 수정 -->
+    <update id="setCkList" parameterType="com.bok.model.CkVO">
+        UPDATE ck_content
+        SET ck_title = #{ckTitle},
+            ck_content = #{ckContent}
+        WHERE ck_num = #{ckNum} AND ck_content_num = #{ckContentNum}
+    </update>
+
+    <!-- 체크리스트 추가 -->
+    <insert id="addCkList" parameterType="com.bok.model.CkVO">
+        INSERT INTO ck_content (ck_content_num, ck_title, ck_content, ck_num)
+        VALUES (ck_content_seq.NEXTVAL, #{ckTitle}, #{ckContent}, #{ckNum})
+    </insert>
+
+    <!-- 체크리스트 삭제 -->
+    <delete id="deleteCkList" parameterType="int">
+        DELETE FROM ck_content
+        WHERE ck_content_num = #{ckContentNum}
+    </delete>
+
+    <!-- 카테고리 추가 -->
+    <insert id="addckCategory" parameterType="com.bok.model.CkVO">
+        INSERT INTO ck (ck_num, ck_category, ck_date)
+        VALUES (ck_seq.NEXTVAL, #{ckCategory}, #{ckDate})
+    </insert>
+
+    <!-- 팁 수정 -->
+    <update id="setTip" parameterType="com.bok.model.CkVO">
+        UPDATE ck
+        SET ck_tip = #{tip}
+        WHERE ck_num = #{ckNum}
+    </update>
+
+    <!-- 팁 추가 -->
+    <insert id="addTip" parameterType="com.bok.model.CkVO">
+        INSERT INTO ck (ck_num, ck_tip, ck_category, ck_date)
+        VALUES (ck_seq.NEXTVAL, #{tip}, #{ckCategory}, #{ckDate})
+    </insert>
+
+    <!-- 팁 삭제 -->
+    <delete id="deleteTip" parameterType="int">
+        DELETE FROM ck_content_num
+        WHERE ck_num = #{ckNum}
+    </delete>
+
+    <!-- 팁 전체 삭제 -->
+    <delete id="allDeleteTip" parameterType="int">
+        DELETE FROM ck
+        WHERE ck_num = #{ckNum}
+    </delete>
+
+    <!-- 팁 최신 조회 -->
+    <select id="TipRecentSearch" parameterType="String" resultType="com.bok.model.CkVO">
+        SELECT ck_tip, ck_date
+        FROM ck
+        WHERE ck_category = #{ckCategory}
+        ORDER BY ck_date DESC
+    </select>
+
+    <!-- 팁 조회 -->
+    <select id="TipSearch" parameterType="String" resultType="com.bok.model.CkVO">
+        SELECT ck_tip
+        FROM ck
+        WHERE ck_category = #{ckCategory}
+    </select>
+
+    <!-- 이전 카테고리 목록 조회 -->
+    <select id="BackCkCategoryList" resultType="String">
+        SELECT DISTINCT ck_category
+        FROM ck
+        ORDER BY ck_category
+    </select>
+
+    <!-- 이전 제목/날짜 목록 -->
+    <select id="BackCkTitleList" parameterType="String" resultType="com.bok.model.CkVO">
+        SELECT cc.ck_content_num, cc.ck_title, c.ck_date
+        FROM ck_content cc
+        JOIN ck c ON cc.ck_num = c.ck_num
+        WHERE c.ck_category = #{ckCategory}
+        ORDER BY c.ck_date DESC
+    </select>
+
+    <!-- 이전 제목/내용 목록 -->
+    <select id="BackCkListSearch" resultType="com.bok.model.CkVO">
+        SELECT ck_title, ck_content
+        FROM ck_content
+    </select>
+
+    <!-- 이전 체크리스트 삭제 -->
+    <delete id="backCkListDelete" parameterType="int">
+        DELETE FROM ck_content
+        WHERE ck_content_num = #{ckContentNum}
+    </delete>
 	
 </mapper>

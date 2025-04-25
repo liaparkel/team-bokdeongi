@@ -1,0 +1,147 @@
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: "Noto Sans KR", sans-serif;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* »ó´Ü¹Ù */
+    .navbar {
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+     
+      padding: 0 24px;
+    }
+
+    .logo-img {
+      height: 40px;
+    }
+
+    .admin-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .admin-greeting {
+      font-weight: bold;
+    }
+
+    .logout-btn {
+      padding: 6px 14px;
+      border: none;
+      background: #F4B400;
+      color: #111;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+
+    .menu-wrapper {
+      display: flex;
+      gap: 24px;
+      font-weight: bold;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: #111;
+    }
+
+    .nav-link.active {
+      color: #F4B400;
+      border-bottom: 2px solid #F4B400;
+    }
+
+
+    .set-title {
+      display: flex;
+      align-items: center;
+      margin: 24px 0 4px 0;
+      border-bottom: 3px solid #EDEDED;
+    }
+
+    .set-text {
+      font-size: 32px;
+      font-weight: 700;
+      color: #111;
+    }
+
+    .add-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      background-color: #f5f5f5;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 30px 0;
+      margin-top: 16px;
+    }
+
+    .tip-box {
+      width: 100%;
+      position: relative;
+      padding: 16px;
+      background-color: #F5F5F5;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+
+    .tip-title {
+      font-weight: bold;
+      color: #F4B400;
+      margin-bottom: 8px;
+    }
+
+    .pin-icon {
+      position: absolute;
+      top: -16px;
+      left: -8px;
+      font-size: 24px;
+      color: #D32F2F;
+      transform: rotate(-45deg);
+    }
+
+    .button-wrapper {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .save, .cancel {
+      width: 140px;
+      height: 40px;
+      border-radius: 10px;
+      border: none;
+      font-weight: bold;
+    }
+
+    .save {
+      background: #F4B400;
+      color: black;
+    }
+
+    .cancel {
+      background: #666666;
+      color: white;
+    }
+
+    .input-block {
+      border-bottom: 2px solid #eee;
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+    }
+
+   .textarea {
+      resize: none;
+      overflow: hidden;
+    }

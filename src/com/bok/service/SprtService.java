@@ -3,7 +3,6 @@ package com.bok.service;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.bok.model.DBCP;
 import com.bok.model.SprtDAO;
@@ -25,7 +24,6 @@ public class SprtService {
 		try (SqlSession session = DBCP.getSqlSessionFactory().openSession()) {
 			return dao.getSprtInfo(session);
 		} catch (Exception e) {
-			e.printStackTrace();
 			return null;
 		}
 	}
@@ -35,7 +33,6 @@ public class SprtService {
 		try (SqlSession session = DBCP.getSqlSessionFactory().openSession()) {
 			return dao.getSprtPerson(session, fkSprtNum);
 		} catch (Exception e) {
-			e.printStackTrace();
 			return null;
 		}
 	}
@@ -45,7 +42,6 @@ public class SprtService {
 		try (SqlSession session = DBCP.getSqlSessionFactory().openSession()) {
 			return dao.getSprtContent(session, fkSprtpNum);
 		} catch (Exception e) {
-			e.printStackTrace();
 			return null;
 		}
 	}
@@ -55,7 +51,6 @@ public class SprtService {
 		try (SqlSession session = DBCP.getSqlSessionFactory().openSession()) {
 			return dao.getBfSprtPerson(session, fkSprtNum);
 		} catch (Exception e) {
-			e.printStackTrace();
 			return null;
 		}
 	}
@@ -65,7 +60,6 @@ public class SprtService {
 		try (SqlSession session = DBCP.getSqlSessionFactory().openSession()) {
 			return dao.getPagedBfSprtPerson(session, fkSprtNum, paging);
 		} catch (Exception e) {
-			e.printStackTrace();
 			return null;
 		}
 	}
@@ -75,7 +69,6 @@ public class SprtService {
 		try (SqlSession session = DBCP.getSqlSessionFactory().openSession()) {
 			return dao.getBfSprtPersonCount(session, fkSprtNum);
 		} catch (Exception e) {
-			e.printStackTrace();
 			return 0;
 		}
 	}

@@ -1,0 +1,270 @@
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	font-family: "Noto Sans KR", sans-serif;
+	font-size: 14px;
+}
+
+body, h1, h2, h3, p, span, div, button, input, select, textarea, a {
+	color: #111111;
+	font-family: "Noto Sans KR", sans-serif;
+	font-size: 14px;
+	margin: 0;
+	padding: 0;
+}
+
+h1 {
+	font-size: 32px;
+	font-weight: bold;
+	margin: 24px 0;
+}
+
+h2 {
+	font-size: 18px;
+	font-weight: bold;
+	margin: 16px 0;
+}
+
+h3 {
+	font-size: 16px;
+	font-weight: bold;
+	margin: 12px 0;
+}
+/* Layout */
+.page-layout {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.container {
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 16px;
+	box-sizing: border-box;
+}
+
+/* Navbar */
+.navbar {
+	height: 80px;
+	display: flex;
+	align-items: center;
+}
+
+.navbar .container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.menu-wrapper {
+	display: flex;
+	align-items: center;
+	gap: 24px;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.nav-link, .dropdown-toggle {
+	color: #111111;
+	text-decoration: none;
+	font-size: 16px !important;
+	font-weight: bold !important;
+}
+
+.nav-link.active {
+	color: #F4B400 !important;
+	border-bottom: 3px solid #F4B400;
+	padding-bottom: 2px;
+}
+
+.nav-link:hover, .dropdown-toggle:hover {
+	color: #F4B400;
+}
+
+.no-underline {
+	text-decoration: none !important;
+}
+
+.dropdown-menu a:hover {
+	background-color: #ffd96d;
+}
+
+.dropdown-menu a:active {
+	background-color: #F4B400;
+}
+
+/* ▼ 화살표 제거 */
+.dropdown-toggle::after {
+	display: none !important;
+}
+
+/* 관리자 UI */
+.admin-bar {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+}
+
+.admin-greeting {
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.logout-btn {
+	height: 32px;
+	padding: 0 16px;
+	border-radius: 8px;
+	border: none;
+	font-weight: 700;
+	background: #F4B400;
+	color: #111111;
+}
+.logo-img {
+  height: 48px; /* 필요에 따라 조정 가능 */
+  width: auto;
+}
+.tip-box {
+	width: 90%; /* 전체 비율 조정 */
+	position: relative;
+	max-width: 1100px;
+	margin: 0 auto;
+	padding: 8px;
+	font-size: 14px;
+	color: #111111;
+	background-color: #F5F5F5;
+	border-radius: 8px;
+	font-weight: bold;
+}
+/* Tip Box에 빨간 Pin */
+.pin-icon {
+	position: absolute;
+	top: -16px;
+	left: -8px;
+	font-size: 24px;
+	color: #D32F2F;
+	z-index: 10;
+	transform: rotate(-45deg);
+}
+/* Tip 제목 */
+.tip-title {
+	font-size: 18px;
+	color: #F4B400;
+	font-weight: bold;
+	margin-top: 0px;
+	margin-bottom: 16px;
+	font-family: 'Noto Sans KR';
+}
+/* Tip 본문  */
+.tip-content {
+	margin: 4px;
+	font-family: 'Noto Sans KR';
+}
+.set-title{
+  display: flex;
+  align-items: center;
+   margin: 24px 0 4px 0;
+  font-family: 'Noto Sans KR';
+  border-bottom: 3px solid #EDEDED;
+}
+.pencil-icon {
+  font-size: 20px;
+  color: #555;
+  margin-right: 8px;
+}
+.set-text{
+  font-size: 32px;
+  font-weight: bold;
+  color: #111;
+}
+.main {
+	flex: 1;
+	padding: 24px 0;
+}
+.set-container{
+width: 100%;
+	max-width: 1175px;
+	margin: 0 auto;
+	padding: 0 20px;
+	box-sizing: border-box;
+	border-bottom: 3px solid #EDEDED;
+	font-family: 'Noto Sans KR';
+	font-weight: bold;
+}
+.set-ready{
+margin-top: 12px;
+font-family: 'Noto Sans KR';
+font-weight: bold;
+}
+.set-detail{
+margin-bottom: 20px;
+font-family: 'Noto Sans KR';
+font-weight: bold;
+}
+.text-container{
+width: 100%;
+  max-width: 1175px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+  font-family: 'Noto Sans KR';
+  font-weight: bold;
+}
+.action-button-group {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  gap: 8px;
+}
+.edit-btn, .delete-btn {
+ background-color: #F9F6EC;
+  color: #111;
+  font-size: 13px;
+  font-weight: bold;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+.bottom-button-group {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 32px 0;
+}
+.gray-btn {
+  width: 90px;
+  height: 36px;
+  background-color: #5E5E5E;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+}
+.yellow-btn {
+  width: 90px;
+  height: 36px;
+  background-color: #F4B400;
+  color: black;
+  font-weight: 700;
+  border: none;
+  border-radius: 6px;
+}
+.add-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  background-color: #f5f5f5;   
+  border: 1px solid #ddd;       
+  border-radius: 8px;          
+  padding: 30px 0;           
+  margin: 16px auto;  /* 가운데 정렬 */
+  width: 100%;
+  max-width: 1175px;  /* set-container랑 동일하게 */
+  box-sizing: border-box;
+}
