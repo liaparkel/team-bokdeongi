@@ -14,7 +14,11 @@ public class ActionFactory {
 		case "SprtUIAction":
 			a = new SprtUIAction();
 			break;
-		
+			
+		case "BfSprtUIAction":
+			a = new BfSprtUIAction();
+			break;
+			
 		default:
 			a = new MainUIAction(); 
 			break;
