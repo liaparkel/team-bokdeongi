@@ -18,6 +18,9 @@ public class ActionFactory {
 		case "BfSprtUIAction":
 			a = new BfSprtUIAction();
 			break;
+		
+		case "login":
+			a = new LoginAction();
 			
 		default:
 			a = new MainUIAction(); 
