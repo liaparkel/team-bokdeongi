@@ -14,7 +14,7 @@ public class LoginAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request) throws ServletException, IOException {
-
+		
 		String page = "loginUI.html";
 		
 		String crewId = request.getParameter("id");
@@ -25,8 +25,8 @@ public class LoginAction implements Action {
 
 		if (name != null) {
 			HttpSession session = request.getSession(true);// 公炼扒 技记 积己
-//			session.setAttribute(arg0, arg1);
-			page = "ckHomeUI.html";
+			session.setAttribute("crewName", name);
+			page = "login.jsp";
 		}
 		return page;
 	}
