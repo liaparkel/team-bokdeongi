@@ -99,35 +99,35 @@ static SqlSessionFactory sqlSessionFactory = DBCP.getSqlSessionFactory();
     }
 
     // 팁 최신 조회
-    public Collection<CkVO> TipRecentSearch(String ckCategory) {
+    public Collection<CkVO> tipRecentSearch(String ckCategory) {
         try (SqlSession session = sqlSessionFactory.openSession()) {
             return session.selectList("bokMapper.TipRecentSearch", ckCategory);
         }
     }
 
     // 팁 조회
-    public Collection<CkVO> TipSearch(String ckCategory) {
+    public Collection<CkVO> tipSearch(String ckCategory) {
         try (SqlSession session = sqlSessionFactory.openSession()) {
             return session.selectList("bokMapper.TipSearch", ckCategory);
         }
     }
 
     // 이전 카테고리 목록 조회
-    public Collection<String> BackCkCategoryList() {
+    public Collection<String> backCkCategoryList() {
         try (SqlSession session = sqlSessionFactory.openSession()) {
             return session.selectList("bokMapper.BackCkCategoryList");
         }
     }
 
     // 이전 제목/날짜 목록
-    public Collection<CkVO> BackCkTitleList(String ckCategory) {
+    public Collection<CkVO> backCkTitleList(String ckCategory) {
         try (SqlSession session = sqlSessionFactory.openSession()) {
             return session.selectList("bokMapper.BackCkTitleList", ckCategory);
         }
     }
 
     // 이전 제목/내용 목록
-    public Collection<CkVO> BackCkListSearch() {
+    public Collection<CkVO> backCkListSearch() {
         try (SqlSession session = sqlSessionFactory.openSession()) {
             return session.selectList("bokMapper.BackCkListSearch");
         }

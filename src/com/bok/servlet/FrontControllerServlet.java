@@ -22,6 +22,15 @@ public class FrontControllerServlet extends HttpServlet {
 		Action a= ActionFactory.getAction(cmd);
 		String url=a.execute(request);
 		
+		if ("json".equals(url)) {
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			String resultJson = (String) request.getAttribute("resultJson");
+			response.getWriter().write(resultJson);
+			return; // forward ¾È ÇÏ°í ³¡³¿
+		}
+
+		
 		request.getRequestDispatcher("/"+url).forward(request, response);
 	}  
 

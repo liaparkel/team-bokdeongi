@@ -1,5 +1,12 @@
-  
-   body, h1, h2, h3, p, span, div, button, input, select, textarea, a {
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	font-family: "Noto Sans KR", sans-serif;
+	font-size: 14px;
+}
+
+body, h1, h2, h3, p, span, div, button, input, select, textarea, a {
 	color: #111111;
 	font-family: "Noto Sans KR", sans-serif;
 	font-size: 14px;
@@ -95,7 +102,6 @@ h3 {
 	display: none !important;
 }
 
-/* °ü¸®ÀÚ UI */
 .admin-bar {
 	display: flex;
 	align-items: center;
@@ -117,75 +123,175 @@ h3 {
 	color: #111111;
 }
 
-
-    .home {
-      font-size: 32px;
-      padding: 20px 0;
-    }
-
-    .category-bar {
-      font-weight: bold;
-      font-size: 16px;
-    }
-
-    .add-icon:hover {
-      color: #f1a400;
-      cursor: pointer;
-    }
-
-    .down-load {
-      border-radius: 10px;
-      background: #EEEEEE;
-      color: #F4B400;
-      font-size: 10px;
-      width: 102px;
-      height: 36px;
-      border: none;
-      font-family: 'Noto Sans KR';
-      font-weight: 700;
-    }
-  .custom-modal {
-  background-color: #FFF6E0;
-  border-radius: 20px;
-  padding: 40px 30px;
-  max-width: 460px;
-  margin: 0 auto;
+.main {
+	flex: 1;
+	padding: 24px 0;
 }
-
-.modal-title-text {
-  font-size: 16px;
+.home {
+  display: flex;
+  font-size: 32px;
+  font-family: 'Noto Sans KR';
   font-weight: bold;
-  margin-bottom: 16px;
-  text-align: center;
+  margin: 20px 0px;
 }
-
-.modal-input {
-  font-size: 16px;
-  padding: 12px;
-  border-radius: 6px;
-  margin-bottom: 32px;
-}
-
-.modal-btn-group {
+.checkAll {
   display: flex;
   justify-content: space-between;
-  gap: 16px;
+  align-items: center;
+  background-color: white;
+  border-bottom: 3px solid #EDEDED;
+  padding: 20px 0;
+  font-family: 'Noto Sans KR';
+  max-width: 1200px;
+  margin: 0 auto;  
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
-.cancel-btn {
-  background-color: #555;
-  color: #fff;
-  font-weight: bold;
+.checkMenu {
+  display: flex;
+  gap: 12px;
+}
+.check {
   border-radius: 10px;
-  width: 48%;
-  padding: 10px 0;
+  border: none;
+  width: 120px;  
+  height: 36px;
+  font-size: 14px;
+  background: white;
+  color: black;
+  font-family: 'Noto Sans KR';
+  font-weight: bold;
+  transition: 0.2s;
 }
 
-.save-btn {
+.check:hover {
+  background-color: #f8f8f8;
+}
+.checkActive {
+  background: #F4B400;
+  color: white;
+  border-radius: 10px;
+}
+.down {
+  display: flex;
+  align-items: center;
+}
+.down-load {
+  border-radius: 10px;
+  background: #EEEEEE;
+  color: #F4B400;
+  font-size: 14px;
+  width: 140px;        
+  height: 36px;
+  border: none;
+  font-family: 'Noto Sans KR';
+  font-weight: bold;
+}
+.ready {
+  display: flex;
+  font-size: 24px;
+  margin: 20px 0px;
+  font-family: 'Noto Sans KR';
+}
+.re-contract-ready{
+  display: flex;
+  font-size: 24px;
+  margin: 20px 0px;
+
+}
+.after{
+  display: flex;
+  font-size: 24px;
+  margin: 20px 0px;
+  font-family: 'Noto Sans KR';
+}
+.re-day{
+  display: flex;
+  font-size: 24px;
+  margin: 20px 0px;
+  font-family: 'Noto Sans KR';
+}
+.re-method{
+  display: flex;
+  font-size: 24px;
+  margin: 20px 0px;
+  font-family: 'Noto Sans KR';
+}
+.references{
+  display: flex;
+  font-size: 24px;
+  margin: 20px 0px;
+  font-family: 'Noto Sans KR';
+}
+.home-title{
+margin: 30px 0px;
+}
+#mainContentBox {
+  width: 100%;
+  max-width: 1200px;      
+  margin: 0 auto;      
+  padding-left: 16px;    
+  box-sizing: border-box;
+}
+.pin-icon {
+  position: absolute;
+  top: -16px;
+  left: -8px;
+  font-size: 24px;
+  color: #D32F2F;
+  z-index: 10;
+  transform: rotate(-45deg);
+}
+.tip-box {
+ position: relative;
+  width: 95%;
+  max-width: 1100px;
+  padding: 24px 32px;
+  background-color: #f5f5f5;
+  border-radius: 12px;
+  box-sizing: border-box;
+  font-family: 'Noto Sans KR';
+  margin: 60px auto 0 auto;
+}
+
+.tip-title {
+  color: #F4B400;
+  font-size: 24px;
+  text-align: left;
+  margin-left: 0;
+  font-family: bold;
+}
+.tip-text {
+ font-size: 16px;
+  margin-bottom: 6px;
+  line-height: 1.6;
+  font-family: 'Noto Sans KR';
+}
+.edit-button-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin: 32px auto 60px auto;
+  max-width: 1200px;
+  padding-right: 16px;
+}
+
+.edit-button-container .btn-warning {
   background-color: #F4B400;
-  color: #000;
+  color: #111;
   font-weight: bold;
-  border-radius: 10px;
-  width: 48%;
-  padding: 10px 0;
+  border: none;
+  padding: 8px 20px;
+}
+
+.edit-button-container .btn-outline-secondary {
+  border: 1px solid #999;
+  color: #444;
+  font-weight: bold;
+  padding: 8px 20px;
+}
+.modal-body {
+  background-color: white;
+  padding: 20px;
 }
