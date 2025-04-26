@@ -8,7 +8,7 @@ public class ActionFactory {
 		switch (cmd){
 
 		case "loginUI":
-			a = new loginUIAction();
+			a = new LoginUIAction();
 			break;
 			
 		case "SprtUIAction":
