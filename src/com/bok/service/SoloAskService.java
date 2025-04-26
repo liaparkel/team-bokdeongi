@@ -17,7 +17,7 @@ public class SoloAskService {
 	}
 
 	public Collection<SoloAskVO> getSoloAsk() {
-		
+
 		try {
 			SqlSession session = DBCP.getSqlSessionFactory().openSession();
 			return sdao.getSoloAsk(session);
@@ -28,17 +28,33 @@ public class SoloAskService {
 	}
 
 	public Collection<SoloAskVO> searchEmail(String email) {
-
-		return new SoloAskDAO().searchEmail(email);
+		try {
+			SqlSession session = DBCP.getSqlSessionFactory().openSession();
+			return sdao.searchEmail(session, email);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	public boolean addSoloAsk(SoloAskVO vo) {
-
-		return new SoloAskDAO().addSoloAsk(vo);
+		try {
+			SqlSession session = DBCP.getSqlSessionFactory().openSession();
+			return sdao.addSoloAsk(session, vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	public SoloAskVO soloAskDetail(SoloAskVO vo) {
-
-		return new SoloAskDAO().soloAskDetail(vo);
+		try {
+			SqlSession session = DBCP.getSqlSessionFactory().openSession();
+			return sdao.soloAskDetail(session, vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
+
 }
