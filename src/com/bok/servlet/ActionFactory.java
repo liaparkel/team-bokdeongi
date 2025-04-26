@@ -6,10 +6,6 @@ public class ActionFactory {
 	public static Action getAction(String cmd){
 		Action a;
 		switch (cmd){
-
-		case "loginUI":
-			a = new loginUIAction();
-			break;
 			
 		case "sprtUI":
 			a = new SprtUIAction();
@@ -17,6 +13,18 @@ public class ActionFactory {
 			
 		case "bfSprtUI":
 			a = new BfSprtUIAction();
+			break;
+		
+		case "loginUI":
+			a = new LoginUIAction();
+			break;
+			
+		case "login":
+			a = new LoginAction();
+			break;
+			
+		case "ckHomeManagerUI" :
+			a = new CkHomeManagerUIAction();
 			break;
 			
 		case "youthSprt":
