@@ -6,7 +6,11 @@ public class ActionFactory {
 	public static Action getAction(String cmd){
 		Action a;
 		switch (cmd){
-			
+		
+		case "ckHomeUI" :
+			a = new CkHomeUIAction();
+			break;
+		
 		case "SprtUIAction":
 			a = new SprtUIAction();
 			break;
@@ -27,6 +31,14 @@ public class ActionFactory {
 			a = new CkHomeManagerUIAction();
 			break;
 			
+		case "askUI" :
+			a = new AskUIAction();
+			break;
+			
+		case "soloAskUI" :
+			a = new SoloAskUIAction();
+			break;
+		
 		default:
 			a = new MainUIAction(); 
 			break;

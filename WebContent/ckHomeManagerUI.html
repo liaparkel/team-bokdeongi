@@ -19,13 +19,13 @@
 <!-- ✅ nav 영역은 여기까지만 -->
 <nav class="navbar">
   <div class="container">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="controller?cmd=ckHomeManagerUI">
       <img src="image/logo.png" alt="로고" />
     </a>
 
     <div class="admin-info d-flex align-items-center ms-3">
       <span class="admin-greeting">관리자님 안녕하세요.</span>
-      <button class="logout-btn ms-2">로그아웃</button>
+      <button class="logout-btn ms-2" onclick="location.href='controller?cmd=loginUI'">로그아웃</button>
     </div>
 
     <div class="menu-wrapper ms-auto">

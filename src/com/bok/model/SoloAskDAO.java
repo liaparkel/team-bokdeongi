@@ -7,20 +7,10 @@ import org.apache.ibatis.session.SqlSession;
 public class SoloAskDAO {
 
 	// 1 : 1 문의하기 목록
-	public Collection<SoloAskVO> getSoloAsk() {
+	public Collection<SoloAskVO> getSoloAsk(SqlSession session) {
 
-		Collection<SoloAskVO> list = null;
-		SqlSession conn = DBCP.getSqlSessionFactory().openSession();
 
-		try {
-			list = conn.selectList("bokMapper.getSoloAsk");
-		} catch (Exception e) {
-			conn.rollback();
-		} finally {
-			conn.close();
-		}
-
-		return list;
+		return session.selectList("bokMapper.getSoloAsk");
 	}
 
 	// 1 : 1 문의하기 이메일 검색
