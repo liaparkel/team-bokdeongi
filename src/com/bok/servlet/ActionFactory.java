@@ -11,12 +11,24 @@ public class ActionFactory {
 			a = new loginUIAction();
 			break;
 			
-		case "SprtUIAction":
+		case "sprtUI":
 			a = new SprtUIAction();
 			break;
 			
-		case "BfSprtUIAction":
+		case "bfSprtUI":
 			a = new BfSprtUIAction();
+			break;
+			
+		case "youthSprt":
+			a = new YouthSprtAction();
+			break;
+			
+		case "loanSprt":
+			a = new LoanSprtAction();
+			break;
+			
+		case "happySprt":
+			a = new HappySprtAction();
 			break;
 			
 		default:
