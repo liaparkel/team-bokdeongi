@@ -8,94 +8,265 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/category-modal.css">
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<link rel="stylesheet" href="css/ckHomeManagerUI.css">
-
-
+  <link rel="stylesheet" href="css/ckHomeManagerUI.css">
 </head>
 <body>
-   <div class="page-layout">
-<!-- ✅ nav 영역은 여기까지만 -->
+   <body onload="setTimeout(() => { document.querySelector('.check').click(); }, 0)">
+<div class="page-layout">
 <nav class="navbar">
-  <div class="container">
-    <a class="navbar-brand" href="#">
-      <img src="image/logo.png" alt="로고" />
-    </a>
-
-    <div class="admin-info d-flex align-items-center ms-3">
-      <span class="admin-greeting">관리자님 안녕하세요.</span>
-      <button class="logout-btn ms-2">로그아웃</button>
-    </div>
-
-    <div class="menu-wrapper ms-auto">
-      <a class="nav-link" href="#">체크리스트</a>
-      <a class="nav-link" href="#">지원금정보</a>
-      <div class="dropdown">
-        <a class="nav-link dropdown-toggle no-underline" href="#" role="button" data-bs-toggle="dropdown">
-          문의관리
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="image/logo.png" alt="로고" />
         </a>
-        <ul class="dropdown-menu dropdown-menu-end">
-          <li><a class="dropdown-item" href="#">FAQ</a></li>
-          <li><a class="dropdown-item" href="#">1:1 문의관리</a></li>
-        </ul>
+
+        <!-- 로고 옆 관리자 텍스트 + 로그아웃 버튼 -->
+        <div class="admin-info d-flex align-items-center ms-3">
+          <span class="admin-greeting">관리자님 안녕하세요.</span>
+          <button class="logout-btn ms-2">로그아웃</button>
+        </div>
+
+        <!-- 메뉴 항목 -->
+        <div class="menu-wrapper ms-auto">
+          <a class="nav-link" href="#">체크리스트</a>
+          <a class="nav-link" href="#">지원금정보</a>
+ 
+          <div class="dropdown">
+            <a class="nav-link dropdown-toggle no-underline" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              문의관리
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="#">FAQ</a></li>
+              <li><a class="dropdown-item" href="#">1:1 문의관리</a></li>
+            </ul>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</nav>
+    </nav>
+  <div class="container">
+    <div class="home">주택임대차 안내서</div>
 
-<!-- ✅ 여기부터 본문 (nav 밖으로 빼야 함) -->
-<div class="container">
-  <div class="home">주택임대차 안내서</div>
-
-  <div class="d-flex justify-content-between align-items-center">
-    <div class="category-bar d-flex align-items-center gap-2">
-      <span class="category-label">카테고리 없음</span>
-      <i class="bi bi-plus-circle" role="button" tabindex="0" onclick="openCategoryModal()"></i>
-    </div>
-    <button class="down-load">체크리스트 다운</button>
+<div class="checkAll">
+  <div class="checkMenu">
+    <button class="check" onclick="setCheck(this, 'home')">집보기</button>
+    <button class="check" onclick="setCheck(this, 'contract')">계약서 작성</button>
+    <button class="check" onclick="setCheck(this, 'after')">계약후~입주전</button>
+    <button class="check" onclick="setCheck(this, 'reContract')">재계약</button>
+<button class="btn btn-outline-secondary px-3" style="font-weight: bold;" data-bs-toggle="modal" data-bs-target="#categoryModal">+</button>
   </div>
+<div style="display: flex; align-items: center; gap: 8px; margin-left: auto;">
+  <button class="btn btn-warning px-3" style="font-weight: bold;" onclick="goToEditPage()">게시글 수정</button>
+  <button class="down-load" onclick="checkListDown()">체크리스트 다운</button>
+
+
 </div>
+</div>
+  <div class="main">
 
-
-<div class="modal fade" id="categoryModal" tabindex="-1" aria-hidden="true">
+</div>
+ <div id="mainContentBox"></div>
+<div class ="tip-box" id="tip-box">
+  <i class="fas fa-thumbtack pin-icon"></i>
+</div>
+</div>
+<div class="modal fade" id="categoryModal" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content custom-modal shadow">
-      <div class="modal-body">
-        <p class="modal-title-text">추가할 항목을 입력해주세요.</p>
-        <input type="text" class="form-control modal-input" placeholder="집보기">
-
-        <div class="modal-btn-group">
-          <button class="btn cancel-btn" data-bs-dismiss="modal">취 소</button>
-          <button class="btn save-btn">저 장</button>
+    <div class="modal-content" style="border-radius: 16px;">
+      <div class="modal-body text-center p-4">
+        <p class="mb-3">추가할 항목을 입력해주세요.</p>
+        <input type="text" id="categoryInput" class="form-control mb-3" placeholder="예: 집보기">
+        <div class="d-flex justify-content-center gap-3">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+          <button type="button" class="btn btn-warning" onclick="addCategory()">저장</button>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- 스크립트 반드시 body 아래에 -->
-<script>
-  function openCategoryModal() {
-    const modal = new bootstrap.Modal(document.getElementById('categoryModal'));
-    modal.show();
-  }
-  document.addEventListener("DOMContentLoaded", function () {
-      const navLinks = document.querySelectorAll('.nav-link');
+ <script>
+ const navLinks = document.querySelectorAll('.nav-link');
 
-      navLinks.forEach(link => {
-        link.addEventListener('click', function () {
-          navLinks.forEach(item => {
-            if (!item.classList.contains('no-underline')) {
-              item.classList.remove('active');
-            }
-          });
-          if (!this.classList.contains('no-underline')) {
-            this.classList.add('active');
-          }
-        });
-      });
-    });
-  </script>
+ navLinks.forEach(link => {
+     link.addEventListener('click', function () {
+         // 모든 nav-link 중에서 no-underline이 아닌 것만 active 제거
+         navLinks.forEach(item => {
+             if (!item.classList.contains('no-underline')) {
+                 item.classList.remove('active');
+             }
+         });
+
+         // 클릭한 링크가 no-underline이 아니면 active 추가
+         if (!this.classList.contains('no-underline')) {
+             this.classList.add('active');
+         }
+     });
+ });
+ document.querySelectorAll('.nav-link').forEach(el => {
+ 	  el.addEventListener('click', function(e) {
+ 	    e.preventDefault();  
+ 	  });
+ 	});
+ function initPage() {
+ 	  const homeBtn = document.getElementById("home-btn");
+ 	  setCheck(homeBtn, 'home');
+ 	}
+ function setCheck(selectedBtn, type) {
+   const buttons = document.querySelectorAll(".check");
+   for (let i = 0; i < buttons.length; i++) {
+     buttons[i].classList.remove("checkActive");
+   }
+   selectedBtn.classList.add("checkActive");
+ 
+   const mainContentBox = document.getElementById('mainContentBox');
+   const tipBox = document.getElementById('tip-box');
+
+
+      if(type === 'home'){
+        mainContentBox.innerHTML = `
+        <div class="ready-wrapper">
+        <h2 class = "ready">사전 준비</h2>
+        </div>
+        <h3 class = "home-text">원하는 조건 정리: 위치, 보증금/월세, 관리비 포함 여부, 옵션(가전), 엘리베이터, 주차 등</h3>
+        <h3 class = "home-text">부동산 앱(직방, 다방 등) 또는 공인중개사를 통해 매물 수집</h3>
+       
+        <h2 class = "home-title">체크리스트</h2>
+       
+        <h3 class = "home-text">구조 : 실제 평수, 채광, 방 크기, 벽 두께 (소음)</h3>
+        <h3 class = "home-text">옵션 : 에어컨, 냉장고, 세탁기, 가스레인지 등 작동 여부</h3>
+        <h3 class = "home-text">보일러 : 난방 잘 되는지, 온수 잘 나오는지</h3>
+        <h3 class = "home-text">수도/전기 : 수도꼭지 누수 여부, 콘센트 위치 및 개수</h3>
+        <h3 class = "home-text">하자 : 곰팡이, 벽지 들뜸, 창문 닫힘 여부, 바닥 긁힘</h3>
+        <h3 class = "home-text">보안 : 현관 이중 잠금 여부, CCTV 유무, 현관 비밀번호 설정 여부</h3>
+        <h3 class = "home-text">기타 : 엘리베이터 유무, 층간소음, 주변 편의시설 (마트, 정류장 등)</h3>`
+
+        tipBox.innerHTML = `
+        <i class="fas fa-thumbtack pin-icon"></i>
+        <div class = "tip-title">TIP</div>
+        <h3 class = "tip-text">개별난방은 사용자가 직접 난방을 조절할 수 있다.</h3>
+        <h3 class = "tip-text">집을 비우면 난방을 끄면 되므로, 그만큼 요금도 줄어든다.</h3><br>
+        <h3 class = "tip-text">중앙난방은 난방을 관리실이나 집주인이 조절해서 집을 비워도 모두가 난방비는 똑같이 나온다.</h3>
+        <h3 class = "tip-text">계약서 기준 금액을 넘는 공용난방비는 추가 부담될 수 있다.</h3>
+        <h3 class = "tip-text">대신 온수가 바로 나온다.</h3>`
+      }
+      else if(type === 'contract'){
+        mainContentBox.innerHTML = `
+        <div class="ready-wrapper">
+        <h2 class = "re-contract-ready">계약 전 준비</h2>
+        </div>
+        <h3 class = "home-text">보증금/월세/관리비/입주일 확정</h3>
+        <h3 class = "home-text">중개수수료 확인 (보증금+월세×100 기준 요율 있음)</h3>
+        <h3 class = "home-text">중개업소 등록번호 확인 (불법중개소 주의)</h3>
+       
+        <h2 class = "home-title">체크리스트</h2>
+       
+        <h3 class = "home-text">계약 당사자 : 집주인 명의가 등기부등본과 일치하는지</h3>
+        <h3 class = "home-text">계약 기간 : 보통 1년 또는 2년 (자동 연장 여부 체크)</h3>
+        <h3 class = "home-text">보증금 / 월세 : 정확한 금액 명시, 계좌번호도 확인<a/p>
+        <h3 class = "home-text">관리비 : 포함 항목 상세 명시 (인터넷, 수도 등)</h3>
+        <h3 class = "home-text">특약사항 : 도배, 수리 약속 / 옵션 추가 / 애완동물 허용 등 구체적으로 기재</h3>
+        <h3 class = "home-text">중도해지 : 조기 퇴실 시 위약금 조항 있는지 확인</h3>
+        <h3 class = "home-text">계약금 : 보통 10% 계약금 먼저 입금 후, 계약 체결</h3>`
+
+        tipBox.innerHTML = `
+        <i class="fas fa-thumbtack pin-icon"></i>
+        <div class = "tip-title">TIP</div>
+        <h3 class = "tip-text">‘집이 빨리 빠지면 놓치게 되니까 가계약금이라도 얼마 걸어 두어라.’라며 가계약을 권유하는 경우가 있다.</h3>
+        <h3 class = "tip-text">가계약은 임차인이 임의로 계약을 파기하면 계약금을 돌려받지 못한다.</h3>
+        <h3 class = "tip-text">안전장치(특약사항 등)를 확보하고, 가계약금 입금 대상과 계좌번호 등이 집주인이 맞는지 꼭 확인.</h3>><br>
+        <h3 class = "tip-text">관리비가 말도 안 되게 비싼 집인 경우 집주인이 주택 임대 사업자일 가능성이 높다.</h3>
+        <h3 class = "tip-text">주택 임대 사업자의 경우 세입자가 바뀌어도 월세를 5%밖에 인상할 수 없는데, 관리비를 높여서 월세를 대신하는 ‘꼼수’.</h3>`
+      }
+      else if(type === 'after'){
+        mainContentBox.innerHTML = `
+        <div class="ready-wrapper">
+        <h2 class = "after">확정일자 & 전입신고</h2>
+        </div>
+        <h3 class = "home-text">주민센터 방문 후 계약서, 신분증, 주소지 입력 후 확정일자 받기 → 보증금 보호의 핵심</h3>
+        <h3 class = "home-text">확정일자 없는 계약은 경매 시 보증금 우선 변제 안 됨</h3>
+       
+        <h2 class = "home-title">체크리스트</h2>
+       
+        <h3 class = "home-text">잔금 : 송금계약서 내용대로 보증금 전액 입금</h3>
+        <h3 class = "home-text">열쇠 / 카드 : 현관 열쇠, 출입문 비밀번호, 공동 현관 카드 수령</h3>
+        <h3 class = "home-text">입주 준비 : 청소 여부, 벌레 방제 여부, 이사 당일 하자 확인</h3>
+        <h3 class = "home-text">이전 세입자 : 공과금 (가스, 전기, 수도) 미납 여부 확인</h3>
+        <h3 class = "home-text">인터넷 : 설치 여부 확인 또는 이사 전에 신청</h3>
+        <h3 class = "home-text">입주 전 방 상태 사진 찍기: 하자 방지용 (곰팡이, 긁힘 등)</h3>`
+
+        tipBox.innerHTML = `
+        <i class="fas fa-thumbtack pin-icon"></i>
+        <div class = "tip-title">TIP</div>
+        <h3 class = "tip-text">새집에 짐은 잔금을 먼저 지급하고 넣어야 한다.</h3>
+        <h3 class = "tip-text">잔금 전에 짐을 넣을 경우 무단 점유로 문제가 될 수도 있다.</h3><br>
+        <h3 class = "tip-text">주택 인도(거주)와 전입 신고를 완료하더라도 다음날 9시부터 대항력의 효력이 발생한다.</h3>
+        <h3 class = "tip-text">효력 발생하기 전 사이에 꼼수(집 팔기, 갑자기 근저당 설정 등) 조심할 것.</h3>`
+      }
+      else if(type === 'reContract'){
+        mainContentBox.innerHTML = `
+        <div class="ready-wrapper">
+        <h2 class = "re-day">재계약 일정</h2>
+        </div>
+        <h3 class = "home-text">계약 만료 1~2달 전 집주인과 재계약 의사 확인</h3>
+        <h3 class = "home-text">조건 변경 여부 협의 (보증금 / 월세 조정 등)</h3>
+        <h3 class = "home-text">연장 거부 시, 집주인은 최소 6개월 전 서면 통보해야 함 (주택임대차보호법)</h3>
+       
+        <h2 class = "re-method">재계약 방식</h2>
+        <h3 class = "home-text">기존 계약서에 연장 내용 덧붙이기 or 새 계약서 작성</h3>
+        <h3 class = "home-text">재계약 후에도 확정일자 다시 받는 게 안전!</h3>
+       
+        <h2 class = "references">참고자료</h2>
+        <h3 class = "home-text">관련 민법 제6조, 주택임대차보호법 제6조 참조</h3>
+        <h3 class = "home-text">보증금 보호 방법 – 주택임대차보증금 보증보험</h3>`
+     
+        tipBox.innerHTML = `
+        <i class="fas fa-thumbtack pin-icon"></i>
+        <div class = "tip-title">TIP</div>
+        <h3 class = "tip-text">정해진 기간안에 임대인과 임차인이 서로 계약을 끝내자는 말이 없었고,</h3>
+        <h3 class = "tip-text">계약 조건 변경에 대한 이야기도 하지 않았다면 해당계약이 ‘자동으로 갱신 된 것’으로 보는 묵시적 갱신이 된다.</h3><br>
+        <h3 class = "tip-text">차임과 보증금은 기존에 약정한 내용의 5% 범위 안에서 증액이 가능하다.</h3>
+        <h3 class = "tip-text">단, 5% 인상 역시 계약을 체결한지 1년 이내이거나, 한 차례 증액이 있은 후에는 증액할 수 없다.</h3>`
+      }
+      }
+ function goToAddPage() {
+	    window.location.href = "addCk.html";
+	  }
+
+	  function goToEditPage() {
+	    window.location.href = "setHomeManagerUI.html";
+	  }
+	  function addCategory() {
+		    const categoryName = document.getElementById('categoryInput').value.trim();
+
+		    if (categoryName === "") {
+		        alert("카테고리를 입력해주세요.");
+		        return;
+		    }
+
+		    // 서버로 전송
+		    fetch("/Team_03/controller?cmd=addCk", {  
+		        method: 'POST',
+		        headers: { 'Content-Type': 'application/json' },
+		        body: JSON.stringify({ category: categoryName })   // 여기도 고쳤어! 입력한 값으로
+		    })
+		    .then(response => response.json())
+		    .then(data => {
+		        if (data.success) {
+		            alert('카테고리 저장 성공!');
+		            document.getElementById("categoryInput").value = "";
+		            const modal = bootstrap.Modal.getInstance(document.getElementById('categoryModal'));
+		            modal.hide();
+		        } else {
+		            alert('카테고리 저장 실패');
+		        }
+		    })
+		    .catch(error => {
+		        alert('서버 오류 발생');
+		        console.error(error);
+		    });
+
+		}
+</script>
 </body>
 </html>
