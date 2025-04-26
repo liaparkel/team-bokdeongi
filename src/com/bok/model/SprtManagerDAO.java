@@ -7,17 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 
 public class SprtManagerDAO {
 	//관리자가 지원금 정보에서 수정 버튼 클릭 시 select (-sprtPerson 값)
-	public SprtPersonVO getSprtPerson(int sprtpNum){
-		SqlSession conn = DBCP.getSqlSessionFactory().openSession();
-		SprtPersonVO sp = null;
-		try{
-			sp = conn.selectOne("bokMapper.getSprtPersonOne",sprtpNum);
-		} catch (Exception e){
-			e.printStackTrace();
-		}finally{
-			conn.close();
-		}
-		return sp;		
+	public SprtPersonVO getSprtPerson(SqlSession session,int sprtpNum){
+		return session.selectOne("bokMapper.getSprtPersonOne", sprtpNum);
 	}
 	//관리자가 지원금 정보에서 수정 버튼 클릭 시 select (-sprtContent 값)
 	public List<SprtContentVO> getSprtContent(int sprtpNum){

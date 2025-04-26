@@ -3,7 +3,7 @@
 <mapper namespace="bokMapper">
 
 	<select id="selectLogin" parameterType="com.bok.model.CrewVO" resultType="String">
-		SELECT crew_name as name
+		SELECT crew_name as crewName
 		FROM crew
 		WHERE crew_id = #{crewId} AND crew_pw = #{crewPw}
 	</select>

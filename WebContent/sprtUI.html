@@ -23,7 +23,7 @@
 		<!-- 상단바 -->
 		<nav class="navbar">
 			<div class="container">
-				<a class="navbar-brand" href="#"> <img src="image/logo.png"
+				<a class="navbar-brand" href="controller?cmd=ckHomeUI"> <img src="image/logo.png"
 					alt="로고" />
 				</a>
 				<div class="menu-wrapper">
@@ -35,7 +35,7 @@
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">
 							지원금 정보 </a>
 						<ul class="dropdown-menu dropdown-menu-end">
-							<li><a class="dropdown-item" href="controller?cmd=SprtUIAction">현재 지원금 정보</a></li>
+							<li><a class="dropdown-item" href="#">현재 지원금 정보</a></li>
 							<li><a class="dropdown-item" href="#">이전 지원금 정보</a></li>
 						</ul>
 					</div>
@@ -48,8 +48,8 @@
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">
 							문의하기 </a>
 						<ul class="dropdown-menu dropdown-menu-end">
-							<li><a class="dropdown-item" href="#">FAQ</a></li>
-							<li><a class="dropdown-item" href="#">1:1 문의하기</a></li>
+							<li><a class="dropdown-item" href="controller?cmd=askUI">FAQ</a></li>
+							<li><a class="dropdown-item" href="controller?cmd=soloAskUI">1:1 문의하기</a></li>
 						</ul>
 					</div>
 				</div>
@@ -60,9 +60,9 @@
 		<div class="main">
 			<div class="container">
 				<div class="sprt-menu">
-					<button class="sprt" onclick="setSprt(this, 'YouthSprt.html')">청년</button>
-					<button class="sprt" onclick="setSprt(this, 'LoanSprt.html')">대출</button>
-					<button class="sprt" onclick="setSprt(this, 'HappySprt.html')">행복주택</button>
+					<button class="sprt" onclick="setSprt(this, 'youthSprt.html')">청년</button>
+					<button class="sprt" onclick="setSprt(this, 'rentSprt.html')">대출</button>
+					<button class="sprt" onclick="setSprt(this, 'happySprt.html')">행복주택</button>
 				</div>
 
 				<!-- AJAX로 컨텐츠를 삽입할 영역 -->

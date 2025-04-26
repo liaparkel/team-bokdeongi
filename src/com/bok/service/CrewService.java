@@ -8,9 +8,21 @@ import com.bok.model.DBCP;
 
 public class CrewService {
 
+	private CrewDAO cdao;
+	
+	public CrewService() {
+		cdao = new CrewDAO();
+	}
+	
 	public String loginCrew(CrewVO vo) {
-		SqlSession conn = DBCP.getSqlSessionFactory().openSession();
+		// NullPointException
+		try {
+			SqlSession session = DBCP.getSqlSessionFactory().openSession(); // try 안에 넣어놓으면 mybatis가 자동으로 conn.close() 해줌
+			return cdao.loginCrew(session, vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 		
-		return new CrewDAO().loginCrew(vo);
 	}
 }

@@ -16,9 +16,28 @@
    <body onload="setTimeout(() => { document.querySelector('.check').click(); }, 0)">
 <div class="page-layout">
 <nav class="navbar">
+<<<<<<< HEAD
       <div class="container">
         <a class="navbar-brand" href="#">
           <img src="image/logo.png" alt="로고" />
+
+  <div class="container">
+    <a class="navbar-brand" href="controller?cmd=ckHomeManagerUI">
+      <img src="image/logo.png" alt="로고" />
+    </a>
+
+    <div class="admin-info d-flex align-items-center ms-3">
+      <span class="admin-greeting">관리자님 안녕하세요.</span>
+      <button class="logout-btn ms-2" onclick="location.href='controller?cmd=loginUI'">로그아웃</button>
+    </div>
+
+    <div class="menu-wrapper ms-auto">
+      <a class="nav-link" href="#">체크리스트</a>
+      <a class="nav-link" href="#">지원금정보</a>
+      <div class="dropdown">
+        <a class="nav-link dropdown-toggle no-underline" href="#" role="button" data-bs-toggle="dropdown">
+          문의관리
+
         </a>
 
         <!-- 로고 옆 관리자 텍스트 + 로그아웃 버튼 -->

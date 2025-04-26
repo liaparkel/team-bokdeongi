@@ -9,7 +9,11 @@ public class CkHomeManagerUIAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request) throws ServletException, IOException {
+
 		// TODO Auto-generated method stub
+
+		
+
 		return "ckHomeManagerUI.html";
 	}
 
