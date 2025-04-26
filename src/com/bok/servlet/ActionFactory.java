@@ -7,13 +7,13 @@ public class ActionFactory {
 		Action a;
 		switch (cmd){
 			
-		case "sprtUI":
-			a = new SprtUIAction();
-			break;
-			
-		case "bfSprtUI":
-			a = new BfSprtUIAction();
-			break;
+//		case "sprtUI":
+//			a = new SprtUIAction();
+//			break;
+//			
+//		case "bfSprtUI":
+//			a = new BfSprtUIAction();
+//			break;
 		
 		case "loginUI":
 			a = new LoginUIAction();
@@ -27,16 +27,16 @@ public class ActionFactory {
 			a = new CkHomeManagerUIAction();
 			break;
 			
-		case "youthSprt":
-			a = new YouthSprtAction();
+		case "getSprtCategory":
+			a = new GetSprtCategoryAction();
 			break;
 			
-		case "loanSprt":
-			a = new LoanSprtAction();
+		case "getSprtPerson":
+			a = new GetSprtPersonAction();
 			break;
 			
-		case "happySprt":
-			a = new HappySprtAction();
+		case "getSprtContent":
+			a = new GetSprtContentAction();
 			break;
 			
 		default:
