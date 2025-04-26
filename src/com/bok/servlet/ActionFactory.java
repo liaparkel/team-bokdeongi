@@ -19,6 +19,11 @@ public class ActionFactory {
 			a = new BfSprtUIAction();
 			break;
 			
+			
+		case "setSprtInfo": 
+			a = new SetSprtInfoAction();
+			break;
+			
 		default:
 			a = new MainUIAction(); 
 			break;
