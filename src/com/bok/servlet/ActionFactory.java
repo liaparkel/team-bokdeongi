@@ -39,11 +39,23 @@ public class ActionFactory {
 			a = new HappySprtAction();
 			break;
 			
-			
-		case "setSprtInfo": 
-			a = new SetSprtInfoAction();
-			break;
-			
+//		case "sprtManagerUI":
+//			a = new SprtManagerUIAction();
+//			break;
+//			
+//		case "setSprtInfo": 
+//			a = new SetSprtInfoAction();
+//			break;
+//		case "setSprtAdd":
+//			a = new SetSprtAddAction();
+//			break;
+//		case "setSprtUpdate":
+//			a = new SetSprtUpdateAction();
+//			break;
+//		case "setSprtDelete":
+//			a = new SetSprtDeleteAction();
+//			break;
+		
 		default:
 			a = new MainUIAction(); 
 			break;
