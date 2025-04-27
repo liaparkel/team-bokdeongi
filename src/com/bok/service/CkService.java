@@ -19,7 +19,7 @@ public class CkService {
     }
 
     // 체크리스트 제목/내용 수정
-    public int updateCkList(CkVO vo) {
+    public int setCkList(CkVO vo) {
         return dao.setCkList(vo);
     }
 
@@ -39,7 +39,7 @@ public class CkService {
     }
 
     // 팁 수정
-    public int updateTip(CkVO vo) {
+    public int setTip(CkVO vo) {
         return dao.setTip(vo);
     }
 
@@ -59,32 +59,34 @@ public class CkService {
     }
 
     // 팁 최신 조회
-    public Collection<CkVO> getRecentTips(String ckCategory) {
-        return dao.TipRecentSearch(ckCategory);
+    public Collection<CkVO> tipRecentSearch(String ckCategory) {
+        return dao.tipRecentSearch(ckCategory);
     }
 
     // 팁 조회
-    public Collection<CkVO> getTips(String ckCategory) {
-        return dao.TipSearch(ckCategory);
+    public Collection<CkVO> tipSearch(String ckCategory) {
+        return dao.tipSearch(ckCategory);
     }
 
     // 이전 카테고리 목록 조회
-    public Collection<String> getBackCkCategoryList() {
-        return dao.BackCkCategoryList();
+    public Collection<String> backCkCategoryList() {
+        return dao.backCkCategoryList();
     }
 
     // 이전 제목/날짜 목록
-    public Collection<CkVO> getBackCkTitleList(String ckCategory) {
-        return dao.BackCkTitleList(ckCategory);
+    public Collection<CkVO> backCkTitleList(String ckCategory) {
+        return dao.backCkTitleList(ckCategory);
     }
 
     // 이전 제목/내용 목록
-    public Collection<CkVO> getBackCkListSearch() {
-        return dao.BackCkListSearch();
+    public Collection<CkVO> backCkListSearch() {
+        return dao.backCkListSearch();
     }
 
     // 이전 체크리스트 삭제
     public int deleteBackCkList(int ckContentNum) {
         return dao.backCkListDelete(ckContentNum);
     }
+
+
 }

@@ -5,7 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
-public class CkHomeManagerUIAction implements Action {
+public class CkHomeUIAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request) throws ServletException, IOException {
@@ -14,7 +14,7 @@ public class CkHomeManagerUIAction implements Action {
 
 		
 
-		return "ckHomeManagerUI.html";
+		return "ckHomeUI.html";
 	}
 
 }
