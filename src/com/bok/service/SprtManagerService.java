@@ -5,15 +5,20 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.bok.model.DBCP;
+import com.bok.model.PagingVO;
 import com.bok.model.SprtContentVO;
+import com.bok.model.SprtDAO;
 import com.bok.model.SprtManagerDAO;
 import com.bok.model.SprtPersonVO;
 
 public class SprtManagerService {
 
 	private SprtManagerDAO dao;
-	public SprtManagerService(){
+	private SprtDAO sprtDao;
+
+	public SprtManagerService() {
 		dao = new SprtManagerDAO();
+		sprtDao = new SprtDAO();
 	}
 
 	//지원금 정보 수정버튼 - 개별 지원금 정보 불러오기
@@ -111,6 +116,26 @@ public class SprtManagerService {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		}
+	}
+
+	// 페이징 지원 - 특정 카테고리의 지원금 리스트 가져오기
+	public List<SprtPersonVO> getBfSprtPerson(int fkSprtNum, PagingVO paging) {
+		try (SqlSession session = DBCP.getSqlSessionFactory().openSession()) {
+			return dao.getPagedBfSprtPersonM(session, fkSprtNum, paging);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	// 특정 카테고리의 전체 글 수 가져오기
+	public int getBfSprtPersonCount(int fkSprtNum) {
+		try (SqlSession session = DBCP.getSqlSessionFactory().openSession()) {
+			return sprtDao.getBfSprtPersonCount(session, fkSprtNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
 		}
 	}
 

@@ -126,12 +126,19 @@ public class ActionFactory {
 		case "getSprtContent":
 			a = new GetSprtContentAction();
 			break;
-			
+		
+		case "getBfSprtManagerPerson":
+		    a = new GetBfSprtManagerPersonAction();
+		    break;
 
-//		case "sprtManagerUI":
-//			a = new SprtManagerUIAction();
-//			break;
-//			
+		case "sprtManagerUI":
+			a = new SprtManagerUIAction();
+			break;
+			
+		case "sprtBfManagerUI":
+			a = new SprtBfManagerUIAction();
+			break;
+			
 //		case "setSprtInfo": 
 //			a = new SetSprtInfoAction();
 //			break;
