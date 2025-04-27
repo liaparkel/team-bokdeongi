@@ -1,229 +1,283 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>사용자 UI</title>
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
-	rel="stylesheet" />
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
-	crossorigin="anonymous" />
-<link rel="stylesheet" href="css/component.css" />
-<link rel="stylesheet" href="css/bfUI.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BokDeongI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/component.css">
+  <link rel="stylesheet" href="css/bfUI.css">
 </head>
+
 <body>
-	<div class="page-layout">
+  <div class="page-layout">
+    <!-- 상단바 -->
+    <nav class="navbar">
+      <div class="container">
+        <a class="navbar-brand" href="#"><img src="image/logo.png" alt="로고"></a>
+        <div class="menu-wrapper">
+          <a class="nav-link" href="#">체크리스트</a>
+          <div class="dropdown">
+            <a class="nav-link dropdown-toggle no-underline" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">지원금 정보</a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="sprtUI.html">현재 지원금 정보</a></li>
+              <li><a class="dropdown-item" href="bfSprtUI.html">이전 지원금 정보</a></li>
+            </ul>
+          </div>
+          <a class="nav-link" href="#">치안 정보</a>
+          <div class="dropdown">
+            <a class="nav-link dropdown-toggle no-underline" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">문의하기</a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="#">FAQ</a></li>
+              <li><a class="dropdown-item" href="#">1:1 문의하기</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
 
-		<!-- 상단바 -->
-		<nav class="navbar">
-			<div class="container">
-				<a class="navbar-brand" href="#"> <img src="image/logo.png"
-					alt="로고" />
-				</a>
-				<div class="menu-wrapper">
-					<a class="nav-link" href="#">체크리스트</a>
+    <!-- 메인 -->
+    <div class="main">
+      <div class="container">
+        <h1>이전 지원금 정보</h1>
+        <form>
+          <select name="sprtCategory" id="sprtCategory" class="form-select mb-3">
+            <option value="" disabled selected>카테고리 선택</option>
+          </select>
+        </form>
+        <div id="sprt-content"></div>
+        <div id="pagination" class="d-flex justify-content-center mt-4" style="display: none;"></div>
+      </div>
+    </div>
 
-					<!-- Dropdown 지원금 정보 -->
-					<div class="dropdown">
-						<a class="nav-link dropdown-toggle no-underline" href="#"
-							role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							지원금 정보 </a>
-						<ul class="dropdown-menu dropdown-menu-end">
-							<li><a class="dropdown-item" href="sprtUI.html">현재 지원금 정보</a></li>
-  							<li><a class="dropdown-item" href="bfSprtUI.html">이전 지원금 정보</a></li>
-						</ul>
-					</div>
+    <!-- 푸터 -->
+    <div class="footer">
+      <div class="container">
+        <div class="footer-left">
+          <span>상호명: <span class="bok-name">복덩이 부동산</span> <img src="image/logo.png" id="img-bok1"></span>
+          <span>복덩이: 김정훈, 박종석, 정현아, 박희수</span>
+        </div>
+        <div class="footer-middle">
+          <span>주소: 서울 금천구 가산디지털1로 912호 호서대벤처타워 9층</span>
+          <span>문의: kebin10804@gmail.com</span>
+        </div>
+        <div class="footer-bok">
+          <img src="image/bok.png" class="img-bok2">
+        </div>
+      </div>
+    </div>
+  </div>
 
-					<a class="nav-link" href="#">치안 정보</a>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 
-					<!-- Dropdown 문의하기 -->
-					<div class="dropdown">
-						<a class="nav-link dropdown-toggle no-underline" href="#"
-							role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							문의하기 </a>
-						<ul class="dropdown-menu dropdown-menu-end">
-							<li><a class="dropdown-item" href="#">FAQ</a></li>
-							<li><a class="dropdown-item" href="#">1:1 문의하기</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</nav>
-		<!-- 메인 -->
-		<div class="main">
-			<div class="container">
-				<h1>이전 지원금 정보</h1>
-				<form method="get" action="">
-					<select name="sprtCategory" id="sprtCategory">
-						<option value="" disabled selected>카테고리 선택</option>
-						<option value="청년">청년</option>
-						<option value="대출">대출</option>
-						<option value="행복주택">행복주택</option>
-					</select>
-				</form>
-				<div class="gray-line"></div>
+  <script>
+    // 페이지 관련 전역 변수
+    let currentPage = 1;
+    let currentSprtNum = null;
+    let totalPages = 1;
 
-				<button class="sprt-accordion">
-					<div class="sprt-text">
-						<div class="sprt-title-row">
-							<div class="title-date">
-								<p class="sprt-title">청년 안심 주택</p>
-								<span class="sysdate">2025-04-21 15:30</span>
-							</div>
-						</div>
-						<p class="sprt-description">통학 및 출근이 용이한 역세권 및 간선도로변에 청년 임대주택을
-							공급하는 사업 / 만 19세 ~ 39세 대학생, 청년, 부부 / 무주택자</p>
-					</div>
-					<i class="bi bi-chevron-down arrow"></i>
-				</button>
-				<div class="content">
-					<p>
-						1. 지원대상<br> * 만 19세 ~ 39세 대학생, 청년 / 무주택자
-					</p>
-					<p>
-						2. 지원 내용<br> * 주변 시세의 30 ~ 85% 가격으로 공급<br> * 청년들이 부담 가능한
-						수준으로 입주할 수 있도록 임대보증금의 50%, 최대 4,500만원(무이자)까지 지원
-					</p>
-				</div>
-				<button class="sprt-accordion">
-					<div class="sprt-text">
-						<div class="sprt-title-row">
-							<div class="title-date">
-								<p class="sprt-title">청년 전세 임대 주택</p>
-								<span class="sysdate">2025-04-21 15:30</span>
-							</div>
-						</div>
-						<p class="sprt-description">통학 및 출근이 용이한 역세권 및 간선도로변에 청년 임대주택을
-							공급하는 사업 / 만 19세 ~ 39세 대학생, 청년, 부부 / 무주택자</p>
-					</div>
-					<i class="bi bi-chevron-down arrow"></i>
-				</button>
-				<div class="content">
-					<p>
-						1. 지원대상<br> * 대학생<br> - 신청일 현재 대학에 재학 또는 입학예정인 타 시*군 출신
-						대학생 <br> * 취업 준비생 - 신청일 현재 대학 또는 [초*중등교육법]에 따른 고등*고등기술학교를
-						졸업하거나 중퇴한 후 2년 이내인 사람으로서 직장에 재직 중이지 안은 자 <br> - 대학 졸업예정자 또는
-						졸업 유예자로서 직장에 재직 중이지 않은 자
+    // 페이지 로드 시 카테고리 불러오기
+    window.onload = function() {
+      fetchCategories();
+    };
 
-					</p>
-					<p>
-						2. 지원 내용<br> * 수도권 - 120백만원/호 <br> * 광역시 (세종시 포함) -
-						95백만원/호 <br>* 기타 도 지역 - 85백만원/호
-					</p>
-				</div>
-				<button class="sprt-accordion">
-					<div class="sprt-text">
-						<div class="sprt-title-row">
-							<div class="title-date">
-								<p class="sprt-title">청년 임차보증금 이자지원 사업</p>
-								<span class="sysdate">2025-04-21 15:30</span>
-							</div>
-						</div>
-						<p class="sprt-description">통학 및 출근이 용이한 역세권 및 간선도로변에 청년 임대주택을
-							공급하는 사업 / 만 19세 ~ 39세 대학생, 청년, 부부 / 무주택자</p>
-					</div>
-					<i class="bi bi-chevron-down arrow"></i>
-				</button>
-				<div class="content">
-					<p>
-						1. 지원대상<br> - 만 19세 ~ 39세 이하의 청년
-					</p>
-					<p>
-						2. 지원 내용<br> * 융자취급은행: 하나은행<br> * 융자최대한도: 최대 2억원 (임차보증금의
-						90% 이내)<br> * 서울시 지원 금리 - 대출금의 연 2.0%
-					</p>
-				</div>
+    // 카테고리 목록 불러오기
+    function fetchCategories() {
+      fetch('/Team_03/controller?cmd=getSprtCategory')
+        .then(response => response.json())
+        .then(data => {
+          const select = document.getElementById('sprtCategory');
+          select.innerHTML = '<option value="" disabled selected>카테고리 선택</option>';
+          let youthOptionValue = null;
 
-				<!-- 페이지네이션 -->
-				<nav aria-label="Page navigation"
-					class="mt-4 d-flex justify-content-center">
-					<ul class="pagination">
-						<li class="page-item disabled"><a class="page-link" href="#"
-							tabindex="-1" aria-disabled="true">이전</a></li>
-						<li class="page-item active"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-						<li class="page-item"><a class="page-link" href="#">다음</a></li>
-					</ul>
-				</nav>
-			</div>
-		</div>
-		<!-- 푸터 -->
-		<div class="footer">
-			<div class="container">
-				<div class="footer-left">
-					<span>상호명: <span class="bok-name">복덩이 부동산</span> <img
-						src="image/logo.png" id="img-bok1" /></span> <span>복덩이: 김정훈, 박종석,
-						정현아, 박희수</span>
-				</div>
-				<div class="footer-middle">
-					<span>주소: 서울 금천구 가산디지털1로 912호 호서대벤처타워 9층</span> <span>문의:
-						kebin10804@gmail.com</span>
-				</div>
-				<div class="footer-bok">
-					<img src="image/bok.png" class="img-bok2" />
-				</div>
-			</div>
-		</div>
+          data.forEach(category => {
+            const option = document.createElement('option');
+            option.value = category.sprtNum;
+            option.textContent = category.category;
+            select.appendChild(option);
 
+            if (category.category === "청년") {
+              youthOptionValue = category.sprtNum;
+            }
+          });
 
+          if (youthOptionValue !== null) {
+            select.value = youthOptionValue;
+            currentSprtNum = youthOptionValue;
+            currentPage = 1;
+            loadSupportList(currentSprtNum, currentPage);
+            document.getElementById('pagination').style.display = 'flex';
+          }
 
+          select.addEventListener('change', function() {
+            currentSprtNum = this.value;
+            currentPage = 1;
+            loadSupportList(currentSprtNum, currentPage);
+            document.getElementById('pagination').style.display = 'flex';
+          });
+        })
+        .catch(error => console.error('카테고리 로딩 실패:', error));
+    }
 
-	</div>
-	<!-- Bootstrap JS -->
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
-		crossorigin="anonymous"></script>
+    // 선택한 카테고리의 지원금 리스트를 불러오는 함수
+    function loadSupportList(sprtNum, pageIndex = 1) {
+      const contentWrapper = document.getElementById('sprt-content');
+      contentWrapper.innerHTML = '<p>로딩 중...</p>';
 
-<!-- 상단바 동작 스크립트 -->
-	<script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const navLinks = document.querySelectorAll('.nav-link');
-      const dropdownItems = document.querySelectorAll('.dropdown-item');
+      fetch(`/Team_03/controller?cmd=getBfSprtPerson&sprtNum=${sprtNum}&pageIndex=${pageIndex}`)
+        .then(response => response.json())
+        .then(data => {
+          if (!data.list || data.list.length === 0) {
+            contentWrapper.innerHTML = '<p>해당 카테고리에 지원금 정보가 없습니다.</p>';
+            document.getElementById('pagination').style.display = 'none';
+            return;
+          }
 
-      function clearActiveLinks() {
-        navLinks.forEach(link => link.classList.remove('active'));
-      }
-		// 일반 nav 링크 클릭 시 active 토글
-      navLinks.forEach(link => {
-        link.addEventListener('click', function () {
-          clearActiveLinks();
-          if (!this.classList.contains('dropdown-toggle')) {
-            this.classList.add('active');
+          totalPages = Math.ceil(data.totalCount / data.pageSize);
+
+          let html = '';
+          data.list.forEach(item => {
+            html += `
+              <button class="sprt-accordion" data-sprtpnum="${item.sprtpNum}">
+                <div class="sprt-text">
+                  <div class="sprt-title-row">
+                    <div class="title-date">
+                      <p class="sprt-title">${item.title}</p>
+                      <span class="sysdate">${item.date || ''}</span>
+                    </div>
+                  </div>
+                  <p class="sprt-description">${item.summary}</p>
+                </div>
+                <i class="bi bi-chevron-down arrow"></i>
+              </button>
+              <div class="content">
+                <p><strong>기간</strong><br>${renderPeriod(item.start, item.end)}</p>
+              </div>
+            `;
+          });
+          contentWrapper.innerHTML = html;
+          initializeAccordion();
+          renderPagination();
+        })
+        .catch(error => {
+          contentWrapper.innerHTML = '<p>지원금 리스트 불러오기 실패</p>';
+          console.error(error);
+        });
+    }
+
+    // 아코디언 초기화
+    function initializeAccordion() {
+      const accordions = document.querySelectorAll('.sprt-accordion');
+      accordions.forEach(acc => {
+        acc.addEventListener('click', function() {
+          this.classList.toggle('active');
+          const panel = this.nextElementSibling;
+          if (panel.style.maxHeight) {
+            panel.style.maxHeight = null;
+          } else {
+            const sprtpNum = this.dataset.sprtpnum;
+            if (panel.dataset.loaded !== "true") {
+              fetch(`/Team_03/controller?cmd=getSprtContent&sprtpNum=${sprtpNum}`)
+                .then(response => response.json())
+                .then(data => {
+                  let detailHtml = '';
+                  data.forEach(content => {
+                    detailHtml += `<br><p><strong>${content.subtitle}</strong><br>${content.content}</p><br>`;
+                  });
+                  panel.innerHTML += detailHtml;
+                  panel.dataset.loaded = "true";
+                  panel.style.maxHeight = panel.scrollHeight + "px";
+                })
+                .catch(error => {
+                  panel.innerHTML += '<p>상세 내용 불러오기 실패</p>';
+                  console.error(error);
+                });
+            } else {
+              panel.style.maxHeight = panel.scrollHeight + "px";
+            }
           }
         });
       });
-      // 드롭다운 항목 클릭 시  active 부여
-      dropdownItems.forEach(item => {
-        item.addEventListener('click', function () {
-          clearActiveLinks();
-          const parentDropdown = this.closest('.dropdown');
-          const toggle = parentDropdown?.querySelector('.dropdown-toggle');
-          if (toggle) toggle.classList.add('active');
-        });
+    }
+
+    // 페이지네이션 렌더링
+    function renderPagination() {
+      const paginationWrapper = document.getElementById('pagination');
+      paginationWrapper.innerHTML = '';
+
+      const groupSize = 10;
+      const currentGroup = Math.floor((currentPage - 1) / groupSize);
+      const startPage = currentGroup * groupSize + 1;
+      const endPage = Math.min(startPage + groupSize - 1, totalPages);
+
+      // 처음 버튼
+      const firstButton = createPageButton('처음', currentPage === 1, () => {
+        currentPage = 1;
+        loadSupportList(currentSprtNum, currentPage);
       });
-    });
-   
-  //<아코디언>>
-    const accordions = document.querySelectorAll(".faq-accordion, .sprt-accordion");
-    accordions.forEach((acc) => {
-      acc.addEventListener("click", function () {
-        this.classList.toggle("active");
-        const panel = this.nextElementSibling;
-        if (panel.style.maxHeight) {
-          panel.style.maxHeight = null;
-        } else {
-          panel.style.maxHeight = panel.scrollHeight + "px";
+      paginationWrapper.appendChild(firstButton);
+
+      // 이전 버튼
+      const prevButton = createPageButton('이전', currentPage === 1, () => {
+        if (currentPage > 1) {
+          currentPage -= 1;
+          loadSupportList(currentSprtNum, currentPage);
         }
       });
-    });
+      paginationWrapper.appendChild(prevButton);
+
+      // 페이지 번호 버튼
+      for (let i = startPage; i <= endPage; i++) {
+        const pageButton = createPageButton(i, currentPage === i, () => {
+          currentPage = i;
+          loadSupportList(currentSprtNum, currentPage);
+        });
+        paginationWrapper.appendChild(pageButton);
+      }
+
+      // 다음 버튼
+      const nextButton = createPageButton('다음', currentPage === totalPages, () => {
+        if (currentPage < totalPages) {
+          currentPage += 1;
+          loadSupportList(currentSprtNum, currentPage);
+        }
+      });
+      paginationWrapper.appendChild(nextButton);
+
+      // 끝 버튼
+      const lastButton = createPageButton('끝', currentPage === totalPages, () => {
+        currentPage = totalPages;
+        loadSupportList(currentSprtNum, currentPage);
+      });
+      paginationWrapper.appendChild(lastButton);
+    }
+
+    // 공통 버튼 생성 함수
+    function createPageButton(label, disabled, onClick) {
+      const button = document.createElement('button');
+      button.className = 'btn btn-secondary mx-1';
+      button.innerText = label;
+      button.disabled = disabled;
+      button.addEventListener('click', onClick);
+      return button;
+    }
+
+    // 날짜 포맷 변환
+    function formatDate(dateStr) {
+      return dateStr && dateStr.includes(' ') ? dateStr.split(' ')[0] : '';
+    }
+
+    // 시작일과 종료일을 기반으로 기간 문자열 반환
+    function renderPeriod(start, end) {
+      const s = formatDate(start);
+      const e = formatDate(end);
+      if (!s && !e) return '상시';
+      if (!s && e) return `~ ${e}`;
+      if (s && !e) return '상시';
+      return `${s} ~ ${e}`;
+    }
   </script>
 </body>
 </html>

@@ -7,13 +7,13 @@ public class ActionFactory {
 		Action a;
 		switch (cmd){
 			
-//		case "sprtUI":
-//			a = new SprtUIAction();
-//			break;
-//			
-//		case "bfSprtUI":
-//			a = new BfSprtUIAction();
-//			break;
+		case "sprtUI":
+			a = new SprtUIAction();
+			break;
+			
+		case "bfSprtUI":
+			a = new BfSprtUIAction();
+			break;
 		
 		case "loginUI":
 			a = new LoginUIAction();
@@ -33,6 +33,10 @@ public class ActionFactory {
 			
 		case "getSprtPerson":
 			a = new GetSprtPersonAction();
+			break;
+		
+		case "getBfSprtPerson":
+			a = new GetBfSprtPersonAction();
 			break;
 			
 		case "getSprtContent":

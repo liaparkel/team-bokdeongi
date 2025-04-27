@@ -15,7 +15,7 @@ public class FrontControllerServlet extends HttpServlet {
 		String cmd = request.getParameter("cmd");
 		if (cmd == null) cmd = "mainUI";
 
-		if ("getSprtCategory".equals(cmd) || "getSprtPerson".equals(cmd) || "getSprtContent".equals(cmd)) {
+		if ("getSprtCategory".equals(cmd) || "getSprtPerson".equals(cmd) || "getSprtContent".equals(cmd) || "getBfSprtPerson".equals(cmd)) {
 			Action a = ActionFactory.getAction(cmd);
 			String jsonResponse = a.execute(request);  // 요청을 처리하고 JSON 문자열을 반환받음
 			response.setContentType("application/json; charset=UTF-8");
