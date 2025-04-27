@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -10,7 +12,7 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
 	rel="stylesheet"
-	integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
+	integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
 	crossorigin="anonymous" />
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
@@ -58,14 +60,21 @@
 			<div class="container">
 				<h1 class="solo-title">Ask</h1>
 				<div class="question-box">
-					<h3>치안정보 질문입니다.</h3>
-					<p>치안정보는 다운로드가 불가능 할까요?</p>
+					<h3>${sessionScope.askDetail.askTitle}</h3>
+					<p>${sessionScope.askDetail.soloContent}</p>
 				</div>
 				<br>
 				<hr class="my-4">
 				<h1 class="solo-title">Answer</h1>
 				<div class="answer-box">
-					<p>불가능합니다.</p>
+					<c:choose>
+						<c:when test="${not empty sessionScope.askDetail.soloAnswer}">
+							<p>${sessionScope.askDetail.soloAnswer}</p>
+						</c:when>
+						<c:otherwise>
+							<p>아직 답변이 등록되지 않았습니다.</p>
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</div>
 		</div>
@@ -98,31 +107,31 @@
 	<!-- 상단바 동작 스크립트 -->
 	<script>
     document.addEventListener("DOMContentLoaded", function () {
-      const navLinks = document.querySelectorAll('.nav-link');
-      const dropdownItems = document.querySelectorAll('.dropdown-item');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const dropdownItems = document.querySelectorAll('.dropdown-item');
 
-      function clearActiveLinks() {
-        navLinks.forEach(link => link.classList.remove('active'));
-      }
-		// 일반 nav 링크 클릭 시 active 토글
-      navLinks.forEach(link => {
-        link.addEventListener('click', function () {
-          clearActiveLinks();
-          if (!this.classList.contains('dropdown-toggle')) {
-            this.classList.add('active');
-          }
+        function clearActiveLinks() {
+            navLinks.forEach(link => link.classList.remove('active'));
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', function () {
+                clearActiveLinks();
+                if (!this.classList.contains('dropdown-toggle')) {
+                    this.classList.add('active');
+                }
+            });
         });
-      });
-      // 드롭다운 항목 클릭 시  active 부여
-      dropdownItems.forEach(item => {
-        item.addEventListener('click', function () {
-          clearActiveLinks();
-          const parentDropdown = this.closest('.dropdown');
-          const toggle = parentDropdown?.querySelector('.dropdown-toggle');
-          if (toggle) toggle.classList.add('active');
+
+        dropdownItems.forEach(item => {
+            item.addEventListener('click', function () {
+                clearActiveLinks();
+                const parentDropdown = this.closest('.dropdown');
+                const toggle = parentDropdown?.querySelector('.dropdown-toggle');
+                if (toggle) toggle.classList.add('active');
+            });
         });
-      });
     });
-  </script>
+	</script>
 </body>
 </html>

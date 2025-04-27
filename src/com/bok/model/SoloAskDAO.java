@@ -31,9 +31,9 @@ public class SoloAskDAO {
 	}
 
 	// 1 : 1 문의하기 상세보기
-	public SoloAskVO soloAskDetail(SqlSession session, SoloAskVO vo) {
+	public SoloAskVO soloAskDetail(SqlSession session, String askNum) {
 
-		return session.selectOne("bokMapper.askDetail", vo);
+		return session.selectOne("bokMapper.askDetail", askNum);
 	}
 
 	// title, content, answer만 가져오기
@@ -51,4 +51,5 @@ public class SoloAskDAO {
 	// }
 	// return sav.getAskTitle() + sav.getSoloContent() + sav.getSoloAnswer();
 	// }
+	
 }

@@ -66,7 +66,6 @@
 		SELECT ask_title as askTitle, solo_content as soloContent, solo_answer as soloAnswer
 		FROM solo_ask
 		WHERE ask_num = #{askNum}
-		AND ask_pw = #{askPw}
 	</select>
 	
 	<update id="updateFaq" parameterType="com.bok.model.FaqManagerVO">
