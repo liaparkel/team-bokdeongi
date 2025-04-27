@@ -16,6 +16,10 @@ public class ActionFactory {
 			a = new SprtUIAction();
 			break;
 
+		case "loginUI":
+			a = new LoginUIAction();
+			break;
+			
 		case "ckHomeManagerUI":
 			a = new CkHomeManagerUIAction();
 			break;
@@ -92,12 +96,18 @@ public class ActionFactory {
 			a = new CkBfContentDeleteAction();
 			break;
 
+
 		case "ckHomeUI":
 			a = new CkHomeUIAction();
 			break;
 
-		case "sprtUI":
 
+		case "ckHomeUI" :
+			a = new CkHomeUIAction();
+			break;
+					
+
+		case "sprtUI":
 			a = new SprtUIAction();
 			break;
 
@@ -105,9 +115,20 @@ public class ActionFactory {
 			a = new BfSprtUIAction();
 			break;
 
+
 		case "login":
 			a = new LoginAction();
 			break;
+
+			
+		case "login":
+			a = new LoginAction();
+			break;
+			
+		case "getSprtCategory":
+			a = new GetSprtCategoryAction();
+			break;
+
 
 		case "askUI":
 			a = new AskUIAction();
@@ -117,8 +138,26 @@ public class ActionFactory {
 			a = new SoloAskUIAction();
 			break;
 
-		case "youthSprt":
-			a = new YouthSprtAction();
+			
+		case "getSprtPerson":
+			a = new GetSprtPersonAction();
+			break;
+		
+		case "getBfSprtPerson":
+			a = new GetBfSprtPersonAction();
+			break;
+			
+		case "getSprtContent":
+			a = new GetSprtContentAction();
+			break;
+		
+		case "getBfSprtManagerPerson":
+		    a = new GetBfSprtManagerPersonAction();
+		    break;
+
+
+		case "sprtManagerUI":
+			a = new SprtManagerUIAction();
 			break;
 
 		case "loanSprt":
@@ -152,6 +191,28 @@ public class ActionFactory {
 		case "soloAskManagerUI":
 			a = new SoloAskManagerUIAction();
 			break;
+
+			
+		case "sprtBfManagerUI":
+			a = new SprtBfManagerUIAction();
+			break;
+			
+//		case "setSprtInfo": 
+//			a = new SetSprtInfoAction();
+//			break;
+//		case "setSprtAdd":
+//			a = new SetSprtAddAction();
+//			break;
+//		case "setSprtUpdate":
+//			a = new SetSprtUpdateAction();
+//			break;
+//		case "setSprtDelete":
+//			a = new SetSprtDeleteAction();
+//			break;
+//		case "setSprtInfo": 
+//			a = new SetSprtInfoAction();
+//			break;
+		
 
 		default:
 			a = new MainUIAction();
