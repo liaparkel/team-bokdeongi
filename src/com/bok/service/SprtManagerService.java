@@ -80,6 +80,7 @@ public class SprtManagerService {
 	public boolean removeSprt(int sprtpNum) {
 		try (SqlSession session = DBCP.getSqlSessionFactory().openSession()) {
 			boolean result = dao.removeSprt(session, sprtpNum);
+			System.out.println("서비스야:"+result);
 			if (result) {
 				session.commit();
 			} else {
