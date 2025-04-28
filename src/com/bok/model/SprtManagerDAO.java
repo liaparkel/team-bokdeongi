@@ -50,7 +50,8 @@ public class SprtManagerDAO {
 	public boolean removeSprt(SqlSession session, int sprtpNum) {
 		int contentDelete = session.delete("bokMapper.removeSprtContent", sprtpNum);
 		int personDelete = session.delete("bokMapper.removeSprtPerson", sprtpNum);
-
+		System.out.println("dao¾ßcontetn;"+contentDelete);
+		System.out.println("dao¾ßpersohn;"+personDelete);
 		return personDelete == 1 && contentDelete >= 0;
 	}
 

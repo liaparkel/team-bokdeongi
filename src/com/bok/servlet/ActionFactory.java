@@ -11,10 +11,6 @@ public class ActionFactory {
 		case "SprtUIAction":
 			a = new SprtUIAction();
 			break;
-
-		case "loginUI":
-			a = new LoginUIAction();
-			break;
 			
 		case "ckHomeManagerUI":
 			a = new CkHomeManagerUIAction();
@@ -98,6 +94,7 @@ public class ActionFactory {
 			break;
 					
 
+
 		case "sprtUI":
 			a = new SprtUIAction();
 			break;
@@ -146,16 +143,13 @@ public class ActionFactory {
 			a = new SprtManagerUIAction();
 			break;
 
+
 		case "loanSprt":
 //			a = new LoanSprtAction();
 			break;
 
 		case "happySprt":
 //			a = new HappySprtAction();
-			break;
-
-		case "setSprtInfo":
-			// a = new SetSprtInfoAction();
 			break;
 
 		case "searchEmail":
@@ -190,22 +184,21 @@ public class ActionFactory {
 			a = new MapUIAction();
 			break;
 			
-//		case "setSprtInfo": 
-//			a = new SetSprtInfoAction();
-//			break;
-//		case "setSprtAdd":
-//			a = new SetSprtAddAction();
-//			break;
-//		case "setSprtUpdate":
-//			a = new SetSprtUpdateAction();
-//			break;
-//		case "setSprtDelete":
-//			a = new SetSprtDeleteAction();
-//			break;
-//		case "setSprtInfo": 
-//			a = new SetSprtInfoAction();
-//			break;
-		
+		case "setSprtInfo": 
+			a = new SetSprtInfoAction();
+			break;
+		case "setSprtAdd":
+			a = new SetSprtAddAction();
+			break;
+		case "setSprtUpdate":
+			a = new SetSprtUpdateAction();
+			break;
+		case "setSprtDelete":
+			a = new SetSprtDeleteAction();
+			break;
+		case "addSprtMenuSaveAction":
+			a = new AddSprtMenuSaveAction();
+			break;
 
 		default:
 			a = new MainUIAction();

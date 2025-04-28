@@ -17,12 +17,9 @@ import com.google.gson.Gson;
 @WebServlet("/controller")
 public class FrontControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+		
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
 
 		String cmd = request.getParameter("cmd");
 		if (cmd == null) {
