@@ -139,22 +139,21 @@ public class ActionFactory {
 			a = new SprtBfManagerUIAction();
 			break;
 			
-//		case "setSprtInfo": 
-//			a = new SetSprtInfoAction();
-//			break;
-//		case "setSprtAdd":
-//			a = new SetSprtAddAction();
-//			break;
-//		case "setSprtUpdate":
-//			a = new SetSprtUpdateAction();
-//			break;
-//		case "setSprtDelete":
-//			a = new SetSprtDeleteAction();
-//			break;
-//		case "setSprtInfo": 
-//			a = new SetSprtInfoAction();
-//			break;
-			
+		case "setSprtInfo": 
+			a = new SetSprtInfoAction();
+			break;
+		case "setSprtAdd":
+			a = new SetSprtAddAction();
+			break;
+		case "setSprtUpdate":
+			a = new SetSprtUpdateAction();
+			break;
+		case "setSprtDelete":
+			a = new SetSprtDeleteAction();
+			break;
+		case "addSprtMenuSaveAction":
+			a = new AddSprtMenuSaveAction();
+			break;
 
 		default:
 			a = new MainUIAction(); 
