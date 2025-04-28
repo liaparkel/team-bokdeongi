@@ -74,6 +74,7 @@
 		, crew_id as
 		crewId
 		FROM solo_ask
+		ORDER BY solo_date DESC
 	</select>
 
 	<select id="searchEmail" parameterType="String" resultType="com.bok.model.SoloAskVO">

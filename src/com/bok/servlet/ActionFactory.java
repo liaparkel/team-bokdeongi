@@ -8,10 +8,6 @@ public class ActionFactory {
 		Action a = null;
 		switch (cmd) {
 
-		case "loginUI":
-			a = new LoginUIAction();
-			break;
-
 		case "SprtUIAction":
 			a = new SprtUIAction();
 			break;
@@ -97,11 +93,6 @@ public class ActionFactory {
 			break;
 
 
-		case "ckHomeUI":
-			a = new CkHomeUIAction();
-			break;
-
-
 		case "ckHomeUI" :
 			a = new CkHomeUIAction();
 			break;
@@ -116,11 +107,6 @@ public class ActionFactory {
 			break;
 
 
-		case "login":
-			a = new LoginAction();
-			break;
-
-			
 		case "login":
 			a = new LoginAction();
 			break;
@@ -161,11 +147,11 @@ public class ActionFactory {
 			break;
 
 		case "loanSprt":
-			a = new LoanSprtAction();
+//			a = new LoanSprtAction();
 			break;
 
 		case "happySprt":
-			a = new HappySprtAction();
+//			a = new HappySprtAction();
 			break;
 
 		case "setSprtInfo":
@@ -192,9 +178,16 @@ public class ActionFactory {
 			a = new SoloAskManagerUIAction();
 			break;
 
+		case "setFAQ":
+			a = new SetFAQAction();
+			break;
 			
 		case "sprtBfManagerUI":
 			a = new SprtBfManagerUIAction();
+			break;
+		
+		case "mapUI":
+			a = new MapUIAction();
 			break;
 			
 //		case "setSprtInfo": 

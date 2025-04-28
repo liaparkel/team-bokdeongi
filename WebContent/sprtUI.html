@@ -17,29 +17,32 @@
 </head>
 <body>
 	<div class="page-layout">
-
-		<!-- 상단바 (네비게이션) -->
 		<nav class="navbar">
 			<div class="container">
-				<a class="navbar-brand" href="#"><img src="image/logo.png"
-					alt="로고"></a>
+				<a class="navbar-brand" href="controller?cmd=ckHomeUI"> <img
+					src="image/logo.png" alt="로고" />
+				</a>
 				<div class="menu-wrapper">
-					<a class="nav-link" href="#">체크리스트</a>
+					<a class="nav-link" href="controller?cmd=ckHomeUI">체크리스트</a>
+
+					<!-- Dropdown 지원금 정보 -->
 					<div class="dropdown">
-						<a class="nav-link dropdown-toggle no-underline" href="#"
-							role="button" data-bs-toggle="dropdown" aria-expanded="false">지원금
-							정보</a>
+						<a class="nav-link dropdown-toggle no-underline" role="button"
+							data-bs-toggle="dropdown" aria-expanded="false"> 지원금 정보 </a>
 						<ul class="dropdown-menu dropdown-menu-end">
-							<li><a class="dropdown-item" href="sprtUI.html">현재 지원금
-									정보</a></li>
-							<li><a class="dropdown-item" href="bfSprtUI.html">이전 지원금
-									정보</a></li>
+							<li><a class="dropdown-item" href="controller?cmd=sprtUI">현재
+									지원금 정보</a></li>
+							<li><a class="dropdown-item" href="controller?cmd=bfSprtUI">이전
+									지원금 정보</a></li>
 						</ul>
 					</div>
-					<a class="nav-link" href="#">치안 정보</a>
+
+					<a class="nav-link" href="controller?cmd=mapUI">치안 정보</a>
+
+					<!-- Dropdown 문의하기 -->
 					<div class="dropdown">
-						<a class="nav-link dropdown-toggle no-underline" href="#"
-							role="button" data-bs-toggle="dropdown" aria-expanded="false">문의하기</a>
+						<a class="nav-link dropdown-toggle no-underline" role="button"
+							data-bs-toggle="dropdown" aria-expanded="false"> 문의하기 </a>
 						<ul class="dropdown-menu dropdown-menu-end">
 							<li><a class="dropdown-item" href="controller?cmd=askUI">FAQ</a></li>
 							<li><a class="dropdown-item" href="controller?cmd=soloAskUI">1:1
