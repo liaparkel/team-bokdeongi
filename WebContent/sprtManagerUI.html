@@ -87,7 +87,7 @@
 			<div class="modal-content">
 				<h3>지원금 카테고리 추가</h3>
 				<h6>추가할 항목을 입력해주세요.</h6>
-				<form method="post" action="controller?cmd=AddSprtMenuSaveAction">
+				<form method="post" action="controller?cmd=addSprtMenuSaveAction">
 					<input type="text" id="addSprtMenu" name="addSprtMenu" />
 					<div class="addSprtInner-button">
 						<button id="cancel" class="small" type="button">취소</button>
@@ -256,7 +256,7 @@
 	}
 
 	function editSprt(sprtpNum) {
-		location.href = `setSprtInfo.html?sprtpNum=${sprtpNum}`;
+		 location.href = `controller?cmd=setSprtInfo&sprtpNum=${sprtpNum}`;
 	}
 	</script>
 		<script
