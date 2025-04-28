@@ -14,12 +14,12 @@
 }
 
 .write-btn-container {
-    width: 80%;
-    margin: 1.5rem auto 0;
-    display: flex;
-    justify-content: space-between; /* 오른쪽 정렬 -> 양쪽 정렬로 변경 */
-    align-items: center; /* 세로 가운데 정렬 추가 */
-    transition: margin-top 0.3s ease;
+	width: 80%;
+	margin: 1.5rem auto 0;
+	display: flex;
+	justify-content: space-between; /* 오른쪽 정렬 -> 양쪽 정렬로 변경 */
+	align-items: center; /* 세로 가운데 정렬 추가 */
+	transition: margin-top 0.3s ease;
 }
 
 .modal {
@@ -78,14 +78,30 @@
 </head>
 <body>
 	<div class="page-layout">
-		<!-- 상단바 -->
+		<!-- 관리자용 상단바 -->
 		<nav class="navbar">
 			<div class="container">
-				<a class="navbar-brand" href="controller?cmd=ckHomeUI"> <img
+				<a class="navbar-brand" href="controller?cmd=ckHomeManagerUI"> <img
 					src="image/logo.png" alt="로고" />
 				</a>
-				<div class="menu-wrapper">
-					<a class="nav-link" href="#">체크리스트</a>
+
+				<!-- 로고 옆 관리자 텍스트 + 로그아웃 버튼 -->
+				<div class="admin-info d-flex align-items-center ms-3">
+					<span class="admin-greeting">관리자님 안녕하세요.</span>
+					<button class="logout-btn ms-2">로그아웃</button>
+				</div>
+
+				<!-- 메뉴 항목 -->
+				<div class="menu-wrapper ms-auto">
+					<div class="dropdown">
+						<a class="nav-link dropdown-toggle no-underline" href="#"
+							role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							체크리스트 </a>
+						<ul class="dropdown-menu dropdown-menu-end">
+							<li><a class="dropdown-item" href="#">현재 체크리스트</a></li>
+							<li><a class="dropdown-item" href="#">이전 체크리스트</a></li>
+						</ul>
+					</div>
 					<div class="dropdown">
 						<a class="nav-link dropdown-toggle no-underline" href="#"
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -95,15 +111,15 @@
 							<li><a class="dropdown-item" href="#">이전 지원금 정보</a></li>
 						</ul>
 					</div>
-					<a class="nav-link" href="#">치안 정보</a>
 					<div class="dropdown">
 						<a class="nav-link dropdown-toggle no-underline" href="#"
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							문의하기 </a>
+							문의관리 </a>
 						<ul class="dropdown-menu dropdown-menu-end">
-							<li><a class="dropdown-item" href="controller?cmd=askUI">FAQ</a></li>
-							<li><a class="dropdown-item" href="controller?cmd=soloAskUI">1:1
-									문의하기</a></li>
+							<li><a class="dropdown-item"
+								href="controller?cmd=askManagerUI">FAQ</a></li>
+							<li><a class="dropdown-item"
+								href="controller?cmd=soloAskManagerUI">1:1 문의관리</a></li>
 						</ul>
 					</div>
 				</div>
@@ -133,24 +149,32 @@
 						</div>
 						<div class="ask-item">
 							<button class="btn btn-info"
-								onclick="openModal('detail.html?askNum=${item.askNum}')">상세보기</button>
+								onclick="openModal('controller?cmd=soloAskDetailUI&askNum=${item.askNum}')">상세보기</button>
+
+
+
 						</div>
 					</div>
 				</c:forEach>
 
 				<!-- 글쓰기 버튼 -->
 				<!-- 글쓰기 버튼과 이메일 검색 input 추가 -->
-				<div class="write-btn-container">
-					<div class="input-group" style="width: 300px; border: solid 3px #ffd96d; border-radius: 8px;">
-						<input type="text" class="form-control" placeholder="이메일 검색"
-							id="emailSearchInput">
-						<button class="btn btn-outline-secondary" type="button"
-							id="searchButton"  style="border: solid 1px #ffd96d;">검색</button>
-					</div>
-					<button class="btn btn-warning px-4 py-2 ms-3"
-						onclick="moveElements()">글쓰기</button>
-				</div>
+				<form method="post" action="controller?cmd=searchEmail">
+					<div class="write-btn-container">
+						<!-- 검색창 부분 -->
+						<div class="input-group"
+							style="width: 300px; border: solid 3px #ffd96d; border-radius: 8px;">
+							<input type="email" class="form-control" placeholder="이메일 검색"
+								id="emailSearchInput" name="email">
+							<button class="btn btn-outline-secondary" type="submit"
+								id="searchButton" style="border: solid 1px #ffd96d;">검색</button>
+						</div>
 
+						<!-- 글쓰기 버튼 -->
+						<button class="btn btn-warning px-4 py-2 ms-3" type="button"
+							onclick="location.href='controller?cmd=writeSoloAskUI'">글쓰기</button>
+					</div>
+				</form>
 
 				<!-- 페이지네이션 -->
 				<div class="pagination-container d-flex justify-content-center">

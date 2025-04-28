@@ -1,6 +1,7 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
 <style>
 .divimg {
@@ -16,12 +17,11 @@
 	width: 80%;
 	margin: 1.5rem auto 0;
 	display: flex;
-	justify-content: end;
+	justify-content: space-between; /* 오른쪽 정렬 -> 양쪽 정렬로 변경 */
+	align-items: center; /* 세로 가운데 정렬 추가 */
 	transition: margin-top 0.3s ease;
-	/* 부드러운 이동 효과 */
 }
 
-/* 모달 스타일 */
 .modal {
 	display: none;
 	position: fixed;
@@ -31,7 +31,6 @@
 	width: 100%;
 	height: 100%;
 	overflow: auto;
-	background-color: rgb(0, 0, 0);
 	background-color: rgba(0, 0, 0, 0.4);
 	padding-top: 60px;
 }
@@ -77,20 +76,32 @@
 <link rel="stylesheet" href="css/component.css" />
 <link rel="stylesheet" href="css/askManagerUI.css" />
 </head>
-
 <body>
 	<div class="page-layout">
-
-		<!-- 상단바 -->
+		<!-- 관리자용 상단바 -->
 		<nav class="navbar">
 			<div class="container">
-				<a class="navbar-brand" href="controller?cmd=ckHomeUI"> <img
+				<a class="navbar-brand" href="controller?cmd=ckHomeManagerUI"> <img
 					src="image/logo.png" alt="로고" />
 				</a>
-				<div class="menu-wrapper">
-					<a class="nav-link" href="#">체크리스트</a>
 
-					<!-- Dropdown 지원금 정보 -->
+				<!-- 로고 옆 관리자 텍스트 + 로그아웃 버튼 -->
+				<div class="admin-info d-flex align-items-center ms-3">
+					<span class="admin-greeting">관리자님 안녕하세요.</span>
+					<button class="logout-btn ms-2">로그아웃</button>
+				</div>
+
+				<!-- 메뉴 항목 -->
+				<div class="menu-wrapper ms-auto">
+					<div class="dropdown">
+						<a class="nav-link dropdown-toggle no-underline" href="#"
+							role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							체크리스트 </a>
+						<ul class="dropdown-menu dropdown-menu-end">
+							<li><a class="dropdown-item" href="#">현재 체크리스트</a></li>
+							<li><a class="dropdown-item" href="#">이전 체크리스트</a></li>
+						</ul>
+					</div>
 					<div class="dropdown">
 						<a class="nav-link dropdown-toggle no-underline" href="#"
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -100,14 +111,10 @@
 							<li><a class="dropdown-item" href="#">이전 지원금 정보</a></li>
 						</ul>
 					</div>
-
-					<a class="nav-link" href="#">치안 정보</a>
-
-					<!-- Dropdown 문의하기 -->
 					<div class="dropdown">
 						<a class="nav-link dropdown-toggle no-underline" href="#"
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							문의하기 </a>
+							문의관리 </a>
 						<ul class="dropdown-menu dropdown-menu-end">
 							<li><a class="dropdown-item"
 								href="controller?cmd=askManagerUI">FAQ</a></li>
@@ -126,35 +133,29 @@
 					<img src="image/solo.png">
 				</div>
 
-				<!-- 문의 항목 -->
-				<div id="ask-list" class="space-between">
-					<div class="ask-item">Q2001</div>
-					<div class="ask-item">kebin10804@gmail.com</div>
-					<div class="ask-item title-ellipsis">부동산 질문입니다.부동산 질문입니다.</div>
-					<div class="ask-item">2025.01.01</div>
-					<div class="ask-item">답변여부: 답변 완료</div>
-					<div class="ask-item">
-						<!-- 상세보기 버튼 -->
-						<button class="btn btn-info" onclick="openModal('detail.html')">상세보기</button>
-					</div>
-				</div>
+				<!-- 문의 항목 (DB에서 불러오기) -->
+				<c:forEach var="item" items="${sessionScope.soloList}">
+					<div id="ask-list" class="space-between">
+						<div class="ask-item">${item.askNum}</div>
+						<div class="ask-item">${item.email}</div>
+						<div class="ask-item title-ellipsis">${item.askTitle}</div>
+						<div class="ask-item">${item.soloDate}</div>
+						<div class="ask-item">
+							답변여부:
+							<c:choose>
+								<c:when test="${not empty item.soloAnswer}">답변 완료</c:when>
+								<c:otherwise>답변 대기</c:otherwise>
+							</c:choose>
+						</div>
+						<div class="ask-item">
+							<button class="btn btn-info"
+								onclick="openModal('controller?cmd=soloAskDetailUI&askNum=${item.askNum}')">답변하기</button>
 
-				<div id="ask-list" class="space-between">
-					<div class="ask-item">Q2002</div>
-					<div class="ask-item">kebin10804@gmail.com</div>
-					<div class="ask-item title-ellipsis">부동산 질문입니다.부동산 질문입니다.</div>
-					<div class="ask-item">2025.01.02</div>
-					<div class="ask-item">답변여부: 답변 대기</div>
-					<div class="ask-item">
-						<!-- 상세보기 버튼 -->
-						<button class="btn btn-info" onclick="openModal('detail.html')">상세보기</button>
-					</div>
-				</div>
 
-				<!-- 글쓰기 버튼 -->
-				<div class="write-btn-container">
-					<button class="btn btn-warning px-4 py-2" onclick="moveElements()">글쓰기</button>
-				</div>
+
+						</div>
+					</div>
+				</c:forEach>
 
 				<!-- 페이지네이션 -->
 				<div class="pagination-container d-flex justify-content-center">
@@ -215,60 +216,57 @@
 		crossorigin="anonymous"></script>
 
 	<script>
-        const correctPassword = "1234"; // 올바른 비밀번호 (예시)
+    const correctPassword = "1234"; // 임시 비밀번호
 
-        // 모달 열기
-        function openModal(targetUrl) {
-            document.getElementById("passwordModal").style.display = "block";
-            document.getElementById("passwordModal").setAttribute("data-url", targetUrl);
+    function openModal(targetUrl) {
+        document.getElementById("passwordModal").style.display = "block";
+        document.getElementById("passwordModal").setAttribute("data-url", targetUrl);
+    }
+
+    function closeModal() {
+        document.getElementById("passwordModal").style.display = "none";
+    }
+
+    function checkPassword() {
+        const enteredPassword = document.getElementById("password").value;
+        const targetUrl = document.getElementById("passwordModal").getAttribute("data-url");
+        if (enteredPassword === correctPassword) {
+            closeModal();
+            window.location.href = targetUrl;
+        } else {
+            alert("비밀번호가 틀렸습니다.");
         }
+    }
+</script>
 
-        // 모달 닫기
-        function closeModal() {
-            document.getElementById("passwordModal").style.display = "none";
-        }
-
-        // 비밀번호 확인
-        function checkPassword() {
-            const enteredPassword = document.getElementById("password").value;
-            const targetUrl = document.getElementById("passwordModal").getAttribute("data-url");
-            if (enteredPassword === correctPassword) {
-                closeModal();
-                window.location.href = targetUrl;
-            } else {
-                alert("비밀번호가 틀렸습니다.");
-            }
-        }
-
-    </script>
-	<!-- 상단바 동작 스크립트 -->
+	<!-- 상단바 동작 -->
 	<script>
     document.addEventListener("DOMContentLoaded", function () {
-      const navLinks = document.querySelectorAll('.nav-link');
-      const dropdownItems = document.querySelectorAll('.dropdown-item');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const dropdownItems = document.querySelectorAll('.dropdown-item');
 
-      function clearActiveLinks() {
-        navLinks.forEach(link => link.classList.remove('active'));
-      }
-		// 일반 nav 링크 클릭 시 active 토글
-      navLinks.forEach(link => {
-        link.addEventListener('click', function () {
-          clearActiveLinks();
-          if (!this.classList.contains('dropdown-toggle')) {
-            this.classList.add('active');
-          }
+        function clearActiveLinks() {
+            navLinks.forEach(link => link.classList.remove('active'));
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', function () {
+                clearActiveLinks();
+                if (!this.classList.contains('dropdown-toggle')) {
+                    this.classList.add('active');
+                }
+            });
         });
-      });
-      // 드롭다운 항목 클릭 시  active 부여
-      dropdownItems.forEach(item => {
-        item.addEventListener('click', function () {
-          clearActiveLinks();
-          const parentDropdown = this.closest('.dropdown');
-          const toggle = parentDropdown?.querySelector('.dropdown-toggle');
-          if (toggle) toggle.classList.add('active');
+
+        dropdownItems.forEach(item => {
+            item.addEventListener('click', function () {
+                clearActiveLinks();
+                const parentDropdown = this.closest('.dropdown');
+                const toggle = parentDropdown?.querySelector('.dropdown-toggle');
+                if (toggle) toggle.classList.add('active');
+            });
         });
-      });
     });
-  </script>
+</script>
 </body>
 </html>

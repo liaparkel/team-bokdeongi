@@ -21,6 +21,9 @@ public class SoloAskVO {
 	}
 
 	
+	public SoloAskVO(String askNum) {
+		setAskNum(askNum);
+	}
 	
 	public SoloAskVO(String askNum, String askPw) {
 		setAskNum(askNum);

@@ -47,10 +47,10 @@ public class SoloAskService {
 		}
 	}
 
-	public SoloAskVO soloAskDetail(SoloAskVO vo) {
+	public SoloAskVO soloAskDetail(String askNum) {
 		try {
 			SqlSession session = DBCP.getSqlSessionFactory().openSession();
-			return sdao.soloAskDetail(session, vo);
+			return sdao.soloAskDetail(session, askNum);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
