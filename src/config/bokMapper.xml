@@ -2,161 +2,223 @@
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bokMapper">
 
-	<select id="selectLogin" parameterType="com.bok.model.CrewVO" resultType="String">
+	<select id="selectLogin" parameterType="com.bok.model.CrewVO"
+		resultType="String">
 		SELECT crew_name as crewName
 		FROM crew
-		WHERE crew_id = #{crewId} AND crew_pw = #{crewPw}
+		WHERE crew_id =
+		#{crewId} AND crew_pw = #{crewPw}
 	</select>
 
 	<select id="getSprtInfo" resultType="com.bok.model.SprtInfoVO">
-		SELECT sprt_num AS sprtNum, sprt_category AS category FROM sprt_info ORDER BY sprt_num ASC
+		SELECT sprt_num AS sprtNum,
+		sprt_category AS category FROM sprt_info ORDER BY sprt_num ASC
 	</select>
-	
-	<select id="getSprtPerson" parameterType="int" resultType="com.bok.model.SprtPersonVO">
-		SELECT sprtp_num AS sprtpNum, sprt_title AS title, sprt_link AS link, sprt_summary AS summary, sprt_start AS "start", sprt_end AS "end", sprt_num AS fkSprtNum FROM sprt_person WHERE sprt_num = #{fkSprtNum} AND sprt_end >= TRUNC(SYSDATE)
+
+	<select id="getSprtPerson" parameterType="int"
+		resultType="com.bok.model.SprtPersonVO">
+		SELECT sprtp_num AS sprtpNum, sprt_title AS title,
+		sprt_link AS link, sprt_summary AS summary, sprt_start AS "start",
+		sprt_end AS "end", sprt_num AS fkSprtNum FROM sprt_person WHERE
+		sprt_num = #{fkSprtNum} AND sprt_end >= TRUNC(SYSDATE)
 	</select>
-	
-	<select id="getSprtContent" parameterType="int" resultType="com.bok.model.SprtContentVO">
-		SELECT sprtpc_num AS sprtpcNum, sprt_subtitle AS subtitle, sprt_content AS content, sprtp_num AS fkSprtpNum FROM sprt_content WHERE sprtp_num = #{fkSprtpNum} ORDER BY sprt_subtitle
+
+	<select id="getSprtContent" parameterType="int"
+		resultType="com.bok.model.SprtContentVO">
+		SELECT sprtpc_num AS sprtpcNum, sprt_subtitle AS subtitle,
+		sprt_content AS content, sprtp_num AS fkSprtpNum FROM sprt_content
+		WHERE sprtp_num = #{fkSprtpNum} ORDER BY sprt_subtitle
 	</select>
-	
-	<select id="getBfSprtPerson" parameterType="int" resultType="com.bok.model.SprtPersonVO">
-		SELECT sprtp_num AS sprtpNum, sprt_title AS title, sprt_link AS link, sprt_summary AS summary, sprt_start AS "start", sprt_end AS "end", sprt_num AS fkSprtNum FROM sprt_person WHERE sprt_num = #{fkSprtNum} ORDER BY sprt_end DESC
+
+	<select id="getBfSprtPerson" parameterType="int"
+		resultType="com.bok.model.SprtPersonVO">
+		SELECT sprtp_num AS sprtpNum, sprt_title AS title,
+		sprt_link AS link, sprt_summary AS summary, sprt_start AS "start",
+		sprt_end AS "end", sprt_num AS fkSprtNum FROM sprt_person WHERE
+		sprt_num = #{fkSprtNum} ORDER BY sprt_end DESC
 	</select>
-	
-	<select id="getBfSprtPersonCount" parameterType="int" resultType="int">
-		SELECT COUNT(sprtp_num) FROM sprt_person WHERE sprt_num = #{fkSprtNum}
+
+	<select id="getBfSprtPersonCount" parameterType="int"
+		resultType="int">
+		SELECT COUNT(sprtp_num) FROM sprt_person WHERE sprt_num =
+		#{fkSprtNum}
 	</select>
-	
+
 	<select id="getPagedBfSprtPerson" resultType="com.bok.model.SprtPersonVO">
-		SELECT sprtp_num AS sprtpNum, sprt_title AS title, sprt_link AS link, sprt_summary AS summary, sprt_start AS "start", sprt_end AS "end", sprt_num AS fkSprtNum 
-		FROM (SELECT sprtp_num, sprt_title, sprt_link, sprt_summary, sprt_start, sprt_end, sprt_num, 
-		ROW_NUMBER() OVER (ORDER BY sprt_end DESC) AS rn 
-		FROM sprt_person WHERE sprt_num = #{fkSprtNum}) 
-		WHERE rn BETWEEN #{startRow} AND #{endRow}
+		SELECT sprtp_num AS
+		sprtpNum, sprt_title AS title, sprt_link AS link, sprt_summary AS
+		summary, sprt_start AS "start", sprt_end AS "end", sprt_num AS
+		fkSprtNum
+		FROM (SELECT sprtp_num, sprt_title, sprt_link, sprt_summary,
+		sprt_start,
+		sprt_end, sprt_num,
+		ROW_NUMBER() OVER (ORDER BY sprt_end
+		DESC) AS rn
+		FROM sprt_person WHERE sprt_num = #{fkSprtNum})
+		WHERE rn
+		BETWEEN #{startRow} AND #{endRow}
 	</select>
 
 	<select id="getAsk" resultType="com.bok.model.AskVO">
-		SELECT faq_num as faqNum, faq_title as faqTitle, faq_content as faqContent
+		SELECT faq_num as faqNum,
+		faq_title as faqTitle, faq_content as faqContent
 		FROM faq
 	</select>
-	
+
 	<select id="getSoloAsk" resultType="com.bok.model.SoloAskVO">
-		SELECT ask_num as askNum, email, ask_pw as askPw,
+		SELECT ask_num as askNum,
+		email, ask_pw as askPw,
 		ask_title as askTitle, solo_date as soloDate
-		, solo_content as soloContent, solo_answer as soloAnswer
-		, crew_id as crewId
+		,
+		solo_content as soloContent, solo_answer as soloAnswer
+		, crew_id as
+		crewId
 		FROM solo_ask
 	</select>
-	
+
 	<select id="searchEmail" parameterType="String" resultType="com.bok.model.SoloAskVO">
 		SELECT ask_num as askNum, email, ask_pw as askPw,
-		ask_title as askTitle, solo_date as soloDate
-		, solo_content as soloContent, solo_answer as soloAnswer
+		ask_title as
+		askTitle, solo_date as soloDate
+		, solo_content as soloContent,
+		solo_answer as soloAnswer
 		, crew_id as crewId
 		FROM solo_ask
-		WHERE email = #{email}
+		WHERE email =
+		#{email}
 	</select>
-	
+
 	<insert id="addSoloAsk" parameterType="com.bok.model.SoloAskVO">
-		INSERT into solo_ask(ask_num, email, ask_pw, ask_title, solo_date, solo_secret, solo_content) VALUES(ask_num_seq.NEXTVAL, #{email}, #{askPw}, #{askTitle}, sysdate, #{soloSecret}, #{soloContent})
+		INSERT into
+		solo_ask(ask_num, email, ask_pw, ask_title, solo_date, solo_secret,
+		solo_content) VALUES(ask_num_seq.NEXTVAL, #{email}, #{askPw},
+		#{askTitle}, sysdate, #{soloSecret}, #{soloContent})
 	</insert>
-	
-	<select id="askDetail" parameterType="com.bok.model.SoloAskVO" resultType="com.bok.model.SoloAskVO">
-		SELECT ask_title as askTitle, solo_content as soloContent, solo_answer as soloAnswer
+
+	<select id="askDetail" parameterType="com.bok.model.SoloAskVO"
+		resultType="com.bok.model.SoloAskVO">
+		SELECT ask_title as askTitle, solo_content as soloContent,
+		solo_answer as soloAnswer
 		FROM solo_ask
 		WHERE ask_num = #{askNum}
-		AND ask_pw = #{askPw}
+		AND
+		ask_pw = #{askPw}
 	</select>
-	
+
 	<update id="updateFaq" parameterType="com.bok.model.FaqManagerVO">
 		UPDATE faq
-		SET faq_content = #{faqContent}
+		SET faq_content =
+		#{faqContent}
 		WHERE faq_num = #{faqNum}
 	</update>
-	
+
 	<select id="getFaq" resultType="com.bok.model.FaqManagerVO">
-		SELECT faq_num as faqNum, faq_title as faqTitle, faq_content as faqContent
+		SELECT faq_num as faqNum,
+		faq_title as faqTitle, faq_content as faqContent
 		FROM faq
 	</select>
-	
+
 	<insert id="addFaq" parameterType="com.bok.model.FaqManagerVO">
-		INSERT into faq VALUES ((SELECT NVL(MAX(faq_num), 0) + 1 FROM faq), #{faqTitle}, #{faqContent})
+		INSERT into faq VALUES
+		((SELECT NVL(MAX(faq_num), 0) + 1 FROM faq), #{faqTitle},
+		#{faqContent})
 	</insert>
-	
+
 	<delete id="deleteFaq" parameterType="Integer">
 		DELETE FROM faq
-		WHERE faq_num = #{faqNum}
+		WHERE
+		faq_num = #{faqNum}
 	</delete>
-	
+
 	<select id="getSoloAskManager" resultType="com.bok.model.SoloAskManagerVO">
-		SELECT ask_num as askNum, email, ask_pw as askPw,
-		ask_title as askTitle, solo_date as soloDate
+		SELECT ask_num as
+		askNum, email, ask_pw as askPw,
+		ask_title as askTitle, solo_date as
+		soloDate
 		, solo_content as soloContent, solo_answer as soloAnswer
-		, crew_id as crewId
+		,
+		crew_id as crewId
 		FROM solo_ask
 	</select>
-	
-	<select id="soloAskManagerDetail" parameterType="String" resultType="com.bok.model.SoloAskManagerVO">
-		SELECT ask_title as askTitle, solo_content as soloContent, solo_answer as soloAnswer
+
+	<select id="soloAskManagerDetail" parameterType="String"
+		resultType="com.bok.model.SoloAskManagerVO">
+		SELECT ask_title as askTitle, solo_content as soloContent,
+		solo_answer as soloAnswer
 		FROM solo_ask
 		WHERE ask_num = #{askNum}
 	</select>
-	
+
 	<update id="soloAskSend" parameterType="com.bok.model.SoloAskManagerVO">
 		UPDATE solo_ask
-		SET solo_answer = #{soloAnswer}, crew_id = #{crewId}
-		WHERE ask_num = #{askNum}
+		SET
+		solo_answer = #{soloAnswer}, crew_id = #{crewId}
+		WHERE ask_num =
+		#{askNum}
 	</update>
-	
-	
+
+
 	<select id="getSprtPersonOne" parameterType="int"
 		resultType="com.bok.model.SprtPersonVO">
-		select sprt_title as title, sprt_link as link, sprt_summary as summary,
-		sprt_date as "date", sprt_start as "start", sprt_end as "end", sprt_num
+		select sprt_title as title, sprt_link as link, sprt_summary
+		as summary,
+		sprt_date as "date", sprt_start as "start", sprt_end as
+		"end", sprt_num
 		as fkSprtNum
 		from sprt_person
-		where sprtp_num = #{sprtpNum}
+		where sprtp_num =
+		#{sprtpNum}
 	</select>
 	<select id="getSprtContents" parameterType="int"
 		resultType="com.bok.model.SprtContentVO">
-		select sprtpc_num as sprtpcNum, sprt_subtitle as subtitle, sprt_content as
+		select sprtpc_num as sprtpcNum, sprt_subtitle as subtitle,
+		sprt_content as
 		content, sprtp_num as fkSprtpNum
 		from sprt_content
-		where sprtp_num = #{sprtpNum}
-		order by sprt_subtitle 
+		where
+		sprtp_num = #{sprtpNum}
+		order by sprt_subtitle
 	</select>
 
 	<delete id="removeSprtContent" parameterType="int">
-		delete sprt_content where sprtp_num = #{sprtpNum}
+		delete sprt_content
+		where sprtp_num = #{sprtpNum}
 	</delete>
 	<delete id="removeSprtPerson" parameterType="int">
-		delete sprt_person where sprtp_num = #{sprtpNum}
+		delete sprt_person
+		where sprtp_num = #{sprtpNum}
 	</delete>
 
 	<insert id="addSprtCategory" parameterType="String">
-		insert into sprt_info(sprt_num,sprt_category)
+		insert into
+		sprt_info(sprt_num,sprt_category)
 		values(sprt_num_seq.NEXTVAL,#{category})
 	</insert>
 
-	<insert id="addSprtPerson" parameterType="com.bok.model.SprtPersonVO" useGeneratedKeys="false">
-    <selectKey resultType="int" keyProperty="sprtpNum" order="BEFORE">
-        SELECT sprtp_num_seq.NEXTVAL FROM dual
-    </selectKey>
-    insert into sprt_person(
-        sprtp_num, sprt_title, sprt_link, sprt_summary, sprt_date, sprt_start, sprt_end, sprt_num
-    ) values(
-        #{sprtpNum}, #{title}, #{link}, #{summary}, SYSDATE, #{start}, #{end}, #{fkSprtNum}
-    )
-</insert>
+	<insert id="addSprtPerson" parameterType="com.bok.model.SprtPersonVO"
+		useGeneratedKeys="false">
+		<selectKey resultType="int" keyProperty="sprtpNum" order="BEFORE">
+			SELECT sprtp_num_seq.NEXTVAL FROM dual
+		</selectKey>
+		insert into sprt_person(
+		sprtp_num, sprt_title, sprt_link,
+		sprt_summary, sprt_date, sprt_start, sprt_end,
+		sprt_num
+		) values(
+		#{sprtpNum}, #{title}, #{link}, #{summary}, SYSDATE, #{start}, #{end},
+		#{fkSprtNum}
+		)
+	</insert>
 	<insert id="addSprtContent" parameterType="com.bok.model.SprtContentVO">
-		insert into sprt_content(sprtpc_num, sprt_subtitle,sprt_content,sprtp_num)
+		insert into
+		sprt_content(sprtpc_num, sprt_subtitle,sprt_content,sprtp_num)
 		values(sprtpc_num_seq.NEXTVAL,#{subtitle}, #{content}, #{fkSprtpNum})
 	</insert>
 
 	<update id="setSprtPerson" parameterType="com.bok.model.SprtPersonVO">
 		UPDATE sprt_person
-		SET sprt_title = #{title}, sprt_link = #{link}, sprt_summary = #{summary},
+		SET
+		sprt_title = #{title}, sprt_link = #{link}, sprt_summary = #{summary},
 		sprt_start = #{start}, sprt_end = #{end}
 		WHERE sprtp_num = #{sprtpNum}
 	</update>
@@ -164,122 +226,159 @@
 	<update id="setSprtContent" parameterType="com.bok.model.SprtContentVO">
 		UPDATE sprt_content
 		SET sprt_subtitle = #{subtitle}, sprt_content = #{content}
-		WHERE sprtpc_num = #{sprtpcNum} 
+		WHERE
+		sprtpc_num = #{sprtpcNum}
 	</update>
 
-	<select id="getBfSprtPersonM" parameterType="int" resultType="com.bok.model.SprtPersonVO">
-		SELECT sprtp_num AS sprtpNum, sprt_title AS title, sprt_link AS link, sprt_summary AS summary, sprt_date AS "date", sprt_start AS "start", sprt_end AS "end", sprt_num AS fkSprtNum FROM sprt_person WHERE sprt_num = #{fkSprtNum} ORDER BY sprt_end DESC
+	<select id="getBfSprtPersonM" parameterType="int"
+		resultType="com.bok.model.SprtPersonVO">
+		SELECT sprtp_num AS sprtpNum, sprt_title AS title,
+		sprt_link AS link, sprt_summary AS summary, sprt_date AS "date",
+		sprt_start AS "start", sprt_end AS "end", sprt_num AS fkSprtNum FROM
+		sprt_person WHERE sprt_num = #{fkSprtNum} ORDER BY sprt_end DESC
 	</select>
-	
+
 	<!-- 체크리스트 전체 조회 -->
-    <select id="ckListInfo" parameterType="String" resultType="com.bok.model.CkVO">
-        SELECT ck_content_num as ckContentNum, ck_content as ckContent, ck_title as ckTitle, ck_tip as ckTip
-        FROM ck_content cc
-        JOIN ck c ON cc.ck_num = c.ck_num
-        WHERE c.ck_category = #{category}
-    </select>
+	<select id="ckListInfo" parameterType="String" resultType="com.bok.model.CkVO">
+		SELECT ck_content_num as ckContentNum, ck_content as ckContent,
+		ck_title as ckTitle, ck_tip as ckTip
+		FROM ck_content cc
+		JOIN ck c ON
+		cc.ck_num = c.ck_num
+		WHERE c.ck_category = #{category}
+	</select>
 
-    <!-- 체크리스트 최신순 조회 -->
-    <select id="ckListRecentInfo" parameterType="String" resultType="com.bok.model.CkVO">
-        SELECT ck_content_num as ckContentNum, ck_content as ckContent, ck_title as ckTitle, ck_tip as ckTip
-        FROM ck_content cc
-        JOIN ck c ON cc.ck_num = c.ck_num
-        WHERE c.ck_category = #{category}
-        ORDER BY c.ck_date DESC
-    </select>
+	<!-- 체크리스트 최신순 조회 -->
+	<select id="ckListRecentInfo" parameterType="String" resultType="com.bok.model.CkVO">
+		SELECT ck_content_num as ckContentNum, ck_content as ckContent,
+		ck_title as ckTitle, ck_tip as ckTip
+		FROM ck_content cc
+		JOIN ck c ON
+		cc.ck_num = c.ck_num
+		WHERE c.ck_category = #{category}
+		ORDER BY
+		c.ck_date DESC
+	</select>
 
-    <!-- 체크리스트 제목/내용 수정 -->
-    <update id="setCkList" parameterType="com.bok.model.CkVO">
-        UPDATE ck_content
-        SET ck_title = #{ckTitle},
-            ck_content = #{ckContent}
-        WHERE ck_num = #{ckNum} AND ck_content_num = #{ckContentNum}
-    </update>
+	<!-- 체크리스트 제목/내용 수정 -->
+	<update id="setCkList" parameterType="com.bok.model.CkVO">
+		UPDATE ck_content
+		SET
+		ck_title = #{ckTitle},
+		ck_content = #{ckContent}
+		WHERE ck_num = #{ckNum}
+		AND ck_content_num = #{ckContentNum}
+	</update>
 
-    <!-- 체크리스트 추가 -->
-    <insert id="addCkList" parameterType="com.bok.model.CkVO">
-        INSERT INTO ck_content (ck_content_num, ck_title, ck_content, ck_num)
-        VALUES (ck_content_seq.NEXTVAL, #{ckTitle}, #{ckContent}, #{ckNum})
-    </insert>
+	<!-- 체크리스트 추가 -->
+	<insert id="addCkList" parameterType="com.bok.model.CkVO">
+		INSERT INTO ck_content
+		(ck_content_num, ck_title, ck_content, ck_num)
+		VALUES
+		(ck_content_seq.NEXTVAL, #{ckTitle}, #{ckContent}, #{ckNum})
+	</insert>
 
-    <!-- 체크리스트 삭제 -->
-    <delete id="deleteCkList" parameterType="int">
-        DELETE FROM ck_content
-        WHERE ck_content_num = #{ckContentNum}
-    </delete>
+	<!-- 체크리스트 삭제 -->
+	<delete id="deleteCkList" parameterType="int">
+		DELETE FROM ck_content
+		WHERE ck_content_num = #{ckContentNum}
+	</delete>
 
-    <!-- 카테고리 추가 -->
-    <insert id="addckCategory" parameterType="com.bok.model.CkVO">
-        INSERT INTO ck (ck_num, ck_category, ck_date)
-        VALUES (ck_seq.NEXTVAL, #{ckCategory}, #{ckDate})
-    </insert>
+	<!-- 카테고리 추가 -->
+	<insert id="addckCategory" parameterType="com.bok.model.CkVO">
+		INSERT INTO ck (ck_num,
+		ck_category, ck_date)
+		VALUES (ck_seq.NEXTVAL, #{ckCategory}, #{ckDate})
+	</insert>
 
-    <!-- 팁 수정 -->
-    <update id="setTip" parameterType="com.bok.model.CkVO">
-        UPDATE ck
-        SET ck_tip = #{tip}
-        WHERE ck_num = #{ckNum}
-    </update>
+	<!-- 팁 수정 -->
+	<update id="setTip" parameterType="com.bok.model.CkVO">
+		UPDATE ck
+		SET ck_tip = #{tip}
+		WHERE ck_num = #{ckNum}
+	</update>
 
-    <!-- 팁 추가 -->
-    <insert id="addTip" parameterType="com.bok.model.CkVO">
-        INSERT INTO ck (ck_num, ck_tip, ck_category, ck_date)
-        VALUES (ck_seq.NEXTVAL, #{tip}, #{ckCategory}, #{ckDate})
-    </insert>
+	<!-- 팁 추가 -->
+	<insert id="addTip" parameterType="com.bok.model.CkVO">
+		INSERT INTO ck (ck_num,
+		ck_tip, ck_category, ck_date)
+		VALUES (ck_seq.NEXTVAL, #{tip},
+		#{ckCategory}, #{ckDate})
+	</insert>
 
-    <!-- 팁 삭제 -->
-    <delete id="deleteTip" parameterType="int">
-        DELETE FROM ck_content_num
-        WHERE ck_num = #{ckNum}
-    </delete>
+	<!-- 팁 삭제 -->
+	<delete id="deleteTip" parameterType="int">
+		DELETE FROM ck_content_num
+		WHERE ck_num = #{ckNum}
+	</delete>
 
-    <!-- 팁 전체 삭제 -->
-    <delete id="allDeleteTip" parameterType="int">
-        DELETE FROM ck
-        WHERE ck_num = #{ckNum}
-    </delete>
+	<!-- 팁 전체 삭제 -->
+	<delete id="allDeleteTip" parameterType="int">
+		DELETE FROM ck
+		WHERE
+		ck_num = #{ckNum}
+	</delete>
 
-    <!-- 팁 최신 조회 -->
-    <select id="TipRecentSearch" parameterType="String" resultType="com.bok.model.CkVO">
-        SELECT ck_tip, ck_date
-        FROM ck
-        WHERE ck_category = #{ckCategory}
-        ORDER BY ck_date DESC
-    </select>
+	<!-- 팁 최신 조회 -->
+	<select id="TipRecentSearch" parameterType="String" resultType="com.bok.model.CkVO">
+		SELECT ck_tip, ck_date
+		FROM ck
+		WHERE ck_category = #{ckCategory}
+		ORDER BY
+		ck_date DESC
+	</select>
 
-    <!-- 팁 조회 -->
-    <select id="TipSearch" parameterType="String" resultType="com.bok.model.CkVO">
-        SELECT ck_tip
-        FROM ck
-        WHERE ck_category = #{ckCategory}
-    </select>
+	<!-- 팁 조회 -->
+	<select id="TipSearch" parameterType="String" resultType="com.bok.model.CkVO">
+		SELECT
+		ck_tip
+		FROM ck
+		WHERE ck_category = #{ckCategory}
+	</select>
 
-    <!-- 이전 카테고리 목록 조회 -->
-    <select id="BackCkCategoryList" resultType="String">
-        SELECT DISTINCT ck_category
-        FROM ck
-        ORDER BY ck_category
-    </select>
+	<!-- 이전 카테고리 목록 조회 -->
+	<select id="BackCkCategoryList" resultType="String">
+		SELECT DISTINCT
+		ck_category
+		FROM ck
+		ORDER BY ck_category
+	</select>
 
-    <!-- 이전 제목/날짜 목록 -->
-    <select id="BackCkTitleList" parameterType="String" resultType="com.bok.model.CkVO">
-        SELECT cc.ck_content_num, cc.ck_title, c.ck_date
-        FROM ck_content cc
-        JOIN ck c ON cc.ck_num = c.ck_num
-        WHERE c.ck_category = #{ckCategory}
-        ORDER BY c.ck_date DESC
-    </select>
+	<!-- 이전 제목/날짜 목록 -->
+	<select id="BackCkTitleList" parameterType="String" resultType="com.bok.model.CkVO">
+		SELECT cc.ck_content_num, cc.ck_title, c.ck_date
+		FROM ck_content cc
+		JOIN ck c ON cc.ck_num = c.ck_num
+		WHERE c.ck_category = #{ckCategory}
+		ORDER BY c.ck_date DESC
+	</select>
 
-    <!-- 이전 제목/내용 목록 -->
-    <select id="BackCkListSearch" resultType="com.bok.model.CkVO">
-        SELECT ck_title, ck_content
-        FROM ck_content
-    </select>
+	<!-- 이전 제목/내용 목록 -->
+	<select id="BackCkListSearch" resultType="com.bok.model.CkVO">
+		SELECT ck_title,
+		ck_content
+		FROM ck_content
+	</select>
 
-    <!-- 이전 체크리스트 삭제 -->
-    <delete id="backCkListDelete" parameterType="int">
-        DELETE FROM ck_content
-        WHERE ck_content_num = #{ckContentNum}
-    </delete>
-	
+	<!-- 이전 체크리스트 삭제 -->
+	<delete id="backCkListDelete" parameterType="int">
+		DELETE FROM
+		ck_content
+		WHERE ck_content_num = #{ckContentNum}
+	</delete>
+
+	<select id="getPagedBfSprtPersonM" resultType="com.bok.model.SprtPersonVO">
+		SELECT sprtp_num AS
+		sprtpNum, sprt_title AS title, sprt_link AS link, sprt_summary AS
+		summary, sprt_date as "date", sprt_start AS "start", sprt_end AS "end", sprt_num AS
+		fkSprtNum
+		FROM (SELECT sprtp_num, sprt_title, sprt_link, sprt_summary,
+		sprt_start, sprt_date, sprt_end, sprt_num,
+		ROW_NUMBER() OVER (ORDER BY sprt_end
+		DESC) AS rn
+		FROM sprt_person WHERE sprt_num = #{fkSprtNum})
+		WHERE rn
+		BETWEEN #{startRow} AND #{endRow}
+	</select>
+
 </mapper>
