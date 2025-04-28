@@ -81,15 +81,11 @@
 		<!-- 관리자용 상단바 -->
 		<nav class="navbar">
 			<div class="container">
-				<a class="navbar-brand" href="controller?cmd=ckHomeManagerUI"> <img
+				<a class="navbar-brand" href="controller?cmd=ckHomeUI"> <img
 					src="image/logo.png" alt="로고" />
 				</a>
 
-				<!-- 로고 옆 관리자 텍스트 + 로그아웃 버튼 -->
-				<div class="admin-info d-flex align-items-center ms-3">
-					<span class="admin-greeting">관리자님 안녕하세요.</span>
-					<button class="logout-btn ms-2">로그아웃</button>
-				</div>
+				
 
 				<!-- 메뉴 항목 -->
 				<div class="menu-wrapper ms-auto">
