@@ -20,7 +20,13 @@ public class FrontControllerServlet extends HttpServlet {
 		String result = a.execute(request);
 
 		// (1) 지원금 관련 명령어면 바로 JSON 응답
-		if ("getSprtCategory".equals(cmd) || "getSprtPerson".equals(cmd) || "getSprtContent".equals(cmd) || "getBfSprtPerson".equals(cmd) || "getBfSprtManagerPerson".equals(cmd)) {
+		if ("getSprtCategory".equals(cmd) || 
+				"getSprtPerson".equals(cmd) || 
+				"getSprtContent".equals(cmd) || 
+				"getBfSprtPerson".equals(cmd) || 
+				"getBfSprtManagerPerson".equals(cmd) ||
+				"getCkCategory".equals(cmd) || 
+				"getCkHomeInfo".equals(cmd)) {
 			response.setContentType("application/json; charset=UTF-8");
 			response.setCharacterEncoding("UTF-8");
 			response.getWriter().write(result);
