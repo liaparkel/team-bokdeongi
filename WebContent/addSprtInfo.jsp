@@ -193,6 +193,12 @@
 
 	document.addEventListener("DOMContentLoaded", function () {
 	    const form = document.querySelector("form");
+	    
+	    document.getElementById("cancel").addEventListener("click", function () {
+	        document.getElementById("cmd").value = "sprtManagerUI";
+	        form.submit();
+	    });
+
 
 	    document.getElementById("add").addEventListener("click", function () {
 	        document.getElementById("cmd").value = "addSprtInfoSave";
