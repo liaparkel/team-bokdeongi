@@ -9,7 +9,7 @@ import com.bok.service.SprtManagerService;
 
 public class AddSprtMenuSaveAction implements Action {
 
-	@Override
+	@Override	
 	public String execute(HttpServletRequest request) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8"); 
 		String category = request.getParameter("addSprtMenu");
@@ -17,16 +17,16 @@ public class AddSprtMenuSaveAction implements Action {
 			SprtManagerService service = new SprtManagerService();
 			boolean isSuccess = service.addSprtCategory(category);
 			if(isSuccess){
-				return "sprtManagerUI.jsp"; 
+				return "sprtManagerUI.html"; 
 			}else{
 				request.setAttribute("message", "등록 실패!");
-				return "tm.jsp"; 
+				return "sprtManagerUI.html"; 
 			}
 
 
 		}
 
-		return null;
+		return "sprtManagerUI.html"; 
 	}
 
 }
