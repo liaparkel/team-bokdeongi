@@ -3,24 +3,21 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>soloAskDetailUI</title>
+<title>soloAskDetail</title>
+
+<!-- CSS -->
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
 	rel="stylesheet" />
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
-	crossorigin="anonymous" />
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+	rel="stylesheet" crossorigin="anonymous" />
 <link rel="stylesheet" href="css/component.css" />
 <link rel="stylesheet" href="css/faq.css" />
 <link rel="stylesheet" href="css/soloAsk.css" />
 </head>
 <body>
 	<div class="page-layout">
-
 		<!-- 상단바 -->
 		<nav class="navbar">
 			<div class="container">
@@ -31,8 +28,7 @@
 					<a class="nav-link" href="#">체크리스트</a>
 					<div class="dropdown">
 						<a class="nav-link dropdown-toggle no-underline" href="#"
-							role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							지원금 정보 </a>
+							data-bs-toggle="dropdown" aria-expanded="false"> 지원금 정보 </a>
 						<ul class="dropdown-menu dropdown-menu-end">
 							<li><a class="dropdown-item" href="#">현재 지원금 정보</a></li>
 							<li><a class="dropdown-item" href="#">이전 지원금 정보</a></li>
@@ -41,8 +37,7 @@
 					<a class="nav-link" href="#">치안 정보</a>
 					<div class="dropdown">
 						<a class="nav-link dropdown-toggle no-underline" href="#"
-							role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							문의하기 </a>
+							data-bs-toggle="dropdown" aria-expanded="false"> 문의하기 </a>
 						<ul class="dropdown-menu dropdown-menu-end">
 							<li><a class="dropdown-item" href="controller?cmd=askUI">FAQ</a></li>
 							<li><a class="dropdown-item" href="controller?cmd=soloAskUI">1:1
@@ -57,71 +52,73 @@
 		<div class="main">
 			<div class="container">
 				<h1 class="solo-title">Ask</h1>
-				<div class="question-box">
-					<h3>치안정보 질문입니다.</h3>
-					<p>치안정보는 다운로드가 불가능 할까요?</p>
+				<div class="question-box" id="question-box">
+					<p>로딩 중...</p>
 				</div>
-				<br>
+
 				<hr class="my-4">
+
 				<h1 class="solo-title">Answer</h1>
-				<div class="answer-box">
-					<p>불가능합니다.</p>
+				<div class="answer-box" id="answer-box">
+					<p>로딩 중...</p>
 				</div>
 			</div>
 		</div>
 
 		<!-- 푸터 -->
 		<div class="footer">
-			<div class="container">
-				<div class="footer-left">
-					<span>상호명: <span class="bok-name">복덩이 부동산</span> <img
-						src="image/logo.png" id="img-bok1" /></span> <span>복덩이: 김정훈, 박종석,
-						정현아, 박희수</span>
+			<div
+				class="container d-flex justify-content-between align-items-center py-3">
+				<div>
+					<span>상호명: <strong>복덩이 부동산</strong></span><br /> <span>복덩이:
+						김정훈, 박종석, 정현아, 박희수</span>
 				</div>
-				<div class="footer-middle">
-					<span>주소: 서울 금천구 가산디지털1로 912호 호서대벤처타워 9층</span> <span>문의:
+				<div>
+					<span>주소: 서울 금천구 가산디지털1로 912호 호서대벤처타워 9층</span><br /> <span>문의:
 						kebin10804@gmail.com</span>
 				</div>
-				<div class="footer-bok">
-					<img src="image/bok.png" class="img-bok2" />
+				<div>
+					<img src="image/bok.png" alt="복덩이 로고" style="height: 40px" />
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<!-- Bootstrap JS -->
+	<!-- JS -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
 		crossorigin="anonymous"></script>
-
-	<!-- 상단바 동작 스크립트 -->
 	<script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const navLinks = document.querySelectorAll('.nav-link');
-      const dropdownItems = document.querySelectorAll('.dropdown-item');
-
-      function clearActiveLinks() {
-        navLinks.forEach(link => link.classList.remove('active'));
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1) URL 파라미터에서 askNum 꺼내기
+      const params = new URLSearchParams(location.search);
+      const askNum = params.get("askNum");
+      if (!askNum) {
+        document.getElementById("question-box").innerHTML = "<p>잘못된 접근입니다.</p>";
+        return;
       }
-		// 일반 nav 링크 클릭 시 active 토글
-      navLinks.forEach(link => {
-        link.addEventListener('click', function () {
-          clearActiveLinks();
-          if (!this.classList.contains('dropdown-toggle')) {
-            this.classList.add('active');
-          }
+
+      // 2) 상대경로로 controller 호출
+      fetch(`controller?cmd=soloAskDetailUI&askNum=${askNum}&ajax=true`)
+        .then(res => {
+          if (!res.ok) return Promise.reject(`Status ${res.status}`);
+          return res.json();
+        })
+        .then(data => {
+          // 3) 데이터 화면에 렌더링
+          document.getElementById("question-box").innerHTML = `
+            <h3>${data.askTitle}</h3>
+            <p>${data.soloContent}</p>
+          `;
+          document.getElementById("answer-box").innerHTML = data.soloAnswer
+            ? `<p>${data.soloAnswer}</p>`
+            : `<p>아직 답변이 등록되지 않았습니다.</p>`;
+        })
+        .catch(err => {
+          console.error("데이터 로드 실패:", err);
+          document.getElementById("question-box").innerHTML = "<p>데이터 로드에 실패했습니다.</p>";
+          document.getElementById("answer-box").innerHTML = "";
         });
-      });
-      // 드롭다운 항목 클릭 시  active 부여
-      dropdownItems.forEach(item => {
-        item.addEventListener('click', function () {
-          clearActiveLinks();
-          const parentDropdown = this.closest('.dropdown');
-          const toggle = parentDropdown?.querySelector('.dropdown-toggle');
-          if (toggle) toggle.classList.add('active');
-        });
-      });
     });
   </script>
 </body>

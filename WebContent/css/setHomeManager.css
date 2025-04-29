@@ -31,6 +31,14 @@ h3 {
 	font-weight: bold;
 	margin: 12px 0;
 }
+.home-text{
+	font-size: 16px;
+	padding: 10px 0px;
+}
+.home-title{
+	font-size: 24px;
+	padding: 20px 0px;
+}
 /* Layout */
 .page-layout {
 	display: flex;
@@ -44,6 +52,7 @@ h3 {
 	margin: 0 auto;
 	padding: 0 16px;
 	box-sizing: border-box;
+	
 }
 
 /* Navbar */
@@ -65,8 +74,11 @@ h3 {
 	gap: 24px;
 	font-size: 16px;
 	font-weight: bold;
+	
 }
-
+.checklistContent{
+	 border-bottom: 3px solid #EDEDED;
+}
 .nav-link, .dropdown-toggle {
 	color: #111111;
 	text-decoration: none;
@@ -126,18 +138,22 @@ h3 {
   height: 48px; /* 필요에 따라 조정 가능 */
   width: auto;
 }
-.tip-box {
-	width: 90%; /* 전체 비율 조정 */
-	position: relative;
-	max-width: 1100px;
-	margin: 0 auto;
-	padding: 8px;
-	font-size: 14px;
-	color: #111111;
-	background-color: #F5F5F5;
-	border-radius: 8px;
-	font-weight: bold;
-}
+
+ .tip-box {
+      position: relative;
+      width: 95%;
+      max-width: 1100px;
+      padding: 24px 32px;
+      background-color: #f5f5f5;
+      border-radius: 12px;
+      box-sizing: border-box;
+      font-family: 'Noto Sans KR';
+      margin: 60px auto 0 auto;
+    }
+.tip-box .edit-button-container {
+    margin-top: 16px; /* 버튼 간격을 조금 띄운다 */
+    justify-content: flex-end;
+  }
 /* Tip Box에 빨간 Pin */
 .pin-icon {
 	position: absolute;
@@ -153,9 +169,10 @@ h3 {
 	font-size: 18px;
 	color: #F4B400;
 	font-weight: bold;
-	margin-top: 0px;
+	margin-top: 16px;
 	margin-bottom: 16px;
 	font-family: 'Noto Sans KR';
+	
 }
 /* Tip 본문  */
 .tip-content {
@@ -165,9 +182,9 @@ h3 {
 .set-title{
   display: flex;
   align-items: center;
-   margin: 24px 0 4px 0;
+  margin: 40px 0 16px 0;
   font-family: 'Noto Sans KR';
-  border-bottom: 3px solid #EDEDED;
+ 
 }
 .pencil-icon {
   font-size: 20px;
@@ -187,9 +204,8 @@ h3 {
 width: 100%;
 	max-width: 1175px;
 	margin: 0 auto;
-	padding: 0 20px;
+	padding: 24px 20px 20px 20px;
 	box-sizing: border-box;
-	border-bottom: 3px solid #EDEDED;
 	font-family: 'Noto Sans KR';
 	font-weight: bold;
 }
@@ -206,8 +222,8 @@ font-weight: bold;
 .text-container{
 width: 100%;
   max-width: 1175px;
-  margin: 0 auto;
-  padding: 0 20px;
+ margin: 40px auto 0 auto;
+  padding: 24px 20px 20px 20px;
   box-sizing: border-box;
   font-family: 'Noto Sans KR';
   font-weight: bold;
@@ -229,42 +245,75 @@ width: 100%;
   padding: 6px 12px;
   border-radius: 6px;
 }
+   .edit-button-container .btn-warning {
+      background-color: #F4B400;
+      color: #111;
+      font-weight: bold;
+      border: none;
+      padding: 8px 20px;
+    }
+   
+    .edit-button-container .btn-outline-secondary {
+      border: 1px solid #999;
+      color: #444;
+      font-weight: bold;
+      padding: 8px 20px;
+    }
+ .edit-button-container {
+      display: inline-block; /* 버튼들을 한 줄로 배치 */
+      gap: 8px;
+    }
+  .bottom-button-group {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 32px;
+    }
+      .gray-btn, .yellow-btn {
+      width: 90px;
+      height: 36px;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+    }
+   .gray-btn {
+      background-color: #5E5E5E;
+      color: white;
+    }
+   
+    .yellow-btn {
+      background-color: #F4B400;
+      color: black;
+    }
+  .btn-warning {
+    background-color: #F4B400;
+    color: #111;
+  }
+ 
+    .text-section {
+      margin-bottom: 20px;
+    }
+  .btn-danger {
+    background-color: #D32F2F;
+    color: #fff;
+  }
 
-.bottom-button-group {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  margin: 32px 0;
-}
-.gray-btn {
-  width: 90px;
-  height: 36px;
-  background-color: #5E5E5E;
-  color: white;
-  font-weight: bold;
-  border: none;
-  border-radius: 6px;
-}
-.yellow-btn {
-  width: 90px;
-  height: 36px;
-  background-color: #F4B400;
-  color: black;
-  font-weight: 700;
-  border: none;
-  border-radius: 6px;
-}
+ 
 .add-content {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 16px;
-  background-color: #f5f5f5;   
-  border: 1px solid #ddd;       
+  background-color: #f5f5f5;  
+  border: 1px solid #ddd;      
   border-radius: 8px;          
-  padding: 30px 0;           
+  padding: 30px 0;          
   margin: 16px auto;  /* 가운데 정렬 */
   width: 100%;
   max-width: 1175px;  /* set-container랑 동일하게 */
   box-sizing: border-box;
+}
+
+#tipContentDiv {
+  margin-top: 16px; /* 추가: TIP 제목(TIP) 아래로도 살짝 띄움 */
 }

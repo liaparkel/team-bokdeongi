@@ -8,10 +8,6 @@ public class ActionFactory {
 		Action a = null;
 		switch (cmd) {
 
-		case "loginUI":
-			a = new LoginUIAction();
-			break;
-
 		case "SprtUIAction":
 			a = new SprtUIAction();
 			break;
@@ -92,11 +88,10 @@ public class ActionFactory {
 			a = new CkBfContentDeleteAction();
 			break;
 
-
-		case "ckHomeUI":
+		case "ckHomeUI" :
 			a = new CkHomeUIAction();
 			break;
-
+					
 		case "sprtUI":
 			a = new SprtUIAction();
 			break;
@@ -104,7 +99,6 @@ public class ActionFactory {
 		case "bfSprtUI":
 			a = new BfSprtUIAction();
 			break;
-
 
 		case "login":
 			a = new LoginAction();
@@ -114,7 +108,6 @@ public class ActionFactory {
 			a = new GetSprtCategoryAction();
 			break;
 
-
 		case "askUI":
 			a = new AskUIAction();
 			break;
@@ -123,7 +116,6 @@ public class ActionFactory {
 			a = new SoloAskUIAction();
 			break;
 
-			
 		case "getSprtPerson":
 			a = new GetSprtPersonAction();
 			break;
@@ -165,26 +157,38 @@ public class ActionFactory {
 			a = new SoloAskManagerUIAction();
 			break;
 
+		case "setFAQ":
+			a = new SetFAQAction();
+			break;
 			
 		case "sprtBfManagerUI":
 			a = new SprtBfManagerUIAction();
+			break;
+		
+		case "mapUI":
+			a = new MapUIAction();
 			break;
 			
 		case "setSprtInfo": 
 			a = new SetSprtInfoAction();
 			break;
+			
 		case "setSprtAdd":
 			a = new SetSprtAddAction();
 			break;
+			
 		case "setSprtUpdate":
 			a = new SetSprtUpdateAction();
 			break;
+			
 		case "setSprtDelete":
 			a = new SetSprtDeleteAction();
 			break;
+			
 		case "addSprtMenuSaveAction":
 			a = new AddSprtMenuSaveAction();
 			break;
+
 		case "sprtContentDeleteAction":
 			a = new SprtContentDeleteAction();
 			break;
@@ -195,6 +199,15 @@ public class ActionFactory {
 		case "addSprtInfoSave":
 			a = new AddSprtInfoSaveAction();
 			break;
+
+		case "getCkCategory":
+		    a = new GetCkCategoryAction();
+		    break;
+
+		case "getCkHomeInfo":
+		    a = new GetCkHomeInfoAction();
+		    break;
+
 		default:
 			a = new MainUIAction();
 			break;
