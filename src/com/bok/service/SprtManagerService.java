@@ -103,7 +103,7 @@ public class SprtManagerService {
 	public boolean removeSprt(int sprtpNum) {
 		try (SqlSession session = DBCP.getSqlSessionFactory().openSession()) {
 			boolean result = dao.removeSprt(session, sprtpNum);
-			
+
 			if (result) {
 				session.commit();
 			} else {

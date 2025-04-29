@@ -26,8 +26,6 @@
 				</a>
 
 				<!-- 로고 옆 관리자 텍스트 + 로그아웃 버튼 -->
-
-
 				<div class="admin-info d-flex align-items-center ms-3">
 					<span class="admin-greeting">관리자님 안녕하세요.</span>
 					<button class="logout-btn ms-2">로그아웃</button>
@@ -88,20 +86,18 @@
 		</div>
 
 
-		<div id="modal" style="display: none;">
-			<div class="modal-content">
-				<h3 id="modalTitle">지원금 삭제하시겠습니까?</h3>
-				<form id="deleteForm" method="post"
-					action="controller?cmd=setSprtDelete">
-					<input type="hidden" id="sprtId" name="sprtpNum">
-					<div class="button-wrapper">
-						<button type="button" id="cancelSprtContent" class="small cancel">취소</button>
-						<button type="submit" class="small">삭제</button>
-					</div>
-				</form>
-			</div>
 
-
+	<div id="modal" style="display: none;">
+		<div class="modal-content">
+			<h3 id="modalTitle">지원금 삭제하시겠습니까?</h3>
+			<form id="deleteForm" method="post" action="controller?cmd=sprtContentDelete">
+				<input type="hidden" id="sprtId" name="sprtpNum">
+				<div class="button-wrapper">
+					<button type="button" id="cancelSprtContent" class="small cancel">취소</button>
+					<button type="submit" class="small">삭제</button>
+				</div>
+			</form>
+		</div>
 
 			<script>
 	let currentPage = 1;
