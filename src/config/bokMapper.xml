@@ -180,11 +180,13 @@
 	</select>
 
 	<delete id="removeSprtContent" parameterType="int">
-		delete sprt_content
+		delete from
+		sprt_content
 		where sprtp_num = #{sprtpNum}
 	</delete>
 	<delete id="removeSprtPerson" parameterType="int">
-		delete sprt_person
+		delete from
+		sprt_person
 		where sprtp_num = #{sprtpNum}
 	</delete>
 
@@ -193,6 +195,18 @@
 		sprt_info(sprt_num,sprt_category)
 		values(sprt_num_seq.NEXTVAL,#{category})
 	</insert>
+
+	<select id="getSprtCategory" parameterType="int" resultType="String">
+		SELECT sprt_info.sprt_category
+		FROM sprt_info
+		JOIN sprt_person ON sprt_info.sprt_num = sprt_person.sprt_num
+		WHERE sprtp_num = #{sprtpNum}
+	</select>
+<select id="getAddCategory" parameterType="int" resultType="String" >
+select sprt_category
+from sprt_info
+where sprt_num = #{sprtNum}
+</select>
 
 	<insert id="addSprtPerson" parameterType="com.bok.model.SprtPersonVO"
 		useGeneratedKeys="false">

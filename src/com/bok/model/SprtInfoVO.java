@@ -5,6 +5,11 @@ public class SprtInfoVO {
 	private String category;
 	
 	public SprtInfoVO(){}
+	
+	public SprtInfoVO(String category){
+		setCategory(category);
+	}
+	
 	public SprtInfoVO(int sprtNum, String category) {
 		setSprtNum(sprtNum);
 		setCategory(category);

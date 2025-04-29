@@ -71,18 +71,17 @@
 			</div>
 		</div>
 
-		<div id="modal" style="display: none;">
-			<div class="modal-content">
-				<h3 id="modalTitle">지원금 삭제하시겠습니까?</h3>
-				<form id="deleteForm" method="post"
-					action="controller?cmd=setSprtDelete">
-					<input type="hidden" id="sprtId" name="sprtpNum">
-					<div class="button-wrapper">
-						<button type="button" id="cancelSprtContent" class="small cancel">취소</button>
-						<button type="submit" class="small">삭제</button>
-					</div>
-				</form>
-			</div>
+
+	<div id="modal" style="display: none;">
+		<div class="modal-content">
+			<h3 id="modalTitle">지원금 삭제하시겠습니까?</h3>
+			<form id="deleteForm" method="post" action="controller?cmd=sprtContentDeleteAction">
+				<input type="hidden" id="sprtId" name="sprtpNum">
+				<div class="button-wrapper">
+					<button type="button" id="cancelSprtContent" class="small cancel">취소</button>
+					<button type="submit" class="small">삭제</button>
+				</div>
+			</form>
 		</div>
 
 		<script>

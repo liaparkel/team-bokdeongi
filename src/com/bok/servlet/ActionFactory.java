@@ -187,7 +187,18 @@ public class ActionFactory {
 		case "addSprtMenuSaveAction":
 			a = new AddSprtMenuSaveAction();
 			break;
+
+		case "sprtContentDeleteAction":
+			a = new SprtContentDeleteAction();
+			break;
 			
+		case "addSprtInfo":
+			a = new AddSprtInfoAction();
+			break;
+		case "addSprtInfoSave":
+			a = new AddSprtInfoSaveAction();
+			break;
+
 		case "getCkCategory":
 		    a = new GetCkCategoryAction();
 		    break;

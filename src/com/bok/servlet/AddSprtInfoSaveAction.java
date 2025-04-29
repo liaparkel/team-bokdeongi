@@ -11,7 +11,7 @@ import com.bok.model.SprtContentVO;
 import com.bok.model.SprtPersonVO;
 import com.bok.service.SprtManagerService;
 
-public class SetSprtAddAction implements Action {
+public class AddSprtInfoSaveAction implements Action {
 
 	@Override
     public String execute(HttpServletRequest request) throws ServletException, IOException {
@@ -26,7 +26,6 @@ public class SetSprtAddAction implements Action {
 
         // PK 값들 받아오기
         String fkSprtNum = request.getParameter("fkSprtNum");
-        String sprtpNum = request.getParameter("sprtpNum");
 
         String[] subtitles = request.getParameterValues("sprtSubTitleList");
         String[] contents = request.getParameterValues("sprtTextList");
@@ -35,13 +34,13 @@ public class SetSprtAddAction implements Action {
         person.setTitle(title);
         person.setSummary(summary);
         person.setLink(link);
-        person.setStart(start);
-        person.setEnd(end);
+        person.setStart(start != null && !start.isEmpty() ? start : null);
+        person.setEnd(end != null && !end.isEmpty() ? end : null);
+        person.setFkSprtNum(Integer.parseInt(fkSprtNum));
 
         // PK 값 설정
         person.setFkSprtNum(fkSprtNum != null ? Integer.parseInt(fkSprtNum) : 0);
-        person.setSprtpNum(sprtpNum != null ? Integer.parseInt(sprtpNum) : 0);
-
+       
         List<SprtContentVO> contentList = new ArrayList<>();
         if (subtitles != null && contents != null) {
             for (int i = 0; i < subtitles.length; i++) {
