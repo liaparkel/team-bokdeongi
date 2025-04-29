@@ -24,10 +24,6 @@ public class ActionFactory {
 			a = new CkContactAction();
 			break;
 
-		case "ckMovin":
-			a = new CkMovinAction();
-			break;
-
 		case "ckRecontract":
 			a = new CkRecontractAction();
 			break;
@@ -50,10 +46,6 @@ public class ActionFactory {
 
 		case "setCkDelet":
 			a = new SetCkDeletAction();
-			break;
-
-		case "setCkContent":
-			a = new SetCkContentAction();
 			break;
 
 		case "ckContentDelete":
@@ -208,7 +200,7 @@ public class ActionFactory {
 		    break;
 		   
 		case "soloAskDetailManager":
-			a = new SoloAskDetailManager();
+			a = new SoloAskDetailManagerAction();
 			break;
 			
 		case "setFAQUI":
