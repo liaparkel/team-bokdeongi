@@ -1,4 +1,5 @@
-package com.bok.servlet; 
+package com.bok.servlet;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,10 +13,11 @@ import com.bok.service.SprtManagerService;
 
 public class SetSprtAddAction implements Action {
 
-    @Override
+	@Override
     public String execute(HttpServletRequest request) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-
+        
+        
         String title = request.getParameter("sprtTitle");
         String summary = request.getParameter("sprtSummary");
         String link = request.getParameter("sprtLink");
@@ -50,18 +52,17 @@ public class SetSprtAddAction implements Action {
                 contentList.add(content);
             }
         }
+       
 
         // 서비스 호출
         SprtManagerService service = new SprtManagerService();
         boolean success = service.setAddSprt(person, contentList);
 
         if (success) {
-            return "sprtManagerUI.jsp"; 
+            return "sprtManagerUI.html"; 
         } else {
-//            request.setAttribute("person", person);
-//            request.setAttribute("contentList", contentList);
             request.setAttribute("message", "등록 실패!");
-            return "tm.jsp"; 
+            return "sprtManagerUI.html"; 
         }
     }
 }
