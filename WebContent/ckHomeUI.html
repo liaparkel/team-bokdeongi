@@ -155,7 +155,7 @@ function loadCategory(event, category) {
                 tipBox.innerHTML = `
                     <i class="fas fa-thumbtack pin-icon"></i>
                     <div class="tip-title">TIP</div>
-                    <p>${ckInfo.tip}</p>
+                    <p>${ckInfo.tip.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
                 `;
             } else {
                 tipBox.innerHTML = '';
