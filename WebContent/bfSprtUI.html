@@ -189,39 +189,41 @@
     }
 
     // 아코디언 초기화
-    function initializeAccordion() {
-      const accordions = document.querySelectorAll('.sprt-accordion');
-      accordions.forEach(acc => {
-        acc.addEventListener('click', function() {
-          this.classList.toggle('active');
-          const panel = this.nextElementSibling;
-          if (panel.style.maxHeight) {
-            panel.style.maxHeight = null;
-          } else {
-            const sprtpNum = this.dataset.sprtpnum;
-            if (panel.dataset.loaded !== "true") {
-              fetch(`/Team_03/controller?cmd=getSprtContent&sprtpNum=${sprtpNum}`)
-                .then(response => response.json())
-                .then(data => {
-                  let detailHtml = '';
-                  data.forEach(content => {
-                    detailHtml += `<br><p><strong>${content.subtitle}</strong><br>${content.content}</p><br>`;
-                  });
-                  panel.innerHTML += detailHtml;
-                  panel.dataset.loaded = "true";
-                  panel.style.maxHeight = panel.scrollHeight + "px";
-                })
-                .catch(error => {
-                  panel.innerHTML += '<p>상세 내용 불러오기 실패</p>';
-                  console.error(error);
-                });
-            } else {
+function initializeAccordion() {
+  const accordions = document.querySelectorAll('.sprt-accordion');
+  accordions.forEach(acc => {
+    acc.addEventListener('click', function() {
+      this.classList.toggle('active');
+      const panel = this.nextElementSibling;
+      if (panel.style.maxHeight) {
+        panel.style.maxHeight = null;
+      } else {
+        const sprtpNum = this.dataset.sprtpnum;
+        if (panel.dataset.loaded !== "true") {
+          fetch(`/Team_03/controller?cmd=getSprtContent&sprtpNum=${sprtpNum}`)
+            .then(response => response.json())
+            .then(data => {
+              let detailHtml = '';
+              data.forEach(content => {
+                let formattedContent = content.content.replace(/(?:\r\n|\n|\r)/g, '<br>');
+                detailHtml += `<br><p><strong>${content.subtitle}</strong><br>${formattedContent}</p><br>`;
+              });
+              panel.innerHTML += detailHtml;
+              panel.dataset.loaded = "true";
               panel.style.maxHeight = panel.scrollHeight + "px";
-            }
-          }
-        });
-      });
-    }
+            })
+            .catch(error => {
+              panel.innerHTML += '<p>상세 내용 불러오기 실패</p>';
+              console.error(error);
+            });
+        } else {
+          panel.style.maxHeight = panel.scrollHeight + "px";
+        }
+      }
+    });
+  });
+}
+
 
     // 페이지네이션 렌더링
     function renderPagination() {

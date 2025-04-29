@@ -237,7 +237,8 @@
 							.then(data => {
 								let detailHtml = '';
 								data.forEach(content => {
-									detailHtml += `<br><p><strong>${content.subtitle}</strong><br>${content.content}</p><br>`;
+									let formattedContent = content.content.replace(/(?:\r\n|\n|\r)/g, '<br>');
+									detailHtml += `<br><p><strong>${content.subtitle}</strong><br>${formattedContent}</p><br>`;
 								});
 								panel.innerHTML += detailHtml;
 								panel.dataset.loaded = "true";
@@ -254,6 +255,7 @@
 			});
 		});
 	}
+
 
 	function editSprt(sprtpNum) {
 		 location.href = `controller?cmd=setSprtInfo&sprtpNum=${sprtpNum}`;
