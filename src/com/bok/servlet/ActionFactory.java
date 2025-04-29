@@ -69,7 +69,7 @@ public class ActionFactory {
 			break;
 
 		case "addCkCancel":
-			a = new AddCkCencelAction();
+			a = new AddCkCancelAction();
 			break;
 
 		case "addTextAction":
@@ -132,17 +132,8 @@ public class ActionFactory {
 		    a = new GetBfSprtManagerPersonAction();
 		    break;
 
-
 		case "sprtManagerUI":
 			a = new SprtManagerUIAction();
-			break;
-
-		case "loanSprt":
-//			a = new LoanSprtAction();
-			break;
-
-		case "happySprt":
-//			a = new HappySprtAction();
 			break;
 
 		case "searchEmail":
@@ -193,10 +184,21 @@ public class ActionFactory {
 			a = new SetSprtDeleteAction();
 			break;
 			
-		case "addSprtMenuSaveAction":
+		case "addSprtMenuSave":
 			a = new AddSprtMenuSaveAction();
 			break;
+
+		case "sprtContentDelete":
+			a = new SprtContentDeleteAction();
+			break;
 			
+		case "addSprtInfo":
+			a = new AddSprtInfoAction();
+			break;
+		case "addSprtInfoSave":
+			a = new AddSprtInfoSaveAction();
+			break;
+
 		case "getCkCategory":
 		    a = new GetCkCategoryAction();
 		    break;

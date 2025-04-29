@@ -42,3 +42,40 @@ textarea {
 .content-block {
   margin-bottom: 16px;
 }
+
+#modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.4);
+	display: none;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
+}
+
+#modal.show {
+	display: flex;
+}
+.modal-content {
+	background-color: #FFF7E0;
+	padding: 30px;
+	border-radius: 10px;
+	max-width: 500px;
+	width: 90%;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+	z-index: 1001; /* 오버레이보다 더 위 */
+}
+
+.cancel {
+	width: 100px;
+	height: 32px;
+	border-radius: 10px;
+	border: none;
+	font-family: bold;
+	font-weight: 700;
+	background: #666666;
+	color: white;
+}

@@ -12,38 +12,9 @@
 	SprtPersonVO person = (SprtPersonVO) request.getAttribute("person");
 	List<SprtContentVO> contentList = (List<SprtContentVO>) request.getAttribute("contentList");
 	String category = (String) request.getAttribute("category");
-	String paramSprtpNum = request.getParameter("sprtpNum");
-	
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	// 날짜가 String 타입인 경우, 먼저 Date로 변환
-	String startDateFormatted = "";
-	String endDateFormatted = "";
 
-	if (person != null) {
-		try {
-			if (person.getStart() != null) {
-				Date startDate = sdf.parse(person.getStart().toString());
-				startDateFormatted = sdf.format(startDate);
-			}
-			if (person.getEnd() != null) {
-				Date endDate = sdf.parse(person.getEnd().toString());
-				endDateFormatted = sdf.format(endDate);
-			}
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-	}
 %>
-<%
-	String msg = (String) request.getAttribute("message");
-%>
-<%
-	if (msg != null) {
-%>
-<div class="alert alert-danger"><%=msg%></div>
-<%
-	}
-%>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -106,15 +77,14 @@
 				</div>
 			</div>
 		</nav>
-
 		<!-- 메인 -->
 		<div class="main">
 			<form action="controller" method="post" accept-charset="UTF-8">
 				<input type="hidden" id="cmd" name="cmd" value="setSprtAdd" /> <input
 					type="hidden" id="fkSprtNum" name="fkSprtNum"
-					value="<%=person != null ? person.getFkSprtNum() : ""%>"> <input
+					value="${sprtNum != null ? sprtNum : 0}"><input
 					type="hidden" id="sprtpNum" name="sprtpNum"
-					value="<%= paramSprtpNum != null ? paramSprtpNum : "" %>">
+					value="<%=person != null ? person.getSprtpNum() : ""%>">
 
 				<div class="main">
 					<div class="container">
@@ -134,12 +104,12 @@
 							<div class="col-md-6">
 								<label for="startDate" class="form-label">지원 시작일</label> <input
 									type="date" class="form-control" id="startDate"
-									name="startDate" value="<%=startDateFormatted%>">
+									name="startDate">
 							</div>
 							<div class="col-md-6">
 								<label for="endDate" class="form-label">지원 종료일</label> <input
 									type="date" class="form-control" id="endDate" name="endDate"
-									value="<%=endDateFormatted%>">
+									>
 							</div>
 						</div>
 						<div class="gray-line"></div>
@@ -180,14 +150,12 @@
 
 						<h3 class="link">링크 수정하기</h3>
 						<input type="url" class="text-input tip-box" name="sprtLink"
-							value="<%=(person != null && person.getLink() != null) ? person.getLink() : ""%>">
+							value="<%=person != null ? person.getLink() : ""%>">
 						<div class="button-wrapper">
 							<button type="button" id="cancel" class="small"
-								name="addSprtMenuDelete">삭제</button>
-							<button type="button" id="update" class="small"
-								name="addSprtMenuUpdate">수정</button>
+								name="addSprtInfoCancel">취소</button>
 							<button type="button" id="add" class="small"
-								name="addSprtMenuSave">추가</button>
+								name="addSprtInfoSave">추가</button>
 
 						</div>
 
@@ -221,33 +189,24 @@
     }
   });
 </script>
+<script>
+
+	document.addEventListener("DOMContentLoaded", function () {
+	    const form = document.querySelector("form");
+
+	    document.getElementById("add").addEventListener("click", function () {
+	        document.getElementById("cmd").value = "addSprtInfoSave";
+	        form.submit();
+	    });
+
+	});
+</script>
+
 	<!-- Bootstrap JS -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
 		crossorigin="anonymous"></script>
-	<script>
-
-	document.addEventListener("DOMContentLoaded", function () {
-	    const form = document.querySelector("form");
-
-	    document.getElementById("update").addEventListener("click", function () {
-	        document.getElementById("cmd").value = "setSprtUpdate";
-	        form.submit();
-	    });
-
-	    document.getElementById("add").addEventListener("click", function () {
-	        document.getElementById("cmd").value = "setSprtAdd";
-	        form.submit();
-	    });
-
-	    document.getElementById("cancel").addEventListener("click", function () {
-	        if (confirm("정말 삭제하시겠습니까?")) {
-	            document.getElementById("cmd").value = "setSprtDelete";
-	        }
-	    });
-	});
-</script>
 
 	<!-- 상단바 동작 스크립트 -->
 	<script>

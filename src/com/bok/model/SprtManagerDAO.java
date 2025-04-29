@@ -8,6 +8,17 @@ import org.apache.ibatis.session.SqlSession;
 
 
 public class SprtManagerDAO {
+	//글 생성 페이지 작성 시, sprtNum 으로 카테고리 찾기
+	public String getAddCategory(SqlSession session,int sprtNum){
+		return session.selectOne("bokMapper.getAddCategory", sprtNum);
+	}
+	
+	
+	//관리자가 지원금 정보에서 수정 버튼 클릭 시 sprt_info의 카테고리 값 넘겨 줌 (select)
+	public String getSprtCategory(SqlSession session,int sprtpNum){
+		return session.selectOne("bokMapper.getSprtCategory", sprtpNum);
+	}
+	
 	//관리자가 지원금 정보에서 수정 버튼 클릭 시 select (-sprtPerson 값)
 	public SprtPersonVO getSprtPerson(SqlSession session,int sprtpNum){
 		return session.selectOne("bokMapper.getSprtPersonOne", sprtpNum);
@@ -50,9 +61,8 @@ public class SprtManagerDAO {
 	public boolean removeSprt(SqlSession session, int sprtpNum) {
 		int contentDelete = session.delete("bokMapper.removeSprtContent", sprtpNum);
 		int personDelete = session.delete("bokMapper.removeSprtPerson", sprtpNum);
-		System.out.println("dao야contetn;"+contentDelete);
-		System.out.println("dao야persohn;"+personDelete);
-		return personDelete == 1 && contentDelete >= 0;
+	
+		return contentDelete >= 0 && personDelete == 1;
 	}
 
 	//지원금 분류 추가 후 저장 버튼(카테고리 insert)

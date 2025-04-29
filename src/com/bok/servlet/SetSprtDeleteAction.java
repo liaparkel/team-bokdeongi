@@ -17,19 +17,19 @@ public class SetSprtDeleteAction implements Action {
 
 	        if (sprtpNum == null || sprtpNum.isEmpty()) {
 	            request.setAttribute("message", "삭제할 항목이 없습니다.");
-	            return "tm.jsp";  
+	            return "sprtManagerUI.html";  
 	        }
 
 	        
 	        SprtManagerService service = new SprtManagerService();
 	        boolean isDeleted = service.removeSprt(Integer.parseInt(sprtpNum));
-	        System.out.println("액션이야:"+isDeleted);
+
 	        if (isDeleted) {
-	            request.setAttribute("message", "삭제 성공");
-	            return "sprtManagerUI.jsp";  
+	            request.setAttribute("alertMessage", "삭제 성공");
 	        } else {
-	            request.setAttribute("message", "삭제 실패");
-	            return "tm.jsp"; 
+	            request.setAttribute("alertMessage", "삭제 실패. 다시 시도해 주세요.");
 	        }
+
+	        return "sprtManagerUI.html";
 	    }
 	}

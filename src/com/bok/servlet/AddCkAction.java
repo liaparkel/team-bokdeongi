@@ -1,43 +1,40 @@
 package com.bok.servlet;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.sql.Date;
-import java.time.LocalDate;
-
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
-import com.bok.model.CkVO;
 import com.bok.service.CkService;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 
 public class AddCkAction implements Action {
 
-	@Override
-	public String execute(HttpServletRequest request) throws ServletException, IOException {
-	    BufferedReader reader = request.getReader();
-	    StringBuilder sb = new StringBuilder();
-	    String line;
-	    while ((line = reader.readLine()) != null) {
-	        sb.append(line);
-	    }
+    @Override
+    public String execute(HttpServletRequest request) {
 
-	    Gson gson = new Gson();
-	    JsonObject jsonObject = gson.fromJson(sb.toString(), JsonObject.class);
+        try {
+            // 1. 파라미터에서 category 이름 받아오기
+            String category = request.getParameter("category");
 
-	    String category = jsonObject.get("category").getAsString();
+            // 2. 유효성 체크
+            if (category == null || category.trim().isEmpty()) {
+                request.setAttribute("resultJson", "{\"success\":false, \"message\":\"카테고리명이 비어있습니다.\"}");
+                return "json";
+            }
 
-	    CkService service = new CkService();
-	    CkVO vo = new CkVO();
-	    vo.setckCategory(category);
-	    vo.setCkDate(Date.valueOf(LocalDate.now())); // 오늘 날짜 저장
+            // 3. 서비스 호출
+            String result = new CkService().addCkCategory(category.trim());
 
-	    int result = service.addCkCategory(vo);
+            // 4. 결과 처리
+            if (result != null) {
+                request.setAttribute("resultJson", "{\"success\":true, \"category\":\"" + result + "\"}");
+            } else {
+                request.setAttribute("resultJson", "{\"success\":false, \"message\":\"카테고리 추가 실패\"}");
+            }
 
-	    request.setAttribute("resultJson", "{\"success\": " + (result > 0) + "}");
-	    
-	    return "addCk.jsp"; // ⭐ "json"이 아니라 "json.jsp" 로 리턴
-	}
+            return "json";
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("resultJson", "{\"success\":false, \"message\":\"서버 오류\"}");
+            return "json";
+        }
+    }
 }

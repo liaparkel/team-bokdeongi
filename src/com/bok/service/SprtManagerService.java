@@ -8,6 +8,7 @@ import com.bok.model.DBCP;
 import com.bok.model.PagingVO;
 import com.bok.model.SprtContentVO;
 import com.bok.model.SprtDAO;
+import com.bok.model.SprtInfoVO;
 import com.bok.model.SprtManagerDAO;
 import com.bok.model.SprtPersonVO;
 
@@ -19,6 +20,28 @@ public class SprtManagerService {
 	public SprtManagerService() {
 		dao = new SprtManagerDAO();
 		sprtDao = new SprtDAO();
+	}
+	
+	//sprt_info의 pk값
+	public String getAddCategory(int sprtNum){
+		try(SqlSession session = DBCP.getSqlSessionFactory().openSession()){
+			return dao.getAddCategory(session, sprtNum);
+		}catch (Exception e){
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	
+	
+	//지원금 정보 수정버튼 - 카테고리 정보 불러오기
+	public String getSprtCategory(int sprtpNum){
+		try(SqlSession session = DBCP.getSqlSessionFactory().openSession()){
+			return dao.getSprtCategory(session, sprtpNum);
+		}catch (Exception e){
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	//지원금 정보 수정버튼 - 개별 지원금 정보 불러오기
@@ -48,9 +71,9 @@ public class SprtManagerService {
 		try (SqlSession session = DBCP.getSqlSessionFactory().openSession()) {
 			boolean result = dao.setAddSprt(session, sp, scList);
 			if (result) {
-				session.commit();   // 성공했으면 커밋
+				session.commit();  
 			} else {
-				session.rollback(); // 실패했으면 롤백
+				session.rollback(); 
 			}
 			return result;
 		} catch (Exception e) {
@@ -80,7 +103,7 @@ public class SprtManagerService {
 	public boolean removeSprt(int sprtpNum) {
 		try (SqlSession session = DBCP.getSqlSessionFactory().openSession()) {
 			boolean result = dao.removeSprt(session, sprtpNum);
-			System.out.println("서비스야:"+result);
+			
 			if (result) {
 				session.commit();
 			} else {

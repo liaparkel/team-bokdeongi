@@ -119,7 +119,8 @@ public class FrontControllerServlet extends HttpServlet {
 
 		// Action 처리 (뷰 이름 or JSON 문자열)
 		Action action = ActionFactory.getAction(cmd);
-		String view = action.execute(request);
+
+		String view = action.execute(request); // 변수명을 'view'로 통일
 
 		// (1) 지원금/체크리스트 관련 AJAX JSON
 		if ("getSprtCategory".equals(cmd) || "getSprtPerson".equals(cmd) || "getSprtContent".equals(cmd)
