@@ -14,8 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bok.model.AskVO;
+import com.bok.model.SoloAskManagerVO;
 import com.bok.model.SoloAskVO;
 import com.bok.service.AskService;
+import com.bok.service.SoloAskManagerService;
 import com.bok.service.SoloAskService;
 import com.google.gson.Gson;
 
@@ -90,7 +92,25 @@ public class FrontControllerServlet extends HttpServlet {
 			return;
 		}
 
-		// 5) FAQ 전체 목록 AJAX 분기
+		// 5) 답변 저장 분기
+		if ("soloAskAnswer".equals(cmd)) {
+			String askNum = request.getParameter("askNum");
+			String answer = request.getParameter("answer");
+
+			SoloAskManagerVO vo = new SoloAskManagerVO();
+			vo.setAskNum(askNum);
+			vo.setSoloAnswer(answer);
+
+			boolean ok = new SoloAskManagerService().soloAskSend(vo);
+			if (ok) {
+				response.setStatus(HttpServletResponse.SC_OK);
+			} else {
+				response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			}
+			return;
+		}
+
+		// 6) FAQ 전체 목록 AJAX 분기
 		if ("askUI".equals(cmd) && "true".equals(request.getParameter("ajax"))) {
 			Collection<AskVO> faqList = new AskService().getFaq();
 			writeJson(response, faqList);
@@ -99,6 +119,7 @@ public class FrontControllerServlet extends HttpServlet {
 
 		// Action 처리 (뷰 이름 or JSON 문자열)
 		Action action = ActionFactory.getAction(cmd);
+
 		String view = action.execute(request); // 변수명을 'view'로 통일
 
 		// (1) 지원금/체크리스트 관련 AJAX JSON

@@ -1,73 +1,114 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>복덩이</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
-  <link rel="stylesheet" href="css/setHomeManager.css">
+<meta charset="UTF-8">
+<title>복덩이</title>
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
+	rel="stylesheet">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+	rel="stylesheet">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="css/setHomeManager.css">
 
 </head>
 <body>
-  <div class="page-layout">
-    <div class="container">
-      <nav class="navbar">
-        <div class="container">
-          <a class="navbar-brand" href="#"><img src="image/logo.png" alt="로고"></a>
-          <div class="admin-info d-flex align-items-center ms-3">
-            <span class="admin-greeting">관리자님 안녕하세요.</span>
-            <button class="logout-btn ms-2">로그아웃</button>
-          </div>
-          <div class="menu-wrapper ms-auto">
-            <a class="nav-link" href="#">체크리스트</a>
-            <a class="nav-link" href="#">지원금정보</a>
-            <a class="nav-link" href="#">문의관리</a>
-          </div>
-        </div>
-      </nav>
+	<div class="page-layout">
 
-         <div class="set-title">
-        <i class="bi bi-pencil-fill pencil-icon"></i>
-        <span class="set-text" id="pageTitle"></span>
-      </div>
+		<nav class="navbar">
 
-      <div class="set-container">
-        <h2 class="set-ready" id="readyTitle"></h2>
-        <h3 id="readyContent"></h3>
-        <h3 class="set-detail" id="readyDetail"></h3>
-      </div>
+			<div class="container">
+				<a class="navbar-brand" href="controller?cmd=ckHomeManagerUI"> <img
+					src="image/logo.png" alt="로고" />
+				</a>
 
-   
-        <div id="checklistContent">
-        </div>
-     
-
-      <div class="tip-box">
-        <i class="bi bi-pin-fill pin-icon"></i>
-        <h2 class="tip-title">TIP</h2>
-
-        <div id="tipContentDiv">
-
-          <!-- TIP 내용 들어가는 곳 -->
-        </div>
-           
-      </div>
-
-      <!-- 수정 및 삭제 버튼 -->
+				<!-- 로고 옆 관리자 텍스트 + 로그아웃 버튼 -->
 
 
-      <div class="bottom-button-group">
-        <button class="gray-btn">삭 제</button>
-        <button class="gray-btn">취 소</button>
-        <button class="yellow-btn">저 장</button>
-      </div>
 
-    </div>
-  </div>
+				<div class="admin-info d-flex align-items-center ms-3">
+					<span class="admin-greeting">관리자님 안녕하세요.</span>
+					<button class="logout-btn ms-2">로그아웃</button>
+				</div>
+				<div class="menu-wrapper ms-auto">
+					<div class="dropdown">
+						<a class="nav-link dropdown-toggle no-underline" href="#"
+							role="button" data-bs-toggle="dropdown" aria-expanded="false">체크리스트</a>
+						<ul class="dropdown-menu dropdown-menu-end">
+							<li><a class="dropdown-item"
+								href="controller?cmd=ckHomeManagerUI">현재 체크리스트</a></li>
+							<li><a class="dropdown-item" href="controller?cmd=#">이전
+									체크리스트</a></li>
+						</ul>
+					</div>
+					<div class="dropdown">
+						<a class="nav-link dropdown-toggle no-underline" role="button"
+							data-bs-toggle="dropdown" aria-expanded="false">지원금 정보</a>
+						<ul class="dropdown-menu dropdown-menu-end">
+							<li><a class="dropdown-item" href="sprtManagerUI.html">현재
+									지원금 정보</a></li>
+							<li><a class="dropdown-item" href="sprtBfManagerUI.html">이전
+									지원금 정보</a></li>
+						</ul>
+					</div>
+					<div class="dropdown">
+						<a class="nav-link dropdown-toggle no-underline" role="button"
+							data-bs-toggle="dropdown" aria-expanded="false">문의관리</a>
+						<ul class="dropdown-menu dropdown-menu-end">
+							<li><a class="dropdown-item"
+								href="controller?cmd=askManagerUI">FAQ</a></li>
+							<li><a class="dropdown-item"
+								href="controller?cmd=soloAskManagerUI">1:1 문의관리</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</nav>
 
-  <script>
+		<div class="set-title">
+			<i class="bi bi-pencil-fill pencil-icon"></i> <span class="set-text"
+				id="pageTitle"></span>
+		</div>
+
+		<div class="set-container">
+			<h2 class="set-ready" id="readyTitle"></h2>
+			<h3 id="readyContent"></h3>
+			<h3 class="set-detail" id="readyDetail"></h3>
+		</div>
+
+
+		<div id="checklistContent"></div>
+
+
+		<div class="tip-box">
+			<i class="bi bi-pin-fill pin-icon"></i>
+			<h2 class="tip-title">TIP</h2>
+
+			<div id="tipContentDiv">
+
+				<!-- TIP 내용 들어가는 곳 -->
+			</div>
+
+		</div>
+
+		<!-- 수정 및 삭제 버튼 -->
+
+
+		<div class="bottom-button-group">
+			<button class="gray-btn">삭 제</button>
+			<button class="gray-btn">취 소</button>
+			<button class="yellow-btn">저 장</button>
+		</div>
+
+	</div>
+	</div>
+
+	<script>
   let originalTipContent = "";  // 원본 TIP 내용 보관용
   let isEditing = false;
 

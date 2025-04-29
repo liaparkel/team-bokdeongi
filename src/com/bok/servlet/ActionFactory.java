@@ -206,6 +206,18 @@ public class ActionFactory {
 		case "getCkHomeInfo":
 		    a = new GetCkHomeInfoAction();
 		    break;
+		   
+		case "soloAskDetailManager":
+			a = new SoloAskDetailManager();
+			break;
+			
+		case "setFAQUI":
+			a = new SetFAQUIAction();
+			break;
+		
+		case "addFAQUI":
+			a = new AddFAQUIAction();
+			break;
 
 		default:
 			a = new MainUIAction();

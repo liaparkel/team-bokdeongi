@@ -102,13 +102,11 @@
 		solo_answer as soloAnswer
 		FROM solo_ask
 		WHERE ask_num = #{askNum}
-
 	</select>
 
 	<update id="updateFaq" parameterType="com.bok.model.FaqManagerVO">
 		UPDATE faq
-		SET faq_content =
-		#{faqContent}
+		SET faq_content = #{faqContent}
 		WHERE faq_num = #{faqNum}
 	</update>
 
@@ -151,10 +149,9 @@
 
 	<update id="soloAskSend" parameterType="com.bok.model.SoloAskManagerVO">
 		UPDATE solo_ask
-		SET
-		solo_answer = #{soloAnswer}, crew_id = #{crewId}
-		WHERE ask_num =
-		#{askNum}
+		SET solo_answer = #{soloAnswer},
+			crew_id = #{crewId}
+		WHERE ask_num = #{askNum}
 	</update>
 
 	<select id="getSprtPersonOne" parameterType="int"
