@@ -3,14 +3,17 @@
 <%@ page import="com.bok.model.SprtPersonVO"%>
 <%@ page import="java.util.List"%>
 <%@ page import="com.bok.model.SprtContentVO"%>
+<%@ page import="com.bok.model.SprtInfoVO"%>
 <%@ page import="java.text.SimpleDateFormat"%>
 <%@ page import="java.util.Date"%>
 <%@ page import="java.text.ParseException"%>
+
 <%
 	SprtPersonVO person = (SprtPersonVO) request.getAttribute("person");
 	List<SprtContentVO> contentList = (List<SprtContentVO>) request.getAttribute("contentList");
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	String category = (String) request.getAttribute("category");
 
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	// 날짜가 String 타입인 경우, 먼저 Date로 변환
 	String startDateFormatted = "";
 	String endDateFormatted = "";
@@ -119,7 +122,7 @@
 
 				<div class="main">
 					<div class="container">
-						<h1>청년</h1>
+						<h1><%=category != null ? category : "기본값"%></h1>
 
 						<div class="gray-line"></div>
 						<h2>제목</h2>
@@ -181,13 +184,13 @@
 
 						<h3 class="link">링크 수정하기</h3>
 						<input type="url" class="text-input tip-box" name="sprtLink"
-							value="<%=person != null ? person.getLink() : ""%>">
+							value="<%=(person != null && person.getLink() != null) ? person.getLink() : ""%>">
 						<div class="button-wrapper">
 							<button type="button" id="cancel" class="small"
 								name="addSprtMenuDelete">삭제</button>
 							<button type="button" id="update" class="small"
 								name="addSprtMenuUpdate">수정</button>
-							<button type="submit" id="add" class="small"
+							<button type="button" id="add" class="small"
 								name="addSprtMenuSave">추가</button>
 
 						</div>
@@ -198,7 +201,30 @@
 		</div>
 	</div>
 
+	<!-- 본문 추가 or 삭제하는 동작 -->
+	<script>
+  const addContentBtn = document.getElementById("addContentBtn");
+  const contentArea = document.querySelector(".content-area");
 
+  addContentBtn.addEventListener("click", () => {
+	  const newBlock = document.createElement("div");
+	  newBlock.classList.add("content-block");
+	  newBlock.innerHTML = `
+	    <input type="text" class="text-input tip-box" name="sprtSubTitleList" placeholder="본문의 소제목을 작성해주세요.">
+	    <textarea class="text-input tip-box" name="sprtTextList" placeholder="본문의 내용을 작성해주세요."></textarea>
+	  `;
+	  contentArea.appendChild(newBlock);
+	});
+
+  const removeContentBtn = document.getElementById("removeContentBtn");
+
+  removeContentBtn.addEventListener("click", () => {
+    const blocks = document.querySelectorAll(".content-block");
+    if (blocks.length > 1) {
+      blocks[blocks.length - 1].remove(); // 마지막 블록 삭제
+    }
+  });
+</script>
 	<!-- Bootstrap JS -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
@@ -216,7 +242,7 @@
 
 	    document.getElementById("add").addEventListener("click", function () {
 	        document.getElementById("cmd").value = "setSprtAdd";
-	
+	        form.submit();
 	    });
 
 	    document.getElementById("cancel").addEventListener("click", function () {
