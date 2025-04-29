@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
 import com.bok.model.SprtContentVO;
+import com.bok.model.SprtInfoVO;
 import com.bok.model.SprtPersonVO;
 import com.bok.service.SprtManagerService;
 
@@ -20,7 +21,9 @@ public class SetSprtInfoAction implements Action{
         SprtManagerService service = new SprtManagerService();
         SprtPersonVO person = service.getSprtPerson(sprtpNum);
         List<SprtContentVO> contentList = service.getSprtContent(sprtpNum);
+        String category = service.getSprtCategory(sprtpNum);
 
+        request.setAttribute("category", category);
         request.setAttribute("person", person);
         request.setAttribute("contentList", contentList);
 
