@@ -12,7 +12,8 @@
 	SprtPersonVO person = (SprtPersonVO) request.getAttribute("person");
 	List<SprtContentVO> contentList = (List<SprtContentVO>) request.getAttribute("contentList");
 	String category = (String) request.getAttribute("category");
-
+	String paramSprtpNum = request.getParameter("sprtpNum");
+	
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	// 날짜가 String 타입인 경우, 먼저 Date로 변환
 	String startDateFormatted = "";
@@ -32,9 +33,6 @@
 			e.printStackTrace();
 		}
 	}
-%>
-<%
-	
 %>
 <%
 	String msg = (String) request.getAttribute("message");
@@ -109,8 +107,6 @@
 			</div>
 		</nav>
 
-
-
 		<!-- 메인 -->
 		<div class="main">
 			<form action="controller" method="post" accept-charset="UTF-8">
@@ -118,7 +114,7 @@
 					type="hidden" id="fkSprtNum" name="fkSprtNum"
 					value="<%=person != null ? person.getFkSprtNum() : ""%>"> <input
 					type="hidden" id="sprtpNum" name="sprtpNum"
-					value="<%=person != null ? person.getSprtpNum() : ""%>">
+					value="<%= paramSprtpNum != null ? paramSprtpNum : "" %>">
 
 				<div class="main">
 					<div class="container">
@@ -248,7 +244,6 @@
 	    document.getElementById("cancel").addEventListener("click", function () {
 	        if (confirm("정말 삭제하시겠습니까?")) {
 	            document.getElementById("cmd").value = "setSprtDelete";
-	            form.submit();
 	        }
 	    });
 	});
