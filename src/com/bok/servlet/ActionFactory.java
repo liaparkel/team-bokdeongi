@@ -185,11 +185,11 @@ public class ActionFactory {
 			a = new SetSprtDeleteAction();
 			break;
 			
-		case "addSprtMenuSaveAction":
+		case "addSprtMenuSave":
 			a = new AddSprtMenuSaveAction();
 			break;
 
-		case "sprtContentDeleteAction":
+		case "sprtContentDelete":
 			a = new SprtContentDeleteAction();
 			break;
 			
