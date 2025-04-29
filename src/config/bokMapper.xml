@@ -102,7 +102,7 @@
 		solo_answer as soloAnswer
 		FROM solo_ask
 		WHERE ask_num = #{askNum}
-		
+
 	</select>
 
 	<update id="updateFaq" parameterType="com.bok.model.FaqManagerVO">
@@ -301,8 +301,11 @@ where sprt_num = #{sprtNum}
 	<!-- 카테고리 추가 -->
 	<insert id="addckCategory" parameterType="com.bok.model.CkVO">
 		INSERT INTO ck (ck_num,
-		ck_category, ck_date)
-		VALUES (ck_seq.NEXTVAL, #{ckCategory}, #{ckDate})
+		ck_category, ck_tip, ck_date)
+		VALUES (ck_seq.NEXTVAL, #{category,
+		jdbcType=VARCHAR}, #{tip,
+		jdbcType=VARCHAR}, TO_DATE(#{date},
+		'YYYY-MM-DD HH24:MI:SS'))
 	</insert>
 
 	<!-- 팁 수정 -->
@@ -393,14 +396,15 @@ where sprt_num = #{sprtNum}
 	</select>
 
 	<!-- 최신 카테고리 메타 정보 1건 가져오기 -->
-	<select id="getLatestCk" parameterType="String"
-		resultType="com.bok.model.CkVO">
+	<select id="getLatestCk" parameterType="String" resultType="com.bok.model.CkVO">
 		SELECT ck_num ckNum,
 		ck_category category,
 		ck_tip tip,
-		TO_CHAR(ck_date, 'YYYY-MM-DD') AS "date"
+		TO_CHAR(ck_date,
+		'YYYY-MM-DD') AS "date"
 		FROM (
-		SELECT ck_num, ck_category, ck_tip, ck_date
+		SELECT ck_num, ck_category, ck_tip,
+		ck_date
 		FROM ck
 		WHERE ck_category = #{category}
 		ORDER BY ck_date DESC
@@ -416,9 +420,27 @@ where sprt_num = #{sprtNum}
 		ck_content content,
 		ck_num fkCkNum
 		FROM ck_content
-		WHERE ck_num = #{ckNum}
+		WHERE ck_num =
+		#{ckNum}
 		ORDER BY ck_content_num ASC
 	</select>
+
+	<insert id="addCkContent" parameterType="com.bok.model.CkContentVO">
+		INSERT INTO ck_content (ck_content_num, ck_title, ck_content, ck_num)
+		VALUES (ck_content_seq.NEXTVAL, #{title}, #{content}, #{fkCkNum})
+	</insert>
+
+	<delete id="deleteCkContents" parameterType="int">
+		DELETE FROM
+		ck_content
+		WHERE ck_num = #{ckNum}
+	</delete>
+
+	<delete id="deleteCk" parameterType="int">
+		DELETE FROM ck
+		WHERE ck_num =
+		#{ckNum}
+	</delete>
 
 	<select id="getPagedBfSprtPersonM" resultType="com.bok.model.SprtPersonVO">
 		SELECT sprtp_num
