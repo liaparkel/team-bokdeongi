@@ -3,117 +3,93 @@
 <head>
 <meta charset="UTF-8">
 <title>BokDeongI</title>
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
-	rel="stylesheet">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
-	rel="stylesheet" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <link rel="stylesheet" href="css/component.css">
 <link rel="stylesheet" href="css/ckHomeManagerUI.css">
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-	rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 </head>
 
 <body>
-	<div class="page-layout">
+<div class="page-layout">
 
-		<nav class="navbar">
+    <!-- 상단 네비게이션 -->
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="controller?cmd=ckHomeManagerUI">
+                <img src="image/logo.png" alt="로고" />
+            </a>
+            <div class="admin-info d-flex align-items-center ms-3">
+                <span class="admin-greeting">관리자님 안녕하세요.</span>
+                <button class="logout-btn ms-2">로그아웃</button>
+            </div>
+            <div class="menu-wrapper ms-auto">
+                <div class="dropdown">
+                    <a class="nav-link dropdown-toggle no-underline" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">체크리스트</a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="#">현재 체크리스트</a></li>
+                        <li><a class="dropdown-item" href="#">이전 체크리스트</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <a class="nav-link dropdown-toggle no-underline" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">지원금 정보</a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="sprtManagerUI.html">현재 지원금 정보</a></li>
+                        <li><a class="dropdown-item" href="sprtBfManagerUI.html">이전 지원금 정보</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <a class="nav-link dropdown-toggle no-underline" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">문의관리</a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="#">FAQ</a></li>
+                        <li><a class="dropdown-item" href="#">1:1 문의관리</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-			<div class="container">
-				<a class="navbar-brand" href="controller?cmd=ckHomeManagerUI"> <img
-					src="image/logo.png" alt="로고" />
-				</a>
+    <!-- 본문 -->
+    <div class="main">
+        <div class="container">
+            <h1>주택임대차 안내서</h1>
+            <div id="category-area" class="d-flex justify-content-between align-items-center" style="margin-top: 30px;">
+                <div id="category-buttons" class="ck-menu"></div>
+                <div class="button-group">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#categoryModal">+</button>
+                </div>
+            </div>
+            <hr class="divider">
+            <div class="d-flex justify-content-end">
+                <button class="middle" id="editCategoryBtn" style="display: none;">게시글 수정</button>
+            </div>
+            <div id="ck-content" class="mt-4" style="display: none;"></div>
+            <div id="tip-box" class="tip-box" style="display: none;"></div>
+        </div>
+    </div>
 
-				<!-- 로고 옆 관리자 텍스트 + 로그아웃 버튼 -->
+    <!-- 모달창 (카테고리 추가) -->
+    <div class="modal fade" id="categoryModal" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="border-radius: 16px;">
+                <div class="modal-body text-center p-4">
+                    <p class="mb-3">추가할 카테고리명을 입력해주세요.</p>
+                    <input type="text" id="newCategoryName" class="form-control mb-3" placeholder="카테고리명 입력">
+                    <div class="d-flex justify-content-center gap-3">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                        <button type="button" class="btn btn-warning" id="submit">추가</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+</div>
 
-
-				<div class="admin-info d-flex align-items-center ms-3">
-					<span class="admin-greeting">관리자님 안녕하세요.</span>
-					<button class="logout-btn ms-2">로그아웃</button>
-				</div>
-				<div class="menu-wrapper ms-auto">
-					<div class="dropdown">
-						<a class="nav-link dropdown-toggle no-underline" href="#"
-							role="button" data-bs-toggle="dropdown" aria-expanded="false">체크리스트</a>
-						<ul class="dropdown-menu dropdown-menu-end">
-							<li><a class="dropdown-item" href="#">현재 체크리스트</a></li>
-							<li><a class="dropdown-item" href="#">이전 체크리스트</a></li>
-						</ul>
-					</div>
-					<div class="dropdown">
-						<a class="nav-link dropdown-toggle no-underline" href="#"
-							role="button" data-bs-toggle="dropdown" aria-expanded="false">지원금
-							정보</a>
-						<ul class="dropdown-menu dropdown-menu-end">
-							<li><a class="dropdown-item" href="sprtManagerUI.html">현재
-									지원금 정보</a></li>
-							<li><a class="dropdown-item" href="sprtBfManagerUI.html">이전
-									지원금 정보</a></li>
-						</ul>
-					</div>
-					<div class="dropdown">
-						<a class="nav-link dropdown-toggle no-underline" href="#"
-							role="button" data-bs-toggle="dropdown" aria-expanded="false">문의관리</a>
-						<ul class="dropdown-menu dropdown-menu-end">
-							<li><a class="dropdown-item" href="#">FAQ</a></li>
-							<li><a class="dropdown-item" href="#">1:1 문의관리</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</nav>
-
-		<div class="main">
-			<div class="container">
-				<h1>주택임대차 안내서</h1>
-				<div id="category-area"
-					class="d-flex justify-content-between align-items-center"
-					style="margin-top: 30px;">
-					<div id="category-buttons" class="ck-menu"></div>
-					<div class="button-group">
-						<button type="button" class="btn btn-outline-secondary"
-							data-bs-toggle="modal" data-bs-target="#categoryModal">+</button>
-					</div>
-				</div>
-				<hr class="divider">
-				<div class="d-flex justify-content-end">
-					<button class="middle" id="editCategoryBtn" style="display: none;">게시글
-						수정</button>
-				</div>
-				<div id="ck-content" class="mt-4" style="display: none;"></div>
-				<div id="tip-box" class="tip-box" style="display: none;"></div>
-			</div>
-		</div>
-
-		<!-- 모달창 -->
-		<div class="modal fade" id="categoryModal" tabindex="-1"
-			aria-labelledby="categoryModalLabel" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content" style="border-radius: 16px;">
-					<div class="modal-body text-center p-4">
-						<p class="mb-3">추가할 카테고리명을 입력해주세요.</p>
-						<input type="text" id="newCategoryName" class="form-control mb-3"
-							placeholder="카테고리명 입력">
-						<div class="d-flex justify-content-center gap-3">
-							<button type="button" class="btn btn-secondary"
-								data-bs-dismiss="modal">취소</button>
-							<button type="button" class="btn btn-warning" id="submit">추가</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-	</div>
-
-	<script>
+<script>
+// 페이지 로딩 후 카테고리 불러오기
 window.addEventListener('DOMContentLoaded', function() {
     fetchCategories();
-
-    // 초기에 숨김 처리
     document.getElementById('ck-content').style.display = 'none';
     document.getElementById('tip-box').style.display = 'none';
     document.getElementById('editCategoryBtn').style.display = 'none';
@@ -137,8 +113,6 @@ function fetchCategories() {
                     firstButton = button;
                 }
             });
-
-            // 첫 번째 카테고리 자동 클릭
             if (firstButton) {
                 firstButton.click();
             }
@@ -167,15 +141,12 @@ function loadCategory(event, category) {
             if (contentList && contentList.length > 0) {
                 ckContentDiv.innerHTML = `
                     <div class="content-list">
-                        ${contentList.map(item => {
-                            const convertedContent = item.content.replace(/(?:\r\n|\r|\n)/g, '<br>');
-                            return `
-                                <div class="content-item">
-                                    <h2 class="content-title">${item.title}</h2>
-                                    <p>${convertedContent}</p>
-                                </div>
-                            `;
-                        }).join('')}
+                        ${contentList.map(item => `
+                            <div class="content-item">
+                                <h2 class="content-title">${item.title}</h2>
+                                <p>${item.content.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
+                            </div>
+                        `).join('')}
                     </div>
                 `;
             } else {
@@ -184,11 +155,10 @@ function loadCategory(event, category) {
 
             const tipBox = document.getElementById('tip-box');
             if (ckInfo && ckInfo.tip) {
-                const convertedTip = ckInfo.tip.replace(/(?:\r\n|\r|\n)/g, '<br>');
                 tipBox.innerHTML = `
                     <i class="fas fa-thumbtack pin-icon"></i>
                     <div class="tip-title">TIP</div>
-                    <p>${convertedTip}</p>
+                    <p>${ckInfo.tip.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
                 `;
                 tipBox.style.display = 'block';
             } else {
@@ -202,20 +172,41 @@ function loadCategory(event, category) {
         });
 }
 
-// 모달 추가 버튼 클릭
+// 🔥 모달창 추가 버튼 (카테고리 추가 후 addCk.html로 이동)
 document.getElementById('submit').addEventListener('click', function() {
     const newCategory = document.getElementById('newCategoryName').value.trim();
     if (newCategory === '') {
         alert('카테고리 이름을 입력해주세요.');
         return;
     }
-    alert('추가할 카테고리 이름: ' + newCategory);
-    const modalElement = document.getElementById('categoryModal');
-    const modalInstance = bootstrap.Modal.getInstance(modalElement);
-    modalInstance.hide();
+
+    fetch('/Team_03/controller?cmd=addCk', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: 'category=' + encodeURIComponent(newCategory)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('카테고리 추가 성공!');
+            const modalElement = document.getElementById('categoryModal');
+            const modalInstance = bootstrap.Modal.getInstance(modalElement);
+            modalInstance.hide();
+
+            window.location.href = "/Team_03/addCk.html?category=" + encodeURIComponent(data.category);
+        } else {
+            alert('카테고리 추가 실패: ' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('카테고리 추가 중 에러:', error);
+        alert('카테고리 추가 실패(서버 오류)');
+    });
 });
 
-// 수정 버튼 클릭 시
+// 🔥 수정 버튼 클릭 (setHomeManagerUI.html로 이동)
 document.getElementById('editCategoryBtn').addEventListener('click', function() {
     const activeBtn = document.querySelector('.checkActive');
     if (!activeBtn) {
@@ -223,15 +214,10 @@ document.getElementById('editCategoryBtn').addEventListener('click', function() 
         return;
     }
     const selectedCategory = activeBtn.innerText.trim();
-
-    // 페이지 이동할 때 category를 URL에 붙여서 보내기
     window.location.href = "setHomeManagerUI.html?category=" + encodeURIComponent(selectedCategory);
 });
-
 </script>
 
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
-		crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
 </html>

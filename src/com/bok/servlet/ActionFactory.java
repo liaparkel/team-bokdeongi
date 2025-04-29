@@ -69,7 +69,7 @@ public class ActionFactory {
 			break;
 
 		case "addCkCancel":
-			a = new AddCkCencelAction();
+			a = new AddCkCancelAction();
 			break;
 
 		case "addTextAction":
@@ -132,17 +132,8 @@ public class ActionFactory {
 		    a = new GetBfSprtManagerPersonAction();
 		    break;
 
-
 		case "sprtManagerUI":
 			a = new SprtManagerUIAction();
-			break;
-
-		case "loanSprt":
-//			a = new LoanSprtAction();
-			break;
-
-		case "happySprt":
-//			a = new HappySprtAction();
 			break;
 
 		case "searchEmail":

@@ -6,21 +6,45 @@ import org.apache.ibatis.session.SqlSession;
 
 public class CkDAO {
 
-    // 체크리스트 카테고리 전체 가져오기
-    public List<CkVO> getCkCategory(SqlSession session) {
-        return session.selectList("bokMapper.getCkCategory");
-    }
+	// 체크리스트 카테고리 전체 가져오기
+	public List<CkVO> getCkCategory(SqlSession session) {
+		return session.selectList("bokMapper.getCkCategory");
+	}
 
-    // 특정 카테고리 이름으로 최신 카테고리 정보 가져오기
-    public CkVO getLatestCk(SqlSession session, String category) {
-        return session.selectOne("bokMapper.getLatestCk", category);
-    }
+	// 특정 카테고리 이름으로 최신 카테고리 정보 가져오기
+	public CkVO getLatestCk(SqlSession session, String category) {
+		return session.selectOne("bokMapper.getLatestCk", category);
+	}
 
-    // 특정 ck_num에 해당하는 체크리스트 항목 가져오기
-    public List<CkContentVO> getCkContent(SqlSession session, int ckNum) {
-        return session.selectList("bokMapper.getCkContent", ckNum);
-    }
+	// 특정 ck_num에 해당하는 체크리스트 항목 가져오기
+	public List<CkContentVO> getCkContent(SqlSession session, int ckNum) {
+		return session.selectList("bokMapper.getCkContent", ckNum);
+	}
 
+	// 카테고리 추가
+	public int addckCategory(SqlSession session, CkVO vo) {
+		return session.insert("bokMapper.addckCategory", vo);
+	}
+	
+	// TIP 수정
+	public int setTip(SqlSession session, CkVO vo) {
+	    return session.update("setTip", vo);
+	}
+	
+	// 체크리스트 제목/본문 추가
+	public int addCkContent(SqlSession session, CkContentVO vo) {
+	    return session.insert("addCkContent", vo);
+	}
+	
+	// 특정 ck_num에 연결된 체크리스트 항목 전체 삭제
+	public int deleteCkContents(SqlSession session, int ckNum) {
+	    return session.delete("deleteCkContents", ckNum);
+	}
+	
+	// 특정 ck_num 카테고리 삭제
+	public int deleteCk(SqlSession session, int ckNum) {
+	    return session.delete("deleteCk", ckNum);
+	}
 
 	//    // 체크리스트 전체 조회
 	//    public Collection<CkVO> ckListInfo(String category) {

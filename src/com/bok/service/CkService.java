@@ -22,7 +22,6 @@ public class CkService {
 		try (SqlSession session = DBCP.getSqlSessionFactory().openSession()) {
 			return dao.getCkCategory(session);
 		} catch (Exception e) {
-			e.printStackTrace();
 			return null;
 		}
 	}
@@ -32,7 +31,6 @@ public class CkService {
 		try (SqlSession session = DBCP.getSqlSessionFactory().openSession()) {
 			return dao.getLatestCk(session, category);
 		} catch (Exception e) {
-			e.printStackTrace();
 			return null;
 		}
 	}
@@ -42,89 +40,73 @@ public class CkService {
 		try (SqlSession session = DBCP.getSqlSessionFactory().openSession()) {
 			return dao.getCkContent(session, ckNum);
 		} catch (Exception e) {
-			e.printStackTrace();
 			return null;
 		}
 	}
 
-	//	// 체크리스트 전체 조회
-	//    public Collection<CkVO> getCkListInfo(String category) {
-	//        return dao.ckListInfo(category);
-	//    }
-	//
-	//    // 체크리스트 최신순 조회
-	//    public Collection<CkVO> getCkListRecentInfo(String category) {
-	//        return dao.ckListRecentInfo(category);
-	//    }
-	//
-	//    // 체크리스트 제목/내용 수정
-	//    public int setCkList(CkVO vo) {
-	//        return dao.setCkList(vo);
-	//    }
-	//
-	//    // 체크리스트 추가
-	//    public int addCkList(CkVO vo) {
-	//        return dao.addCkList(vo);
-	//    }
-	//
-	//    // 체크리스트 삭제
-	//    public int deleteCkList(int ckContentNum) {
-	//        return dao.deleteCkList(ckContentNum);
-	//    }
-	//
-	//    // 카테고리 추가
-	//    public int addCkCategory(CkVO vo) {
-	//        return dao.addckCategory(vo);
-	//    }
-	//
-	//    // 팁 수정
-	//    public int setTip(CkVO vo) {
-	//        return dao.setTip(vo);
-	//    }
-	//
-	//    // 팁 추가
-	//    public int addTip(CkVO vo) {
-	//        return dao.addTip(vo);
-	//    }
-	//
-	//    // 팁 삭제
-	//    public int deleteTip(int ckNum) {
-	//        return dao.deleteTip(ckNum);
-	//    }
-	//
-	//    // 팁 전체 삭제
-	//    public int deleteAllTips(int ckNum) {
-	//        return dao.allDeleteTip(ckNum);
-	//    }
-	//
-	//    // 팁 최신 조회
-	//    public Collection<CkVO> tipRecentSearch(String ckCategory) {
-	//        return dao.tipRecentSearch(ckCategory);
-	//    }
-	//
-	//    // 팁 조회
-	//    public Collection<CkVO> tipSearch(String ckCategory) {
-	//        return dao.tipSearch(ckCategory);
-	//    }
-	//
-	//    // 이전 카테고리 목록 조회
-	//    public Collection<String> backCkCategoryList() {
-	//        return dao.backCkCategoryList();
-	//    }
-	//
-	//    // 이전 제목/날짜 목록
-	//    public Collection<CkVO> backCkTitleList(String ckCategory) {
-	//        return dao.backCkTitleList(ckCategory);
-	//    }
-	//
-	//    // 이전 제목/내용 목록
-	//    public Collection<CkVO> backCkListSearch() {
-	//        return dao.backCkListSearch();
-	//    }
-	//
-	//    // 이전 체크리스트 삭제
-	//    public int deleteBackCkList(int ckContentNum) {
-	//        return dao.backCkListDelete(ckContentNum);
-	//    }
+	// 카테고리 추가(categoryName만 받아서 직접 VO 만들고 DB insert)
+	public String addCkCategory(String categoryName) {
+		try (SqlSession session = DBCP.getSqlSessionFactory().openSession()) {
+			CkVO vo = new CkVO();
+			vo.setCategory(categoryName);
+			vo.setTip(null); // tip은 null
+			vo.setDate(java.time.LocalDateTime.now().format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 
+			int result = dao.addckCategory(session, vo);
+			session.commit();
+
+			if (result > 0) {
+				return categoryName;
+			} else {
+				return null;
+			}
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	// 카테고리 추가하고 넘어간 화면에서 저장 버튼
+	public boolean saveCkContents(int ckNum, String tip, List<CkContentVO> contentList) {
+		try (SqlSession session = DBCP.getSqlSessionFactory().openSession()) {
+
+			// TIP 업데이트
+			CkVO ckVo = new CkVO();
+			ckVo.setCkNum(ckNum);
+			ckVo.setTip(tip);
+			int tipResult = dao.setTip(session, ckVo);
+
+			// 제목/본문 insert
+			int contentResult = 0;
+			for (CkContentVO contentVo : contentList) {
+				contentVo.setFkCkNum(ckNum); // fk 설정
+				contentResult += dao.addCkContent(session, contentVo);
+			}
+
+			// 전체 커밋
+			session.commit();
+
+			// TIP 수정과 내용 추가가 둘 다 성공했는지 체크
+			return tipResult > 0 && contentResult == contentList.size();
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	// 카테고리 추가하고 넘어간 화면에서 취소 버튼
+	public boolean cancelCkCategory(int ckNum) {
+		try (SqlSession session = DBCP.getSqlSessionFactory().openSession()) {
+
+			// 체크리스트 내용 먼저 삭제
+			dao.deleteCkContents(session, ckNum);
+
+			// 카테고리 삭제
+			int result = dao.deleteCk(session, ckNum);
+
+			session.commit();
+
+			return result > 0;
+		} catch (Exception e) {
+			return false;
+		}
+	}
 }
