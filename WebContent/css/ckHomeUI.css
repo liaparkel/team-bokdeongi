@@ -298,3 +298,8 @@ margin: 30px 0px;
   background-color: white;
   padding: 20px;
 }
+.content-title {
+    font-size: 18px;
+    margin-bottom: 12px;
+    font-weight: bold;
+}

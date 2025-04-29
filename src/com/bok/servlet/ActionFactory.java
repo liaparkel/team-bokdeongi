@@ -88,13 +88,10 @@ public class ActionFactory {
 			a = new CkBfContentDeleteAction();
 			break;
 
-
 		case "ckHomeUI" :
 			a = new CkHomeUIAction();
 			break;
 					
-
-
 		case "sprtUI":
 			a = new SprtUIAction();
 			break;
@@ -102,7 +99,6 @@ public class ActionFactory {
 		case "bfSprtUI":
 			a = new BfSprtUIAction();
 			break;
-
 
 		case "login":
 			a = new LoginAction();
@@ -112,7 +108,6 @@ public class ActionFactory {
 			a = new GetSprtCategoryAction();
 			break;
 
-
 		case "askUI":
 			a = new AskUIAction();
 			break;
@@ -121,7 +116,6 @@ public class ActionFactory {
 			a = new SoloAskUIAction();
 			break;
 
-			
 		case "getSprtPerson":
 			a = new GetSprtPersonAction();
 			break;
@@ -142,7 +136,6 @@ public class ActionFactory {
 		case "sprtManagerUI":
 			a = new SprtManagerUIAction();
 			break;
-
 
 		case "loanSprt":
 //			a = new LoanSprtAction();
@@ -187,18 +180,30 @@ public class ActionFactory {
 		case "setSprtInfo": 
 			a = new SetSprtInfoAction();
 			break;
+			
 		case "setSprtAdd":
 			a = new SetSprtAddAction();
 			break;
+			
 		case "setSprtUpdate":
 			a = new SetSprtUpdateAction();
 			break;
+			
 		case "setSprtDelete":
 			a = new SetSprtDeleteAction();
 			break;
+			
 		case "addSprtMenuSaveAction":
 			a = new AddSprtMenuSaveAction();
 			break;
+			
+		case "getCkCategory":
+		    a = new GetCkCategoryAction();
+		    break;
+
+		case "getCkHomeInfo":
+		    a = new GetCkHomeInfoAction();
+		    break;
 
 		default:
 			a = new MainUIAction();

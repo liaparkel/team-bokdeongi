@@ -20,16 +20,13 @@ import com.google.gson.Gson;
 public class FrontControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
 
 		String cmd = request.getParameter("cmd");
-		if (cmd == null) {
+		if (cmd == null)
 			cmd = "mainUI";
-		}
 
 		// 1) 상세보기 비밀번호 확인 AJAX 분기
 		if ("soloAskDetailCheck".equals(cmd) && "true".equals(request.getParameter("ajax"))) {
@@ -94,9 +91,26 @@ public class FrontControllerServlet extends HttpServlet {
 			return;
 		}
 
-		// 그 외는 ActionFactory → Action → 뷰 포워드
 		Action action = ActionFactory.getAction(cmd);
-		String view = action.execute(request);
+		String result = action.execute(request);
+
+		// (1) 지원금/체크리스트 관련 명령어 → JSON 바로 응답
+		if ("getSprtCategory".equals(cmd) || "getSprtPerson".equals(cmd) || "getSprtContent".equals(cmd)
+				|| "getBfSprtPerson".equals(cmd) || "getBfSprtManagerPerson".equals(cmd) || "getCkCategory".equals(cmd)
+				|| "getCkHomeInfo".equals(cmd)) {
+
+			response.setContentType("application/json; charset=UTF-8");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().write(result);
+			return;
+		}
+
+		// (2) 1:1 문의 전체 목록 AJAX 처리
+		if ("soloAskUI".equals(cmd) && "true".equals(request.getParameter("ajax"))) {
+			Collection<SoloAskVO> list = new SoloAskService().getSoloAsk();
+			writeJson(response, list);
+			return;
+		}
 
 		// 지원금 API JSON 분기...
 		if ("getSprtCategory".equals(cmd) || "getSprtPerson".equals(cmd) || "getSprtContent".equals(cmd)
@@ -130,4 +144,5 @@ public class FrontControllerServlet extends HttpServlet {
 			out.flush();
 		}
 	}
+
 }

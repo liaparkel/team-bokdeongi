@@ -157,7 +157,6 @@
 		#{askNum}
 	</update>
 
-
 	<select id="getSprtPersonOne" parameterType="int"
 		resultType="com.bok.model.SprtPersonVO">
 		select sprt_title as title, sprt_link as link, sprt_summary
@@ -209,6 +208,7 @@
 		#{fkSprtNum}
 		)
 	</insert>
+
 	<insert id="addSprtContent" parameterType="com.bok.model.SprtContentVO">
 		insert into
 		sprt_content(sprtpc_num, sprt_subtitle,sprt_content,sprtp_num)
@@ -367,16 +367,59 @@
 		WHERE ck_content_num = #{ckContentNum}
 	</delete>
 
+	<!-- 체크리스트 카테고리 가져오기 -->
+	<select id="getCkCategory" resultType="com.bok.model.CkVO">
+		SELECT ck_num ckNum,
+		ck_category category,
+		ck_tip tip,
+		TO_CHAR(ck_date, 'YYYY-MM-DD') AS
+		"date"
+		FROM ck
+		ORDER BY ck_num ASC
+	</select>
+
+	<!-- 최신 카테고리 메타 정보 1건 가져오기 -->
+	<select id="getLatestCk" parameterType="String"
+		resultType="com.bok.model.CkVO">
+		SELECT ck_num ckNum,
+		ck_category category,
+		ck_tip tip,
+		TO_CHAR(ck_date, 'YYYY-MM-DD') AS "date"
+		FROM (
+		SELECT ck_num, ck_category, ck_tip, ck_date
+		FROM ck
+		WHERE ck_category = #{category}
+		ORDER BY ck_date DESC
+		)
+		WHERE ROWNUM = 1
+	</select>
+
+	<!-- 해당 ck_num에 연결된 체크리스트 항목 리스트 가져오기 -->
+	<select id="getCkContent" parameterType="int"
+		resultType="com.bok.model.CkContentVO">
+		SELECT ck_content_num ckContentNum,
+		ck_title title,
+		ck_content content,
+		ck_num fkCkNum
+		FROM ck_content
+		WHERE ck_num = #{ckNum}
+		ORDER BY ck_content_num ASC
+	</select>
+
 	<select id="getPagedBfSprtPersonM" resultType="com.bok.model.SprtPersonVO">
-		SELECT sprtp_num AS
+		SELECT sprtp_num
+		AS
 		sprtpNum, sprt_title AS title, sprt_link AS link, sprt_summary AS
-		summary, sprt_date as "date", sprt_start AS "start", sprt_end AS "end", sprt_num AS
+		summary, sprt_date as "date", sprt_start AS "start", sprt_end AS
+		"end", sprt_num AS
 		fkSprtNum
-		FROM (SELECT sprtp_num, sprt_title, sprt_link, sprt_summary,
+		FROM (SELECT sprtp_num, sprt_title,
+		sprt_link, sprt_summary,
 		sprt_start, sprt_date, sprt_end, sprt_num,
 		ROW_NUMBER() OVER (ORDER BY sprt_end
 		DESC) AS rn
-		FROM sprt_person WHERE sprt_num = #{fkSprtNum})
+		FROM sprt_person WHERE
+		sprt_num = #{fkSprtNum})
 		WHERE rn
 		BETWEEN #{startRow} AND #{endRow}
 	</select>
