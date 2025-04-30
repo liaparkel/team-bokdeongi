@@ -20,13 +20,53 @@
 
 <body>
 	<div class="page-layout">
+
 		<nav class="navbar">
+
 			<div class="container">
-				<a class="navbar-brand" href="#"> <img src="image/logo.png"
-					alt="로고" /></a>
+				<a class="navbar-brand" href="controller?cmd=ckHomeManagerUI"> <img
+					src="image/logo.png" alt="로고" />
+				</a>
+
+				<!-- 로고 옆 관리자 텍스트 + 로그아웃 버튼 -->
+
+
+
 				<div class="admin-info d-flex align-items-center ms-3">
 					<span class="admin-greeting">관리자님 안녕하세요.</span>
-					<button class="logout-btn ms-2">로그아웃</button>
+					<button class="logout-btn ms-2" onclick="location.href='controller?cmd=login'">로그아웃</button>
+				</div>
+				<div class="menu-wrapper ms-auto">
+					<div class="dropdown">
+						<a class="nav-link dropdown-toggle no-underline" href="#"
+							role="button" data-bs-toggle="dropdown" aria-expanded="false">체크리스트</a>
+						<ul class="dropdown-menu dropdown-menu-end">
+							<li><a class="dropdown-item"
+								href="controller?cmd=ckHomeManagerUI">현재 체크리스트</a></li>
+							<li><a class="dropdown-item">이전
+									체크리스트</a></li>
+						</ul>
+					</div>
+					<div class="dropdown">
+						<a class="nav-link dropdown-toggle no-underline" role="button"
+							data-bs-toggle="dropdown" aria-expanded="false">지원금 정보</a>
+						<ul class="dropdown-menu dropdown-menu-end">
+							<li><a class="dropdown-item" href="sprtManagerUI.html">현재
+									지원금 정보</a></li>
+							<li><a class="dropdown-item" href="sprtBfManagerUI.html">이전
+									지원금 정보</a></li>
+						</ul>
+					</div>
+					<div class="dropdown">
+						<a class="nav-link dropdown-toggle no-underline" role="button"
+							data-bs-toggle="dropdown" aria-expanded="false">문의관리</a>
+						<ul class="dropdown-menu dropdown-menu-end">
+							<li><a class="dropdown-item"
+								href="controller?cmd=askManagerUI">FAQ</a></li>
+							<li><a class="dropdown-item"
+								href="controller?cmd=soloAskManagerUI">1:1 문의관리</a></li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</nav>
