@@ -10,7 +10,7 @@ public class SoloAskDetailManagerAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request) throws ServletException, IOException {
 		
-		return "soloAskDetailManager.html";
+		return "soloAskDetailManagerUI.html";
 	}
 
 }

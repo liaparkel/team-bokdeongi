@@ -199,7 +199,7 @@ public class ActionFactory {
 		    a = new GetCkHomeInfoAction();
 		    break;
 		   
-		case "soloAskDetailManager":
+		case "soloAskDetailManagerUI":
 			a = new SoloAskDetailManagerAction();
 			break;
 			
