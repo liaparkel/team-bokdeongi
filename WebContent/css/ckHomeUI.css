@@ -1,139 +1,13 @@
-html, body {
-	height: 100%;
-	margin: 0;
-	padding: 0;
-	font-family: "Noto Sans KR", sans-serif;
-	font-size: 14px;
-}
+/* ckHomeManagerUI.css + ckHomeUI.css 병합 버전 */
 
-body, h1, h2, h3, p, span, div, button, input, select, textarea, a {
-	color: #111111;
-	font-family: "Noto Sans KR", sans-serif;
-	font-size: 14px;
-	margin: 0;
-	padding: 0;
-}
-
-h1 {
-	font-size: 32px;
-	font-weight: bold;
-	margin: 24px 0;
-}
-
-.h2 {
-	font-size: 18px;
-	font-weight: bold;
-	margin: 16px 0;
-}
-
-.h3 {
-	font-size: 16px;
-	font-weight: bold;
-	margin: 12px 0;
-}
-
-/* Layout */
-.page-layout {
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
-}
-
-.container {
-	width: 100%;
-	max-width: 1200px;
-	margin: 0 auto;
-	padding: 0 16px;
-	box-sizing: border-box;
-}
-
-/* Navbar */
-.navbar {
-	height: 80px;
-	display: flex;
-	align-items: center;
-}
-
-.navbar .container {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-}
-
-.menu-wrapper {
-	display: flex;
-	align-items: center;
-	gap: 24px;
-	font-size: 16px;
-	font-weight: bold;
-}
-
-.nav-link, .dropdown-toggle {
-	color: #111111;
-	text-decoration: none;
-	font-size: 16px !important;
-	font-weight: bold !important;
-}
-
-.nav-link.active {
-	color: #F4B400 !important;
-	border-bottom: 3px solid #F4B400;
-	padding-bottom: 2px;
-}
-
-.nav-link:hover, .dropdown-toggle:hover {
-	color: #F4B400;
-}
-
-.no-underline {
-	text-decoration: none !important;
-}
-
-.dropdown-menu a:hover {
-	background-color: #ffd96d;
-}
-
-.dropdown-menu a:active {
-	background-color: #F4B400;
-}
-
-/* ▼ 화살표 제거 */
-.dropdown-toggle::after {
-	display: none !important;
-}
-
-.admin-bar {
-	display: flex;
-	align-items: center;
-	gap: 16px;
-}
-
-.admin-greeting {
-	font-size: 14px;
-	font-weight: bold;
-}
-
-.logout-btn {
-	height: 32px;
-	padding: 0 16px;
-	border-radius: 8px;
-	border: none;
-	font-weight: 700;
-	background: #F4B400;
-	color: #111111;
-}
-
-.main {
-	flex: 1;
-	padding: 24px 0;
-}
 .home {
   display: flex;
   font-size: 32px;
   font-family: 'Noto Sans KR';
   font-weight: bold;
-  margin: 20px 0px;
+  margin: 10px 0px;
 }
+
 .checkAll {
   display: flex;
   justify-content: space-between;
@@ -152,81 +26,23 @@ h1 {
   display: flex;
   gap: 12px;
 }
-.check {
-  border-radius: 10px;
-  border: none;
-  width: 120px;  
-  height: 36px;
-  font-size: 14px;
-  background: white;
-  color: black;
-  font-family: 'Noto Sans KR';
-  font-weight: bold;
-  transition: 0.2s;
-}
 
-.check:hover {
-  background-color: #f8f8f8;
-}
-.checkActive {
-  background: #F4B400;
-  color: white;
-  border-radius: 10px;
-}
 .down {
   display: flex;
   align-items: center;
 }
-.down-load {
-  border-radius: 10px;
-  background: #EEEEEE;
-  color: #F4B400;
-  font-size: 14px;
-  width: 140px;        
-  height: 36px;
-  border: none;
-  font-family: 'Noto Sans KR';
-  font-weight: bold;
-}
-.ready {
-  display: flex;
-  font-size: 24px;
-  margin: 20px 0px;
-  font-family: 'Noto Sans KR';
-}
-.re-contract-ready{
-  display: flex;
-  font-size: 24px;
-  margin: 20px 0px;
 
-}
-.after{
+.ready, .re-contract-ready, .after, .re-day, .re-method, .references {
   display: flex;
   font-size: 24px;
   margin: 20px 0px;
   font-family: 'Noto Sans KR';
 }
-.re-day{
-  display: flex;
-  font-size: 24px;
-  margin: 20px 0px;
-  font-family: 'Noto Sans KR';
+
+.home-title {
+  margin: 30px 0px;
 }
-.re-method{
-  display: flex;
-  font-size: 24px;
-  margin: 20px 0px;
-  font-family: 'Noto Sans KR';
-}
-.references{
-  display: flex;
-  font-size: 24px;
-  margin: 20px 0px;
-  font-family: 'Noto Sans KR';
-}
-.home-title{
-margin: 30px 0px;
-}
+
 #mainContentBox {
   width: 100%;
   max-width: 1200px;      
@@ -234,6 +50,7 @@ margin: 30px 0px;
   padding-left: 16px;    
   box-sizing: border-box;
 }
+
 .pin-icon {
   position: absolute;
   top: -16px;
@@ -243,11 +60,9 @@ margin: 30px 0px;
   z-index: 10;
   transform: rotate(-45deg);
 }
-.home-text{
-	font-size: 24px;
-}
+
 .tip-box {
- position: relative;
+  position: relative;
   width: 95%;
   max-width: 1100px;
   padding: 24px 32px;
@@ -265,12 +80,14 @@ margin: 30px 0px;
   margin-left: 0;
   font-family: bold;
 }
+
 .tip-text {
- font-size: 16px;
+  font-size: 16px;
   margin-bottom: 6px;
   line-height: 1.6;
   font-family: 'Noto Sans KR';
 }
+
 .edit-button-container {
   display: flex;
   justify-content: flex-end;
@@ -294,12 +111,18 @@ margin: 30px 0px;
   font-weight: bold;
   padding: 8px 20px;
 }
+
 .modal-body {
   background-color: white;
   padding: 20px;
 }
+
 .content-title {
-    font-size: 18px;
-    margin-bottom: 12px;
-    font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 12px;
+  font-weight: bold;
+}
+
+.home-text {
+  font-size: 24px;
 }
